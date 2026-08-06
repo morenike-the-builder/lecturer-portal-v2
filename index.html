@@ -400,6 +400,23 @@
             <!-- Welcome row -->
             <div class="welcome" style="margin-bottom:22px"><div class="welcome-left"><div class="avatar" style="width:52px;height:52px;border-radius:16px;font-size:16px">SL</div><div><h2>Welcome back, Samson</h2><p>Here's what's happening in your classes today.</p></div></div></div>
 
+            <!-- Course onboarding nudge (shows when a newly added course still needs setup) -->
+            <div id="courseOnboardCard" class="card" style="margin-bottom:22px;border:1.5px solid var(--brand);background:linear-gradient(135deg,var(--brand-soft) 0%,#fff 65%);cursor:pointer" onclick="showPage('courseOnboarding')">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+                <div style="display:flex;align-items:center;gap:14px">
+                  <div style="width:44px;height:44px;border-radius:13px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:20px;flex:0 0 auto">📘</div>
+                  <div>
+                    <div class="title" style="font-size:16px">Complete course onboarding — CSC 305</div>
+                    <div class="small">Data Structures &amp; Algorithms · Finish a few quick steps to activate this course for students.</div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+                  <span class="tag blue" id="courseOnboardPill">1 of 4 steps</span>
+                  <button class="btn" type="button" onclick="event.stopPropagation();showPage('courseOnboarding')">Continue setup →</button>
+                </div>
+              </div>
+            </div>
+
             <!-- Live class card -->
             <div style="margin-bottom:22px">
               <div class="card" style="border:2px solid var(--green);background:linear-gradient(135deg,#dcfce7 0%,#fff 60%)">
@@ -534,6 +551,77 @@
             <button class="tag blue" onclick="setDashboardState('returning')" style="cursor:pointer" type="button">Returning lecturer</button>
             <button class="tag" onclick="setDashboardState('new')" style="cursor:pointer" type="button">First-time / empty state</button>
           </div>
+        </section>
+
+        <!-- COURSE ONBOARDING PAGE (per-course setup, reached from the dashboard nudge) -->
+        <section class="page" id="courseOnboarding">
+          <button class="ghost" data-page-link="dashboard" type="button">← Back to Dashboard</button>
+          <div style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);border-radius:20px;padding:32px;color:#fff;margin:14px 0 22px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+            <div>
+              <div style="font-size:12px;font-weight:800;opacity:.75;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">Course Setup</div>
+              <h2 style="margin:0 0 10px;font-size:24px;color:#fff">Finish setting up CSC 305</h2>
+              <p style="margin:0;opacity:.88;font-size:15px;line-height:1.6;max-width:540px">Data Structures &amp; Algorithms · Complete these steps to activate this course, track your syllabus, and let students enroll. Takes about 5 minutes.</p>
+            </div>
+            <div style="background:rgba(255,255,255,.12);border-radius:16px;padding:20px 24px;text-align:center;min-width:130px">
+              <div style="font-size:36px;font-weight:950;color:#fff" id="csPercent">25%</div>
+              <div style="font-size:13px;opacity:.8;margin-top:4px">Setup complete</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Course Setup Steps</h3><span class="small" id="csStepsLabel">1 of 4 steps completed</span></div>
+            <div style="height:6px;background:var(--line);border-radius:999px;margin-bottom:24px;overflow:hidden"><div id="csProgressBar" style="height:100%;background:var(--brand);border-radius:999px;width:25%;transition:.4s"></div></div>
+
+            <!-- Step 1 (already done — the course was just added) -->
+            <div class="item" id="csStep1" style="border:1.5px solid var(--brand);background:var(--brand-soft);border-radius:16px;padding:18px;margin-bottom:12px">
+              <div class="item-left" style="flex:1">
+                <div style="width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:950;font-size:15px;flex:0 0 auto">✓</div>
+                <div>
+                  <div class="title">Add your course</div>
+                  <div class="small">CSC 305 has been added to your 2025/2026 · 1st Semester context.</div>
+                </div>
+              </div>
+              <button class="success" type="button" disabled>✓ Done</button>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="item" id="csStep2" style="border:1.5px solid var(--line);border-radius:16px;padding:18px;margin-bottom:12px">
+              <div class="item-left" style="flex:1">
+                <div style="width:40px;height:40px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-weight:950;font-size:15px;flex:0 0 auto">2</div>
+                <div>
+                  <div class="title">Load your course outline</div>
+                  <div class="small">Upload a PDF of your outline and we'll organize it into topics for you — or build your own list. This tracks your syllabus progress.</div>
+                </div>
+              </div>
+              <button class="btn" type="button" onclick="completeCourseStep(2);openModal('topicModal')">Upload Outline</button>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="item" id="csStep3" style="border:1.5px solid var(--line);border-radius:16px;padding:18px;margin-bottom:12px;opacity:.5">
+              <div class="item-left" style="flex:1">
+                <div style="width:40px;height:40px;border-radius:12px;background:#f1f5f9;color:var(--muted);display:grid;place-items:center;font-weight:950;font-size:15px;flex:0 0 auto">3</div>
+                <div>
+                  <div class="title">Schedule your first class</div>
+                  <div class="small">Add a class time, location, and day to your calendar. This activates attendance for that session and notifies enrolled students.</div>
+                </div>
+              </div>
+              <button class="ghost" type="button" onclick="completeCourseStep(3);openModal('classModal')" disabled>Schedule Class</button>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="item" id="csStep4" style="border:1.5px solid var(--line);border-radius:16px;padding:18px;opacity:.5">
+              <div class="item-left" style="flex:1">
+                <div style="width:40px;height:40px;border-radius:12px;background:#f1f5f9;color:var(--muted);display:grid;place-items:center;font-weight:950;font-size:15px;flex:0 0 auto">4</div>
+                <div>
+                  <div class="title">Upload your first resource</div>
+                  <div class="small">Add a PDF, slide deck, or YouTube link. Resources are visible to students immediately — no admin approval needed.</div>
+                </div>
+              </div>
+              <button class="ghost" type="button" onclick="completeCourseStep(4);openModal('resourceModal')" disabled>Upload Resource</button>
+            </div>
+          </div>
+
+          <div class="notice" style="margin-top:18px">You can skip any step and finish onboarding later — your existing courses and dashboard stay fully accessible in the meantime.</div>
         </section>
 
         <section class="page" id="today"><div class="welcome"><div><h2>Today's Class Mode</h2><p>A focused classroom screen for attendance, class resources, urgent announcements, and in-class assessments.</p></div><button class="btn" data-modal="attendanceModal" type="button">Start Attendance</button></div><div class="grid3"><div class="card stat"><div><p>Class</p><h3 style="font-size:22px">CSC 401</h3><span class="small">10:00 AM • Room 101</span></div><div class="stat-icon">📘</div></div><div class="card stat"><div><p>Current Students</p><h3>145</h3><span class="small">2025/2026 • 1st Semester</span></div><div class="stat-icon" style="background:var(--green-soft);color:var(--green)">👥</div></div><div class="card stat"><div><p>Topic</p><h3 style="font-size:22px">Memory</h3><span class="small">Topic 3 of 5</span></div><div class="stat-icon" style="background:var(--purple-soft);color:var(--purple)">✓</div></div></div><div class="two" style="margin-top:22px"><div class="card focus"><div class="card-head"><div><h3>Geolocation Attendance Ready</h3><p class="small">Students must be within the class location range to mark attendance.</p></div><button class="btn" data-modal="attendanceModal" type="button">Start Session</button></div><div class="geo">📍 Location validation required • Room 101 radius active</div><div class="divider"></div><div class="grid3"><div class="card"><p>Duration Options</p><h3 style="font-size:20px">15 / 30 / 80 / 120 mins</h3></div><div class="card"><p>Current Session</p><h3 style="font-size:20px">2025/2026</h3></div><div class="card"><p>Semester</p><h3 style="font-size:20px">1st</h3></div></div></div><div class="card"><h3>Class Shortcuts</h3><div class="divider"></div><button class="soft wide" data-modal="resourceModal" type="button">Upload Material</button><br><br><button class="soft wide" data-modal="announcementModal" type="button">Send / Schedule Announcement</button><br><br><button class="soft wide" data-modal="assessmentModal" type="button">Create In-class Assessment</button></div></div></section>
@@ -1674,7 +1762,7 @@
   <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script>
-    const titles={dashboard:'Dashboard',today:"Today's Class",courses:'Courses',courseDetail:'Course Details',calendar:'Calendar',resources:'Resources',announcements:'Announcements',analytics:'AI Intelligence',settings:'Settings'};
+    const titles={dashboard:'Dashboard',today:"Today's Class",courses:'Courses',courseDetail:'Course Details',courseOnboarding:'Course Setup',calendar:'Calendar',resources:'Resources',announcements:'Announcements',analytics:'AI Intelligence',settings:'Settings'};
     const one=s=>document.querySelector(s); const all=s=>Array.from(document.querySelectorAll(s));
 
     // --- Attendance session state ---
@@ -1739,6 +1827,36 @@
       const lbl = one('#setupStepsLabel'); if (lbl) lbl.textContent = done+' of 4 steps completed';
       const pctEl = one('#setupPercent'); if (pctEl) pctEl.textContent = pct+'%';
       if (done === 4) showToast('Setup complete! Your portal is ready.');
+    }
+    // Per-course onboarding (reached from the dashboard nudge; keeps the main dashboard intact)
+    let courseSteps = [true, false, false, false];
+    function completeCourseStep(num) {
+      courseSteps[num-1] = true;
+      const step = one('#csStep'+num);
+      if (step) {
+        step.style.opacity = '1';
+        step.style.borderColor = 'var(--brand)';
+        step.style.background = 'var(--brand-soft)';
+        const btn = step.querySelector('button');
+        if (btn) { btn.textContent = '✓ Done'; btn.className = 'success'; btn.disabled = true; }
+        const numEl = step.querySelector('div[style*="width:40px"]');
+        if (numEl) { numEl.style.background = 'var(--brand)'; numEl.style.color = '#fff'; numEl.textContent = '✓'; }
+      }
+      const nextStep = one('#csStep'+(num+1));
+      if (nextStep) {
+        nextStep.style.opacity = '1';
+        const nb = nextStep.querySelector('button');
+        if (nb) nb.disabled = false;
+        const nn = nextStep.querySelector('div[style*="width:40px"]');
+        if (nn) { nn.style.background = 'var(--brand-soft)'; nn.style.color = 'var(--brand)'; }
+      }
+      const done = courseSteps.filter(Boolean).length;
+      const pct = Math.round(done / 4 * 100);
+      const bar = one('#csProgressBar'); if (bar) bar.style.width = pct+'%';
+      const lbl = one('#csStepsLabel'); if (lbl) lbl.textContent = done+' of 4 steps completed';
+      const pctEl = one('#csPercent'); if (pctEl) pctEl.textContent = pct+'%';
+      const pill = one('#courseOnboardPill'); if (pill) pill.textContent = done+' of 4 steps';
+      if (done === 4) { showToast('CSC 305 onboarding complete!'); one('#courseOnboardCard')?.classList.add('hidden'); }
     }
     const ctx = { programType: 'Full-time', group: 'Group A' };
     function ctxLabel(){ return ctx.group ? ctx.programType+' · '+ctx.group : ctx.programType; }
@@ -1862,7 +1980,7 @@
       const title=one('#pageTitle'); if(title) title.textContent=titles[id]||'Dashboard';
       document.title = (titles[id]||'Dashboard') + ' · Cubbes Lecturer Portal';
       all('.nav').forEach(n=>{
-        const isActive = n.dataset.page===id || (id==='courseDetail' && n.dataset.page==='courses');
+        const isActive = n.dataset.page===id || ((id==='courseDetail'||id==='courseOnboarding') && n.dataset.page==='courses');
         n.classList.toggle('active', isActive);
         if (isActive) n.setAttribute('aria-current','page'); else n.removeAttribute('aria-current');
       });
