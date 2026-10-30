@@ -21,6 +21,7 @@
     .app{min-height:100vh}.sidebar{width:var(--side);position:fixed;inset:0 auto 0 0;z-index:40;background:var(--brand);color:#fff;padding:22px 16px;display:flex;flex-direction:column;gap:20px}.side-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.nav-scroll{overflow-y:auto}.nav-list{list-style:none;padding:0;margin:0}.nav-title{margin:18px 0 8px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;opacity:.72}
     .nav{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:14px;margin:5px 0;color:rgba(255,255,255,.92);cursor:pointer;width:100%;background:transparent;border:0;font:inherit;font-weight:600;text-align:left}
     .nav:hover,.nav.active,.nav[aria-current="page"]{background:#fff;color:var(--ink)}
+    .subnav{list-style:none;margin:0 0 4px 22px;padding:0 0 0 12px;border-left:1.5px solid rgba(255,255,255,.28)}.nav.sub{padding:9px 12px;font-size:14px;margin:3px 0}.nav.parent-active{background:rgba(255,255,255,.16)}
     .nav:focus-visible{outline:2px solid #fff;outline-offset:2px}
     .nav span{width:24px;text-align:center}.nav-badge{margin-left:auto;background:rgba(255,255,255,.18);padding:3px 7px;border-radius:999px;font-size:11px}.nav.active .nav-badge{background:var(--brand-soft);color:var(--brand)}
     /* Accessibility: respect users who request reduced motion */
@@ -368,7 +369,13 @@
           <li><button class="nav" data-page="calendar" type="button"><iconify-icon icon="hugeicons:calendar-03" aria-hidden="true"></iconify-icon>Calendar</button></li>
           <li><button class="nav" data-page="resources" type="button"><iconify-icon icon="hugeicons:folder-01" aria-hidden="true"></iconify-icon>Resources</button></li>
           <li><button class="nav" data-page="announcements" type="button"><iconify-icon icon="hugeicons:megaphone-01" aria-hidden="true"></iconify-icon>Announcements</button></li>
-          <li><button class="nav" data-page="analytics" type="button"><iconify-icon icon="hugeicons:magic-wand-01" aria-hidden="true"></iconify-icon>AI Intelligence</button></li>
+          <li>
+            <button class="nav" id="navAi" type="button" aria-expanded="true" aria-controls="aiSubnav" onclick="toggleAiNav()"><iconify-icon icon="hugeicons:magic-wand-01" aria-hidden="true"></iconify-icon>AI Intelligence<iconify-icon icon="hugeicons:arrow-down-01" aria-hidden="true" style="margin-left:auto;font-size:16px"></iconify-icon></button>
+            <ul class="subnav" id="aiSubnav" role="list">
+              <li><button class="nav sub" data-page="insights" type="button">Insights</button></li>
+              <li><button class="nav sub" data-page="analytics" type="button">Ask AI</button></li>
+            </ul>
+          </li>
         </ul>
         <div class="nav-title" id="navTitleAccount">Account</div>
         <ul role="list" aria-labelledby="navTitleAccount" class="nav-list">
@@ -427,6 +434,8 @@
             <div class="grid4" style="margin-bottom:22px"><div class="card stat"><div><p>Current Courses</p><h3>4</h3></div><div class="stat-icon">📘</div></div><div class="card stat"><div><p>Current Students</p><h3>363</h3></div><div class="stat-icon" style="background:var(--green-soft);color:var(--green)">👥</div></div><div class="card stat"><div><p>Needs Grading</p><h3>22</h3></div><div class="stat-icon" style="background:var(--amber-soft);color:#b45309">✍</div></div><div class="card stat"><div><p>Avg. Attendance</p><h3>80%</h3></div><div class="stat-icon" style="background:var(--purple-soft);color:var(--purple)">↗</div></div></div>
 
             <div class="two" style="margin-bottom:22px"><div class="card"><div class="card-head"><h3>Today's Teaching Plan</h3><a data-page-link="calendar" style="cursor:pointer;color:var(--brand)">View Calendar</a></div><div class="item"><div class="item-left"><div class="mini">📍</div><div><div class="title">Operating Systems Lecture</div><div class="small">CSC 401 • 10:00 AM • Attendance ready</div></div></div><button class="soft" data-open-course="attendance" type="button">Start Attendance</button></div><div class="item"><div class="item-left"><div class="mini">🧪</div><div><div class="title">In-class Quiz</div><div class="small">CSC 401 • 11:20 AM • Location required</div></div></div><button class="ghost" data-modal="assessmentModal" type="button">Review</button></div></div><div class="card"><div class="card-head"><h3>Action Needed</h3><a data-page-link="analytics" style="cursor:pointer;color:var(--brand)">View Insights</a></div><div id="courseSetupMount"></div><div id="materialAlertMount"></div><div class="item"><div><div class="title">22 submissions need grading</div><div class="small">Assignment 3: Memory Management</div></div><button class="ghost" data-modal="submissionModal" type="button">Grade</button></div><div class="item"><div><div class="title">1 scheduled announcement</div><div class="small">Publishes tomorrow by 9:00 AM</div></div><button class="ghost" data-page-link="announcements" type="button">Manage</button></div></div></div>
+
+            <div id="dashInsightsMount"></div>
 
             <div class="two">
               <div class="card" style="background:#f8fafc;border-color:var(--line)">
@@ -967,10 +976,16 @@
           </div>
         </div>
         </section>
+        <section class="page" id="insights">
+          <div class="welcome"><div><h2>Insights</h2><p>What your students find hard and how they use your materials, for the current semester.</p></div><select id="insightCourse" onchange="setInsightCourse(this.value)" style="width:auto;min-width:260px" aria-label="Course"></select></div>
+          <div class="small" id="insightMeta" style="margin:-8px 0 18px"></div>
+          <div id="insightBody"></div>
+        </section>
+
         <section class="page" id="analytics">
           <div class="welcome">
             <div>
-              <h2>✨ AI Intelligence</h2>
+              <h2>✨ Ask AI</h2>
               <p>Your AI teaching assistant. Ask anything — get insights, alerts, and material drafts.</p>
             </div>
           </div>
@@ -1703,7 +1718,7 @@
   <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script>
-    const titles={dashboard:'Dashboard',today:"Today's Class",courses:'Courses',courseDetail:'Course Details',calendar:'Calendar',resources:'Resources',announcements:'Announcements',analytics:'AI Intelligence',settings:'Settings'};
+    const titles={dashboard:'Dashboard',today:"Today's Class",courses:'Courses',courseDetail:'Course Details',calendar:'Calendar',resources:'Resources',announcements:'Announcements',analytics:'Ask AI',insights:'Insights',settings:'Settings'};
     const one=s=>document.querySelector(s); const all=s=>Array.from(document.querySelectorAll(s));
 
     // --- Attendance session state ---
@@ -2044,6 +2059,9 @@
       });
       closeSide(); window.scrollTo(0,0);
       if(id==='courseDetail'){ applyDetail(window._detailCode||null); window._detailCode=null; }
+      one('#navAi')?.classList.toggle('parent-active', id==='insights' || id==='analytics');
+      if(id==='insights' || id==='analytics') one('#aiSubnav')?.classList.remove('hidden');
+      if(id==='insights') renderInsights();
       if(id==='analytics') ensureChatBooted();
     }
     function openCourse(tab){showPage('courseDetail');const btn=document.querySelector('[data-tab="'+tab+'"]');if(btn)btn.click()}
@@ -2306,6 +2324,93 @@
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn" type="button" onclick="openModal('courseModal')">Add courses</button><button type="button" class="iconbtn" style="width:28px;height:28px;border-radius:8px;font-size:12px" title="Hide for now" aria-label="Hide for now" onclick="nextSemPrompt.active=false;renderNextSemester()">×</button></div>
         </div>
       </div>`;
+    }
+    // ===== Insights (sample data) =====
+    // Questions come from the lecturer's multiple-choice assessments (we record which option each student chose). Written assignments are not included.
+    // Material time = active time only. It signals engagement, not difficulty; difficulty is only suggested when scores point the same way.
+    const INSIGHT_MIN_RESPONSES = 20;
+    const INSIGHT_DATA = {
+      'CSC 401': { name:'Operating Systems in Computing Technology', students:145,
+        questions:[
+          { id:'q1', topic:'Memory Management', assess:'Mid-Semester Quiz', n:132, q:"Which page-replacement policy can show Belady's anomaly?", options:[{k:'A',t:'LRU',p:9},{k:'B',t:'FIFO',p:38,ok:true},{k:'C',t:'Optimal',p:7},{k:'D',t:'Clock',p:46}] },
+          { id:'q2', topic:'Memory Management', assess:'Mid-Semester Quiz', n:128, q:'With 4 KB pages, how many bits of a 32-bit virtual address are the page offset?', options:[{k:'A',t:'10 bits',p:21},{k:'B',t:'12 bits',p:33,ok:true},{k:'C',t:'20 bits',p:36},{k:'D',t:'32 bits',p:10}] },
+          { id:'q3', topic:'Process Management', assess:'Week 5 Quiz', n:140, q:'Which of these is NOT a necessary condition for deadlock?', options:[{k:'A',t:'Mutual exclusion',p:14},{k:'B',t:'No preemption',p:41},{k:'C',t:'Circular wait',p:12},{k:'D',t:'Process priority',p:33,ok:true}] }
+        ],
+        materials:[
+          { id:'m1', title:'Operating Systems Fundamentals', type:'PDF · 14 pages', topic:'Introduction to OS', opened:87, minutes:11, note:'Most students stop at page 6', tag:'most' },
+          { id:'m2', title:'Process Synchronization slides', type:'Slides · 22 slides', topic:'Process Management', opened:72, minutes:14, note:'Steady through to the end', tag:'most' },
+          { id:'m3', title:'OS Scheduling Algorithms', type:'YouTube · 24:10', topic:'Process Management', opened:54, minutes:9, note:'Most replayed: 12:10 – 13:00', tag:'' },
+          { id:'m4', title:'Memory Management Notes', type:'DOCX · 18 pages', topic:'Memory Management', opened:31, minutes:3, note:'Most leave at page 2', tag:'least' }
+        ],
+        findings:[
+          { id:'f1', kind:'Misconception', icon:'🧠', title:'62% missed the Belady\'s anomaly question — 46% chose "Clock"', detail:'Mid-Semester Quiz · Q1 · Memory Management · 132 responses', action:'Draft announcement', run:"openGenerate('announcement')", ask:"Explain Belady's anomaly and why students confuse FIFO with Clock" },
+          { id:'f2', kind:'Skipped material', icon:'📄', title:'Only 31% opened Memory Management Notes — the topic with the most-missed questions', detail:'45 of 145 students · median 3 min of active time', action:'Remind students', run:"openGenerate('announcement')", ask:'Why might students be skipping the Memory Management notes?' },
+          { id:'f3', kind:'Drop-off', icon:'📉', title:'Most students leave Operating Systems Fundamentals at page 6', detail:'126 opened it · median 11 min · page 6 is where the drop starts', action:'Open material', run:"openCourse('courseResources')", ask:'What makes page 6 of Operating Systems Fundamentals hard to follow?' }
+        ] },
+      'CSC 305': { name:'Database Systems and Management', students:98,
+        questions:[ { id:'q4', topic:'Normalization', assess:'Quiz 1', n:91, q:'A table is in 3NF when every non-key attribute depends on…', options:[{k:'A',t:'Part of the key',p:18},{k:'B',t:'The key, the whole key and nothing but the key',p:44,ok:true},{k:'C',t:'Another non-key attribute',p:31},{k:'D',t:'Any candidate key',p:7}] } ],
+        materials:[ { id:'m5', title:'SQL Joins cheat sheet', type:'PDF · 4 pages', topic:'SQL', opened:81, minutes:6, note:'Steady through to the end', tag:'most' }, { id:'m6', title:'Normalization walkthrough', type:'YouTube · 18:30', topic:'Normalization', opened:38, minutes:5, note:'Most replayed: 6:40 – 8:10', tag:'least' } ],
+        findings:[ { id:'f4', kind:'Misconception', icon:'🧠', title:'56% missed the 3NF question — 31% chose "Another non-key attribute"', detail:'Quiz 1 · Normalization · 91 responses', action:'Draft announcement', run:"openGenerate('announcement')", ask:'Explain the difference between 2NF and 3NF with an example' } ] },
+      'CSC 202': { name:'Computer Programming II', students:76, questions:[], materials:[], findings:[] }
+    };
+    let _insightCourse = 'CSC 401';
+    const _insightDismissed = new Set();
+    const askAi = text => { showPage('analytics'); setTimeout(() => { const i = one('#askInput'); if (i) { i.value = text; i.focus(); } }, 60); };
+    function insightFindings(code){ return (INSIGHT_DATA[code]?.findings || []).filter(f => !_insightDismissed.has(f.id)); }
+    function dismissInsight(id){ _insightDismissed.add(id); renderInsights(); }
+    function setInsightCourse(code){ _insightCourse = code; renderInsights(); }
+    function optionBars(opts){
+      const topWrong = Math.max(...opts.filter(o=>!o.ok).map(o=>o.p));
+      return opts.map(o => { const col = o.ok ? 'var(--green)' : (o.p === topWrong ? 'var(--amber)' : '#cbd5e1');
+        return `<div style="display:grid;grid-template-columns:22px 1fr 44px;gap:8px;align-items:center;margin:5px 0;font-size:13px"><b>${o.k}</b><div><div style="display:flex;justify-content:space-between;gap:8px"><span>${o.t}${o.ok?' <span class="tag green" style="padding:1px 7px;font-size:11px">Correct</span>':''}</span></div><div style="height:7px;background:#f1f5f9;border-radius:999px;overflow:hidden;margin-top:3px"><div style="height:100%;width:${o.p}%;background:${col}"></div></div></div><span style="text-align:right;font-weight:800">${o.p}%</span></div>`; }).join('');
+    }
+    function renderInsights(){
+      const sel = one('#insightCourse'); if (sel && sel.options.length === 0) sel.innerHTML = Object.keys(INSIGHT_DATA).map(c => `<option value="${c}">${c} · ${INSIGHT_DATA[c].name}</option>`).join('');
+      if (sel) sel.value = _insightCourse;
+      const d = INSIGHT_DATA[_insightCourse], body = one('#insightBody');
+      if (body && d) {
+        one('#insightMeta').textContent = '1st Semester 2025/2026 · '+d.students+' students · updated today';
+        const findings = insightFindings(_insightCourse);
+        if (!d.questions.length && !d.materials.length) {
+          body.innerHTML = `<div class="card" style="text-align:center;padding:48px 24px;border:1.5px dashed var(--line)"><div style="font-size:38px;margin-bottom:10px">📊</div><h3 style="margin:0 0 6px">Not enough data yet</h3><p class="small" style="max-width:420px;margin:0 auto">Insights appear once at least ${INSIGHT_MIN_RESPONSES} students have answered a multiple-choice assessment or opened your materials.</p></div>`;
+        } else {
+          const topics = {}; d.questions.forEach(q => topics[q.topic] = (topics[q.topic]||0) + 1);
+          const topTopic = Object.entries(topics).sort((a,b)=>b[1]-a[1])[0];
+          const qs = d.questions.map(q => { const ok = q.options.find(o=>o.ok).p, wrong = 100 - ok;
+            return `<div style="border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:12px">
+              <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px"><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag blue">${q.topic}</span><span class="tag">${q.assess}</span></div><span class="tag amber">${wrong}% got it wrong · ${q.n} responses</span></div>
+              <div style="font-weight:800;margin:6px 0 8px">${q.q}</div>${optionBars(q.options)}
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="soft" style="padding:6px 12px;font-size:13px" type="button" onclick="openGenerate('announcement')">Draft announcement</button><button class="ghost" style="padding:6px 12px;font-size:13px" type="button" onclick="openGenerate('notes')">Generate explainer</button></div>
+            </div>`; }).join('');
+          const mats = d.materials.map(m => `<tr><td><div class="title">${m.title}</div><div class="small">${m.type} · ${m.topic}</div></td><td><strong>${m.opened}%</strong> <span class="small">opened</span>${m.tag==='most'?' <span class="tag green">Most opened</span>':m.tag==='least'?' <span class="tag red">Low opens</span>':''}</td><td>${m.minutes} min</td><td class="small">${m.note}</td></tr>`).join('');
+          body.innerHTML = `
+            <div class="card" style="margin-bottom:22px"><div class="card-head"><h3>Key findings</h3><span class="small">${findings.length} to look at</span></div>
+              ${findings.length ? findings.map(f => `<div class="item" style="align-items:flex-start"><div class="item-left" style="align-items:flex-start"><div class="mini">${f.icon}</div><div><div class="small" style="font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-size:11px">${f.kind}</div><div class="title">${f.title}</div><div class="small">${f.detail}</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="soft" style="padding:5px 11px;font-size:12px" type="button" onclick="${f.run}">${f.action}</button><button class="ghost" style="padding:5px 11px;font-size:12px" type="button" onclick="askAi(${JSON.stringify(f.ask).replace(/"/g,'&quot;')})">Ask AI about this</button></div></div></div><button class="ghost" style="padding:4px 10px;font-size:12px" type="button" onclick="dismissInsight('${f.id}')">Dismiss</button></div>`).join('') : '<p class="small" style="margin:6px 0 0">You\'re all caught up. New findings appear here as students answer and read.</p>'}
+            </div>
+            <div class="card" style="margin-bottom:22px"><div class="card-head"><div><h3>Questions to re-teach</h3><p class="small" style="margin:2px 0 0">Most-missed multiple-choice questions from your assessments${topTopic && topTopic[1] > 1 ? ' · <strong>'+topTopic[0]+'</strong> has '+topTopic[1]+' of the '+d.questions.length+' most-missed' : ''}. Amber = the wrong answer chosen most.</p></div></div>
+              ${qs || '<p class="small">No multiple-choice assessment has enough responses yet.</p>'}
+              <p class="small" style="margin:6px 0 0">Shown when at least ${INSIGHT_MIN_RESPONSES} students answered. Written assignments are not included.</p></div>
+            <div class="card"><div class="card-head"><div><h3>How students use your materials</h3><p class="small" style="margin:2px 0 0">Time is active time only (idle time ignored).</p></div></div>
+              <div class="table-wrap"><table class="table" style="min-width:560px"><thead><tr><th>Material</th><th>Opened by</th><th>Median time</th><th>Where students stop or replay</th></tr></thead><tbody>${mats}</tbody></table></div>
+              <div class="notice" style="margin-top:14px">Time spent shows <strong>engagement</strong>, not difficulty. A long time can mean a topic is hard or just interesting. Check it against the question results above before drawing a conclusion.</div></div>`;
+        }
+      }
+      renderDashInsights();
+    }
+    // Dashboard teaser: top findings only; the detail lives on the Insights page.
+    function renderDashInsights(){
+      const m = one('#dashInsightsMount'); if (!m) return;
+      const f = insightFindings('CSC 401');
+      if (!f.length) { m.innerHTML = ''; return; }
+      m.innerHTML = `<div class="card" style="margin-bottom:22px"><div class="card-head"><div><h3>Insights · CSC 401</h3><p class="small" style="margin:2px 0 0">${f.length} new finding${f.length>1?'s':''} from your students this semester</p></div><a style="cursor:pointer;color:var(--brand)" onclick="_insightCourse='CSC 401';showPage('insights')">View all insights</a></div>
+        ${f.slice(0,2).map(x => `<div class="item"><div class="item-left"><div class="mini">${x.icon}</div><div><div class="title">${x.title}</div><div class="small">${x.detail}</div></div></div><button class="ghost" type="button" onclick="_insightCourse='CSC 401';showPage('insights')">See</button></div>`).join('')}</div>`;
+    }
+    // Sidebar: AI Intelligence has a submenu (Insights, Ask AI)
+    function toggleAiNav(){
+      const sub = one('#aiSubnav'), btn = one('#navAi'); if (!sub) return;
+      const open = sub.classList.toggle('hidden') === false;
+      btn.setAttribute('aria-expanded', open);
+      if (open) showPage('insights');
     }
     // A newly added course gets its own setup checklist on the dashboard
     function addCourseSetup(code, name, done){
@@ -3771,7 +3876,7 @@ What would you like to look at?`;
       all('[data-tab]').forEach(tab=>tab.addEventListener('click',()=>{all('[data-tab]').forEach(x=>x.classList.remove('active'));all('.tab-content').forEach(x=>x.classList.remove('active'));tab.classList.add('active');document.getElementById(tab.dataset.tab+'Tab')?.classList.add('active')}));
       all('[data-settings]').forEach(tab=>tab.addEventListener('click',()=>{all('[data-settings]').forEach(x=>x.classList.remove('active'));all('.settings-panel').forEach(x=>x.classList.remove('active'));tab.classList.add('active');document.getElementById(tab.dataset.settings+'Settings')?.classList.add('active')}));
       initModalA11y();
-      renderCourseSetup(); resetMaterialAlerts(); renderSemesterEnding();
+      renderCourseSetup(); resetMaterialAlerts(); renderSemesterEnding(); renderInsights();
       initChatHistoryMenu();
     }
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bindEvents);else bindEvents();
