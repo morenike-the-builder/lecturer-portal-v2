@@ -400,22 +400,11 @@
             <!-- Welcome row -->
             <div class="welcome" style="margin-bottom:22px"><div class="welcome-left"><div class="avatar" style="width:52px;height:52px;border-radius:16px;font-size:16px">SL</div><div><h2>Welcome back, Samson</h2><p>Here's what's happening in your classes today.</p></div></div></div>
 
-            <!-- Course onboarding nudge (shows when a newly added course still needs setup) -->
-            <div id="courseOnboardCard" class="card" style="margin-bottom:22px;border:1.5px solid var(--brand);background:linear-gradient(135deg,var(--brand-soft) 0%,#fff 65%);cursor:pointer" onclick="showPage('courseOnboarding')">
-              <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
-                <div style="display:flex;align-items:center;gap:14px">
-                  <div style="width:44px;height:44px;border-radius:13px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:20px;flex:0 0 auto">📘</div>
-                  <div>
-                    <div class="title" style="font-size:16px">Complete course onboarding — CSC 305</div>
-                    <div class="small">Data Structures &amp; Algorithms · Finish a few quick steps to activate this course for students.</div>
-                  </div>
-                </div>
-                <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-                  <span class="tag blue" id="courseOnboardPill">1 of 4 steps</span>
-                  <button class="btn" type="button" onclick="event.stopPropagation();showPage('courseOnboarding')">Continue setup →</button>
-                </div>
-              </div>
-            </div>
+            <!-- Per-course setup checklists (one card per newly added course still needing setup; existing dashboard stays below) -->
+            <!-- After a semester is ended and nothing new has been added yet -->
+            <div id="semesterEndingMount"></div>
+            <div id="nextSemesterMount"></div>
+            <div id="courseSetupMount"></div>
 
             <!-- Live class card -->
             <div style="margin-bottom:22px">
@@ -436,9 +425,9 @@
               </div>
             </div>
 
-            <div class="grid4" style="margin-bottom:22px"><div class="card stat"><div><p>Current Courses</p><h3>3</h3></div><div class="stat-icon">📘</div></div><div class="card stat"><div><p>Current Students</p><h3>363</h3></div><div class="stat-icon" style="background:var(--green-soft);color:var(--green)">👥</div></div><div class="card stat"><div><p>Needs Grading</p><h3>22</h3></div><div class="stat-icon" style="background:var(--amber-soft);color:#b45309">✍</div></div><div class="card stat"><div><p>Avg. Attendance</p><h3>80%</h3></div><div class="stat-icon" style="background:var(--purple-soft);color:var(--purple)">↗</div></div></div>
+            <div class="grid4" style="margin-bottom:22px"><div class="card stat"><div><p>Current Courses</p><h3>4</h3></div><div class="stat-icon">📘</div></div><div class="card stat"><div><p>Current Students</p><h3>363</h3></div><div class="stat-icon" style="background:var(--green-soft);color:var(--green)">👥</div></div><div class="card stat"><div><p>Needs Grading</p><h3>22</h3></div><div class="stat-icon" style="background:var(--amber-soft);color:#b45309">✍</div></div><div class="card stat"><div><p>Avg. Attendance</p><h3>80%</h3></div><div class="stat-icon" style="background:var(--purple-soft);color:var(--purple)">↗</div></div></div>
 
-            <div class="two" style="margin-bottom:22px"><div class="card"><div class="card-head"><h3>Today's Teaching Plan</h3><a data-page-link="calendar" style="cursor:pointer;color:var(--brand)">View Calendar</a></div><div class="item"><div class="item-left"><div class="mini">📍</div><div><div class="title">Operating Systems Lecture</div><div class="small">CSC 401 • 10:00 AM • Attendance ready</div></div></div><button class="soft" data-open-course="attendance" type="button">Start Attendance</button></div><div class="item"><div class="item-left"><div class="mini">🧪</div><div><div class="title">In-class Quiz</div><div class="small">CSC 401 • 11:20 AM • Location required</div></div></div><button class="ghost" data-modal="assessmentModal" type="button">Review</button></div></div><div class="card"><div class="card-head"><h3>Action Needed</h3><a data-page-link="analytics" style="cursor:pointer;color:var(--brand)">View Insights</a></div><div class="item"><div><div class="title">22 submissions need grading</div><div class="small">Assignment 3: Memory Management</div></div><button class="ghost" data-modal="submissionModal" type="button">Grade</button></div><div class="item"><div><div class="title">1 scheduled announcement</div><div class="small">Publishes tomorrow by 9:00 AM</div></div><button class="ghost" data-page-link="announcements" type="button">Manage</button></div></div></div>
+            <div class="two" style="margin-bottom:22px"><div class="card"><div class="card-head"><h3>Today's Teaching Plan</h3><a data-page-link="calendar" style="cursor:pointer;color:var(--brand)">View Calendar</a></div><div class="item"><div class="item-left"><div class="mini">📍</div><div><div class="title">Operating Systems Lecture</div><div class="small">CSC 401 • 10:00 AM • Attendance ready</div></div></div><button class="soft" data-open-course="attendance" type="button">Start Attendance</button></div><div class="item"><div class="item-left"><div class="mini">🧪</div><div><div class="title">In-class Quiz</div><div class="small">CSC 401 • 11:20 AM • Location required</div></div></div><button class="ghost" data-modal="assessmentModal" type="button">Review</button></div></div><div class="card"><div class="card-head"><h3>Action Needed</h3><a data-page-link="analytics" style="cursor:pointer;color:var(--brand)">View Insights</a></div><div id="materialAlertMount"></div><div class="item"><div><div class="title">22 submissions need grading</div><div class="small">Assignment 3: Memory Management</div></div><button class="ghost" data-modal="submissionModal" type="button">Grade</button></div><div class="item"><div><div class="title">1 scheduled announcement</div><div class="small">Publishes tomorrow by 9:00 AM</div></div><button class="ghost" data-page-link="announcements" type="button">Manage</button></div></div></div>
 
             <div class="two">
               <div class="card" style="background:#f8fafc;border-color:var(--line)">
@@ -550,90 +539,24 @@
             <span style="font-size:11px;color:var(--muted);font-weight:800;letter-spacing:.06em;text-transform:uppercase">Prototype — Dashboard view:</span>
             <button class="tag blue" onclick="setDashboardState('returning')" style="cursor:pointer" type="button">Returning lecturer</button>
             <button class="tag" onclick="setDashboardState('new')" style="cursor:pointer" type="button">First-time / empty state</button>
+            <button class="tag amber" onclick="demoSemesterEnding()" style="cursor:pointer" type="button">Demo: semester ending soon</button>
+            <button class="tag amber" onclick="demoAddCourse()" style="cursor:pointer" type="button">Demo: add a new course</button>
+            <button class="tag amber" onclick="resetMaterialAlerts()" style="cursor:pointer" type="button">Reset: material requests</button>
           </div>
-        </section>
-
-        <!-- COURSE ONBOARDING PAGE (per-course setup, reached from the dashboard nudge) -->
-        <section class="page" id="courseOnboarding">
-          <button class="ghost" data-page-link="dashboard" type="button">← Back to Dashboard</button>
-          <div style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);border-radius:20px;padding:32px;color:#fff;margin:14px 0 22px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
-            <div>
-              <div style="font-size:12px;font-weight:800;opacity:.75;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">Course Setup</div>
-              <h2 style="margin:0 0 10px;font-size:24px;color:#fff">Finish setting up CSC 305</h2>
-              <p style="margin:0;opacity:.88;font-size:15px;line-height:1.6;max-width:540px">Data Structures &amp; Algorithms · Complete these steps to activate this course, track your syllabus, and let students enroll. Takes about 5 minutes.</p>
-            </div>
-            <div style="background:rgba(255,255,255,.12);border-radius:16px;padding:20px 24px;text-align:center;min-width:130px">
-              <div style="font-size:36px;font-weight:950;color:#fff" id="csPercent">25%</div>
-              <div style="font-size:13px;opacity:.8;margin-top:4px">Setup complete</div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-head"><h3>Course Setup Steps</h3><span class="small" id="csStepsLabel">1 of 4 steps completed</span></div>
-            <div style="height:6px;background:var(--line);border-radius:999px;margin-bottom:24px;overflow:hidden"><div id="csProgressBar" style="height:100%;background:var(--brand);border-radius:999px;width:25%;transition:.4s"></div></div>
-
-            <!-- Step 1 (already done — the course was just added) -->
-            <div class="item" id="csStep1" style="border:1.5px solid var(--brand);background:var(--brand-soft);border-radius:16px;padding:18px;margin-bottom:12px">
-              <div class="item-left" style="flex:1">
-                <div style="width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:950;font-size:15px;flex:0 0 auto">✓</div>
-                <div>
-                  <div class="title">Add your course</div>
-                  <div class="small">CSC 305 has been added to your 2025/2026 · 1st Semester context.</div>
-                </div>
-              </div>
-              <button class="success" type="button" disabled>✓ Done</button>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="item" id="csStep2" style="border:1.5px solid var(--line);border-radius:16px;padding:18px;margin-bottom:12px">
-              <div class="item-left" style="flex:1">
-                <div style="width:40px;height:40px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-weight:950;font-size:15px;flex:0 0 auto">2</div>
-                <div>
-                  <div class="title">Load your course outline</div>
-                  <div class="small">Upload a PDF of your outline and we'll organize it into topics for you — or build your own list. This tracks your syllabus progress.</div>
-                </div>
-              </div>
-              <button class="btn" type="button" onclick="completeCourseStep(2);openModal('topicModal')">Upload Outline</button>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="item" id="csStep3" style="border:1.5px solid var(--line);border-radius:16px;padding:18px;margin-bottom:12px;opacity:.5">
-              <div class="item-left" style="flex:1">
-                <div style="width:40px;height:40px;border-radius:12px;background:#f1f5f9;color:var(--muted);display:grid;place-items:center;font-weight:950;font-size:15px;flex:0 0 auto">3</div>
-                <div>
-                  <div class="title">Schedule your first class</div>
-                  <div class="small">Add a class time, location, and day to your calendar. This activates attendance for that session and notifies enrolled students.</div>
-                </div>
-              </div>
-              <button class="ghost" type="button" onclick="completeCourseStep(3);openModal('classModal')" disabled>Schedule Class</button>
-            </div>
-
-            <!-- Step 4 -->
-            <div class="item" id="csStep4" style="border:1.5px solid var(--line);border-radius:16px;padding:18px;opacity:.5">
-              <div class="item-left" style="flex:1">
-                <div style="width:40px;height:40px;border-radius:12px;background:#f1f5f9;color:var(--muted);display:grid;place-items:center;font-weight:950;font-size:15px;flex:0 0 auto">4</div>
-                <div>
-                  <div class="title">Upload your first resource</div>
-                  <div class="small">Add a PDF, slide deck, or YouTube link. Resources are visible to students immediately — no admin approval needed.</div>
-                </div>
-              </div>
-              <button class="ghost" type="button" onclick="completeCourseStep(4);openModal('resourceModal')" disabled>Upload Resource</button>
-            </div>
-          </div>
-
-          <div class="notice" style="margin-top:18px">You can skip any step and finish onboarding later — your existing courses and dashboard stay fully accessible in the meantime.</div>
         </section>
 
         <section class="page" id="today"><div class="welcome"><div><h2>Today's Class Mode</h2><p>A focused classroom screen for attendance, class resources, urgent announcements, and in-class assessments.</p></div><button class="btn" data-modal="attendanceModal" type="button">Start Attendance</button></div><div class="grid3"><div class="card stat"><div><p>Class</p><h3 style="font-size:22px">CSC 401</h3><span class="small">10:00 AM • Room 101</span></div><div class="stat-icon">📘</div></div><div class="card stat"><div><p>Current Students</p><h3>145</h3><span class="small">2025/2026 • 1st Semester</span></div><div class="stat-icon" style="background:var(--green-soft);color:var(--green)">👥</div></div><div class="card stat"><div><p>Topic</p><h3 style="font-size:22px">Memory</h3><span class="small">Topic 3 of 5</span></div><div class="stat-icon" style="background:var(--purple-soft);color:var(--purple)">✓</div></div></div><div class="two" style="margin-top:22px"><div class="card focus"><div class="card-head"><div><h3>Geolocation Attendance Ready</h3><p class="small">Students must be within the class location range to mark attendance.</p></div><button class="btn" data-modal="attendanceModal" type="button">Start Session</button></div><div class="geo">📍 Location validation required • Room 101 radius active</div><div class="divider"></div><div class="grid3"><div class="card"><p>Duration Options</p><h3 style="font-size:20px">15 / 30 / 80 / 120 mins</h3></div><div class="card"><p>Current Session</p><h3 style="font-size:20px">2025/2026</h3></div><div class="card"><p>Semester</p><h3 style="font-size:20px">1st</h3></div></div></div><div class="card"><h3>Class Shortcuts</h3><div class="divider"></div><button class="soft wide" data-modal="resourceModal" type="button">Upload Material</button><br><br><button class="soft wide" data-modal="announcementModal" type="button">Send / Schedule Announcement</button><br><br><button class="soft wide" data-modal="assessmentModal" type="button">Create In-class Assessment</button></div></div></section>
 
         <section class="page" id="courses">
-          <div class="welcome"><div><h2>Courses</h2><p>All courses you are teaching. Active sessions are open for engagement. Ended sessions require starting a new session or viewing previous records.</p></div><button class="btn" data-modal="courseModal" type="button">+ Add Course</button></div>
+          <div class="welcome"><div><h2>Courses</h2><p>All courses you are teaching this semester. When a semester finishes, end it to archive your courses and start the next one.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="ghost" onclick="openEndSemester()" type="button">End semester</button><button class="btn" data-modal="courseModal" type="button">+ Add Course</button></div></div>
           <div style="margin-bottom:18px;padding:10px 14px;background:#f8fafc;border:1px dashed var(--line);border-radius:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span style="font-size:11px;color:var(--muted);font-weight:800;letter-spacing:.06em;text-transform:uppercase">Prototype view:</span><button class="tag blue" onclick="setPageState('courses','returning')" style="cursor:pointer" type="button">Has courses</button><button class="tag" onclick="setPageState('courses','new')" style="cursor:pointer" type="button">No courses yet</button></div>
           <div id="coursesReturning">
             <div class="filters"><input placeholder="Search by course title or code"><select><option>All Levels</option><option>100 Level</option><option>200 Level</option><option>300 Level</option></select><select><option>All Status</option><option>Active</option><option>Ended</option></select></div>
             <div class="course-grid">
+              <!-- Newly added courses (setup status) -->
+              <div id="newCourseCards" style="display:contents"></div>
               <!-- ACTIVE course card -->
-              <article class="course-card" style="cursor:pointer" onclick="showPage('courseDetail')">
+              <article class="course-card" data-course="CSC 401" style="cursor:pointer" onclick="showPage('courseDetail')">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
                   <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">CSC 401</span><span class="tag green">Active</span></div>
                   <span class="tag blue" style="font-size:11px">2025/2026 · S1</span>
@@ -644,7 +567,7 @@
                 <div class="bar"><span style="width:68%"></span></div>
               </article>
               <!-- ACTIVE course card -->
-              <article class="course-card" style="cursor:pointer" onclick="showPage('courseDetail')">
+              <article class="course-card" data-course="CSC 305" style="cursor:pointer" onclick="showPage('courseDetail')">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
                   <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">CSC 305</span><span class="tag green">Active</span></div>
                   <span class="tag blue" style="font-size:11px">2025/2026 · S1</span>
@@ -653,6 +576,17 @@
                 <div class="course-meta"><span>👥 98 students</span><span>🏛 Computer Science</span><span>📅 9 attendance sessions</span></div>
                 <div style="display:flex;justify-content:space-between;margin-bottom:8px"><strong>Syllabus Progress</strong><strong style="color:var(--brand)">42%</strong></div>
                 <div class="bar"><span style="width:42%"></span></div>
+              </article>
+              <!-- ACTIVE course card (fully complete) -->
+              <article class="course-card" data-course="CSC 202" style="cursor:pointer" onclick="showPage('courseDetail')">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+                  <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">CSC 202</span><span class="tag green">Active</span></div>
+                  <span class="tag blue" style="font-size:11px">2025/2026 · S1</span>
+                </div>
+                <h3>Computer Programming II</h3>
+                <div class="course-meta"><span>👥 76 students</span><span>🏛 Computer Science</span><span>📅 12 attendance sessions</span></div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px"><strong>Syllabus Progress</strong><strong style="color:var(--brand)">100%</strong></div>
+                <div class="bar"><span style="width:100%"></span></div>
               </article>
               <!-- ENDED course card — shows session picker overlay -->
               <article class="course-card" style="background:#f8fafc;border-color:var(--line);opacity:.85">
@@ -663,10 +597,10 @@
                 <h3 style="color:var(--muted)">Data Structures &amp; Algorithms</h3>
                 <div class="course-meta" style="color:var(--muted)"><span>👥 120 students</span><span>🏛 Computer Science</span><span>📅 11 sessions (archived)</span></div>
                 <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:12px">
-                  <p class="small" style="margin:0 0 10px;color:var(--muted)">This course session has ended and is archived. What would you like to do?</p>
+                  <p class="small" style="margin:0 0 10px;color:var(--muted)">This semester has ended and is archived. What would you like to do?</p>
                   <div style="display:flex;gap:8px;flex-wrap:wrap">
-                    <button class="btn" style="font-size:13px;padding:8px 14px" onclick="event.stopPropagation();openModal('newSessionModal')" type="button">Start New Session</button>
-                    <button class="ghost" style="font-size:13px;padding:8px 14px" onclick="event.stopPropagation();openModal('historyModal')" type="button">View Previous Records</button>
+                    <button class="btn" style="font-size:13px;padding:8px 14px" onclick="event.stopPropagation();openModal('newSessionModal')" type="button">Teach this course again</button>
+                    <button class="ghost" style="font-size:13px;padding:8px 14px" onclick="event.stopPropagation();openModal('historyModal')" type="button">Open past semesters</button>
                   </div>
                 </div>
               </article>
@@ -681,7 +615,7 @@
             </div>
           </div>
         </section>
-        <section class="page" id="courseDetail"><button class="ghost" data-page-link="courses" type="button">← Back to Courses</button><div class="hero" style="margin-top:14px"><div style="display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap"><div><h2>Operating Systems in Computing Technology <span class="tag green">Active</span></h2><h3 style="color:var(--brand);margin:0 0 10px">CSC 401</h3><p>Core concepts in operating systems, process management, memory, filesystems, scheduling, and synchronization.</p><div class="small">👥 145 current students • 2025/2026 • 1st Semester • 3 units • 300 Level • Full-time · Group A</div></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="ghost" data-modal="historyModal" type="button">View Previous Sessions</button><button class="ghost" data-modal="courseModal" type="button">Edit Course</button><button class="ghost" data-modal="sessionMgmtModal" type="button">Session Management</button></div></div><div class="kpis"><div><span class="small">Course Progress</span><h3>68%</h3></div><div><span class="small">Average Attendance</span><h3>80%</h3></div><div><span class="small">Attendance Sessions</span><h3>13</h3></div><div><span class="small">Next Class</span><h3 style="font-size:18px">Today, 10:00 AM</h3></div></div></div><div class="tabs"><button class="tab active" data-tab="overview" type="button">Overview</button><button class="tab" data-tab="obe" type="button">Outcomes (OBE)</button><button class="tab" data-tab="students" type="button">Students</button><button class="tab" data-tab="attendance" type="button">Attendance</button><button class="tab" data-tab="assignments" type="button">Assignments</button><button class="tab" data-tab="assessments" type="button">Assessments</button><button class="tab" data-tab="courseResources" type="button">Resources</button><button class="tab" data-tab="courseAnnouncements" type="button">Announcements</button></div>
+        <section class="page" id="courseDetail"><button class="ghost" data-page-link="courses" type="button">← Back to Courses</button><div id="courseDetailSetup"></div><div class="hero" style="margin-top:14px"><div style="display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap"><div><h2><span id="detailTitle">Operating Systems in Computing Technology</span> <span class="tag green">Active</span></h2><h3 id="detailCode" style="color:var(--brand);margin:0 0 10px">CSC 401</h3><p>Core concepts in operating systems, process management, memory, filesystems, scheduling, and synchronization.</p><div class="small">👥 145 current students • 2025/2026 • 1st Semester • 3 units • 300 Level • Full-time · Group A</div></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="ghost" data-modal="historyModal" type="button">Past semesters</button><button class="ghost" data-modal="courseModal" onclick="window._cmMode='edit'" type="button">Edit Course</button><button class="ghost" onclick="openEndSemester('CSC 401')" type="button">End semester</button></div></div><div class="kpis"><div><span class="small">Course Progress</span><h3>68%</h3></div><div><span class="small">Average Attendance</span><h3>80%</h3></div><div><span class="small">Attendance Sessions</span><h3>13</h3></div><div><span class="small">Next Class</span><h3 style="font-size:18px">Today, 10:00 AM</h3></div></div></div><div class="tabs"><button class="tab active" data-tab="overview" type="button">Overview</button><button class="tab" data-tab="obe" type="button">Outcomes (OBE)</button><button class="tab" data-tab="students" type="button">Students</button><button class="tab" data-tab="attendance" type="button">Attendance</button><button class="tab" data-tab="assignments" type="button">Assignments</button><button class="tab" data-tab="assessments" type="button">Assessments</button><button class="tab" data-tab="courseResources" type="button">Resources</button><button class="tab" data-tab="courseAnnouncements" type="button">Announcements</button></div>
           <div class="tab-content active" id="overviewTab"><div class="two"><div class="card"><div class="card-head"><h3>Syllabus Progress Tracker</h3><button class="ghost" data-modal="topicModal" type="button">+ Add Topic</button></div><div class="progress-summary"><div><strong>68%</strong><span class="small">Overall Progress</span></div><div><strong>2/5</strong><span class="small">Topics Completed</span></div><div><strong>9/22h</strong><span class="small">Hours Done</span></div></div><div class="item completed"><div class="item-left"><span class="checkbox done" onclick="toggleTopicDone(this)" style="cursor:pointer" title="Mark as not done">✓</span><div><div class="title"><s>Introduction to OS</s></div><div style="margin-top:6px;display:flex;flex-direction:column;gap:3px"><span class="small" style="display:flex;align-items:center;gap:6px"><span onclick="toggleSubtopic(this)" style="cursor:pointer;width:14px;height:14px;border-radius:4px;background:#020617;color:#fff;display:inline-grid;place-items:center;font-size:9px;flex:0 0 auto">✓</span><s>History of Operating Systems</s></span><span class="small" style="display:flex;align-items:center;gap:6px"><span onclick="toggleSubtopic(this)" style="cursor:pointer;width:14px;height:14px;border-radius:4px;background:#020617;color:#fff;display:inline-grid;place-items:center;font-size:9px;flex:0 0 auto">✓</span><s>OS Types &amp; Structure</s></span></div></div></div><div style="display:flex;align-items:center;gap:6px"><span class="tag">3h</span><button class="iconbtn" style="width:30px;height:30px;border-radius:8px;font-size:13px" data-modal="topicModal" title="Edit" type="button">✎</button><button class="iconbtn" style="width:30px;height:30px;border-radius:8px;font-size:13px;color:var(--red)" data-toast="Topic deleted" title="Delete" type="button">🗑</button></div></div><div class="item completed"><div class="item-left"><span class="checkbox done" onclick="toggleTopicDone(this)" style="cursor:pointer" title="Mark as not done">✓</span><div><div class="title"><s>Process Management</s></div><div style="margin-top:6px;display:flex;flex-direction:column;gap:3px"><span class="small" style="display:flex;align-items:center;gap:6px"><span onclick="toggleSubtopic(this)" style="cursor:pointer;width:14px;height:14px;border-radius:4px;background:#020617;color:#fff;display:inline-grid;place-items:center;font-size:9px;flex:0 0 auto">✓</span><s>CPU Scheduling</s></span><span class="small" style="display:flex;align-items:center;gap:6px"><span onclick="toggleSubtopic(this)" style="cursor:pointer;width:14px;height:14px;border-radius:4px;background:#020617;color:#fff;display:inline-grid;place-items:center;font-size:9px;flex:0 0 auto">✓</span><s>Deadlocks &amp; Synchronization</s></span></div></div></div><div style="display:flex;align-items:center;gap:6px"><span class="tag">6h</span><button class="iconbtn" style="width:30px;height:30px;border-radius:8px;font-size:13px" data-modal="topicModal" title="Edit" type="button">✎</button><button class="iconbtn" style="width:30px;height:30px;border-radius:8px;font-size:13px;color:var(--red)" data-toast="Topic deleted" title="Delete" type="button">🗑</button></div></div><div class="item"><div class="item-left"><span class="checkbox" onclick="toggleTopicDone(this)" style="cursor:pointer" title="Mark as done"></span><div><div class="title">Memory Management</div><div style="margin-top:6px;display:flex;flex-direction:column;gap:3px"><span class="small" style="display:flex;align-items:center;gap:6px"><span onclick="toggleSubtopic(this)" style="cursor:pointer;width:14px;height:14px;border-radius:4px;border:1px solid #cbd5e1;background:#fff;display:inline-grid;place-items:center;font-size:9px;flex:0 0 auto"></span>Virtual Memory</span><span class="small" style="display:flex;align-items:center;gap:6px"><span onclick="toggleSubtopic(this)" style="cursor:pointer;width:14px;height:14px;border-radius:4px;border:1px solid #cbd5e1;background:#fff;display:inline-grid;place-items:center;font-size:9px;flex:0 0 auto"></span>Paging &amp; Segmentation</span></div></div></div><div style="display:flex;align-items:center;gap:6px"><span class="tag">6h</span><button class="iconbtn" style="width:30px;height:30px;border-radius:8px;font-size:13px" data-modal="topicModal" title="Edit" type="button">✎</button><button class="iconbtn" style="width:30px;height:30px;border-radius:8px;font-size:13px;color:var(--red)" data-toast="Topic deleted" title="Delete" type="button">🗑</button></div></div></div><div class="card"><h3>Course Information</h3><div class="divider"></div><p><strong>Source:</strong> Existing department course</p><p><strong>Department:</strong> Computer Science</p><p><strong>Instructor:</strong> Samson Lecturer</p><p><strong>Status:</strong> Active</p><p><strong>Session:</strong> 2025/2026 · 1st Semester</p><p><strong>Program:</strong> Full-time · Group A</p></div></div></div>
           <div class="tab-content" id="studentsTab"><div class="grid3" style="margin-bottom:18px"><div class="card stat"><div><p>Total Enrolled</p><h3>145</h3></div><div class="stat-icon">👥</div></div><div class="card stat"><div><p>Active Students</p><h3>145</h3></div><div class="stat-icon" style="background:var(--green-soft);color:var(--green)">👥</div></div><div class="card stat"><div><p>Inactive Students</p><h3>0</h3></div><div class="stat-icon" style="background:var(--red-soft);color:var(--red)">👥</div></div></div><div class="card"><div class="card-head"><div><h3>Current Students</h3><p class="small">Students appear here when they enroll in this course for 2025/2026 · 1st Semester · Full-time · Group A.</p></div><button class="ghost" type="button">Export CSV</button></div><input placeholder="Search students by name, matric number, or email"><div class="table-wrap"><table class="table"><thead><tr><th>Student</th><th>Matric No.</th><th>Status</th><th>Attendance Count</th><th>Attendance %</th><th>Assessment Avg.</th><th>Action</th></tr></thead><tbody><tr><td>Adebayo Tunde</td><td>CSC/2024/001</td><td><span class="tag green">Active</span></td><td style="font-weight:850">12 of 13</td><td>92%</td><td>78%</td><td><button class="danger" data-modal="removeStudentModal" type="button">Remove</button></td></tr><tr><td>Morenike Ade</td><td>CSC/2024/018</td><td><span class="tag green">Active</span></td><td style="font-weight:850">10 of 13</td><td>77%</td><td>81%</td><td><button class="danger" data-modal="removeStudentModal" type="button">Remove</button></td></tr><tr><td>Ifeoluwa James</td><td>CSC/2024/047</td><td><span class="tag red">At Risk</span></td><td style="font-weight:850;color:var(--red)">6 of 13</td><td style="color:var(--red)">46%</td><td>39%</td><td><button class="danger" data-modal="removeStudentModal" type="button">Remove</button></td></tr></tbody></table></div></div></div>
           <div class="tab-content" id="attendanceTab">
@@ -1332,17 +1266,41 @@
 
   <div class="modal" id="forgotModal"><div class="modal-card"><div class="modal-head"><h3>Reset Password</h3><button class="close" data-close-modal type="button">×</button></div><p class="small">Enter your registered email and we will send reset instructions.</p><label>Email Address</label><input placeholder="lecturer@university.edu"><br><br><button class="btn" data-toast="Reset instructions sent" type="button">Send Reset Link</button></div></div>
   <div class="modal" id="quickModal"><div class="modal-card"><div class="modal-head"><h3>Quick Actions</h3><button class="close" data-close-modal type="button">×</button></div><div class="grid3"><button class="soft" data-open-course="attendance" type="button">Start Attendance</button><button class="soft" data-modal="assessmentModal" type="button">Create Assessment</button><button class="soft" data-modal="announcementModal" type="button">Schedule Announcement</button></div></div></div>
-  <div class="modal" id="courseModal"><div class="modal-card"><div class="modal-head"><h3>+ Add Course</h3><button class="close" data-close-modal type="button">×</button></div>
-    <p class="small" style="margin-bottom:14px">Search and select an existing department course to auto-fill course details and load the course outline.</p>
-    <div class="form-row"><label>Use existing department course</label><select id="departmentCourseSelect"><option value="">Search department courses...</option><option value="os">CSC 401 — Operating Systems in Computing Technology</option><option value="db">CSC 305 — Database Systems and Management</option><option value="ds">CSC 301 — Data Structures &amp; Algorithms</option></select></div>
-    <div class="toggle-row" style="background:var(--brand-soft);border-color:#bfdbfe">
-      <input type="checkbox" id="manualCourseToggle" onchange="toggleManualCourse(this)">
-      <div><strong>Can't find your course? Enter new record</strong><div class="small">Check this to manually enter course details if the course cannot be found in the department list. The department course search will be disabled.</div></div>
+  <div class="modal" id="courseModal"><div class="modal-card"><div class="modal-head"><h3 id="courseModalTitle">+ Add Course</h3><button class="close" data-close-modal type="button">×</button></div>
+
+    <!-- VIEW 1: pick existing courses (default). Tick one or more. Manual fields stay hidden. -->
+    <div id="courseViewPick">
+      <p class="small" style="margin-bottom:12px">Tick the department courses you teach. Details and outlines load automatically — nothing to type.</p>
+      <input id="deptCourseSearch" placeholder="Search by course title or code" oninput="renderDeptList()" style="margin-bottom:10px">
+      <div id="deptCourseList" style="max-height:240px;overflow:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:12px"></div>
+      <div id="courseDetailsReview" class="hidden" style="border:1.5px solid var(--brand);background:var(--brand-soft);border-radius:14px;padding:14px 16px;margin-bottom:6px">
+        <div class="small" style="font-weight:800;margin-bottom:8px" id="rvHeading">Review</div>
+        <div id="rvList"></div>
+        <div class="form-grid" style="margin-top:12px"><div><label>Academic year</label><select id="pickYear"><option>2025/2026</option><option>2026/2027</option></select></div><div><label>Semester</label><select id="pickSem"><option>1st Semester</option><option>2nd Semester</option></select></div></div>
+        <div class="form-row" style="margin:12px 0 0"><label>When does this semester end? <span class="small" style="font-weight:600">(optional)</span></label><input type="date" id="pickEndDate"><div class="small" style="margin-top:6px">Applies to the selected courses. Helps us remind you to archive them when the semester finishes.</div></div>
+      </div>
+      <button class="btn hidden" id="courseConfirmPick" style="margin-top:12px" onclick="confirmAddCourse()" type="button">Add course</button>
+      <div class="divider"></div>
+      <div style="text-align:center" class="small">Can't find your course? <button type="button" onclick="setCourseModal('manual')" style="background:none;border:0;padding:0;color:var(--brand);font-weight:800;text-decoration:underline">Enter new record</button></div>
     </div>
-    <div class="divider"></div>
-    <div class="form-grid"><div><label>Course Title *</label><input id="courseTitle" placeholder="Enter course title"></div><div><label>Course Code *</label><input id="courseCode" placeholder="e.g. CSC 401"></div><div><label>Course Units</label><input id="courseUnits" value="3"></div><div><label>Academic Year</label><select><option>2025/2026</option><option>2024/2025</option></select></div><div><label>Department</label><input id="courseDept" placeholder="Department"></div><div><label>Semester</label><select><option>1st Semester</option><option>2nd Semester</option></select></div></div>
-    <div class="form-row" style="margin-top:14px"><label>Course Description</label><textarea id="courseDesc" placeholder="Describe what this course covers..."></textarea></div>
-    <button class="btn" style="margin-top:16px" data-toast="Course added to current teaching list" type="button">Confirm and Add Course</button></div></div>
+
+    <!-- VIEW 2: enter a new record (only after "Enter new record") -->
+    <div id="courseViewManual" class="hidden">
+      <button type="button" id="courseBackToList" class="ghost" onclick="setCourseModal('pick')" style="margin-bottom:14px;padding:6px 12px;font-size:13px">← Back to course list</button>
+      <p class="small" style="margin-bottom:14px" id="courseManualIntro">Enter the details of your course. Fields marked * are required.</p>
+      <div class="form-grid"><div><label>Course Title *</label><input id="courseTitle" placeholder="Enter course title"></div><div><label>Course Code *</label><input id="courseCode" placeholder="e.g. CSC 401"></div><div><label>Course Units *</label><input id="courseUnits" type="number" min="1" value="3"></div><div><label>Academic Year *</label><select id="courseYear"><option>2025/2026</option><option>2024/2025</option></select></div><div><label>Department *</label><input id="courseDept" placeholder="Department"></div><div><label>Semester *</label><select id="courseSemester"><option>1st Semester</option><option>2nd Semester</option></select></div></div>
+      <div class="form-row" style="margin-top:14px"><label>When does this semester end? <span class="small" style="font-weight:600">(optional — the end date of the course or semester)</span></label><input type="date" id="courseEndDate"><div class="small" style="margin-top:6px">Helps us remind you to archive this course when the semester finishes.</div></div>
+      <div class="form-row"><label>Course Description</label><textarea id="courseDesc" placeholder="Describe what this course covers..."></textarea></div>
+      <div id="courseFormError" class="small hidden" style="color:var(--red);font-weight:800;margin-top:10px"></div>
+      <button class="btn" id="courseConfirmManual" style="margin-top:16px" onclick="confirmAddCourse()" type="button">Confirm and add course</button>
+    </div>
+
+    <!-- VIEW 3: shown after a new record is saved -->
+    <div id="courseViewAnother" class="hidden">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px"><span style="font-size:22px">✅</span><div><div class="title" id="anotherTitle"></div><div class="small">It's on your dashboard checklist, ready to set up.</div></div></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button" onclick="setCourseModal('manual')">Add another new record</button><button class="ghost" type="button" onclick="setCourseModal('pick')">Pick from course list</button><button class="ghost" type="button" onclick="closeModals()">Done</button></div>
+    </div>
+  </div></div>
   <div class="modal" id="topicModal"><div class="modal-card" style="max-width:560px"><div class="modal-head"><h3>Add / Edit Outline Topic</h3><button class="close" data-close-modal type="button">×</button></div>
     <div style="background:#f8fafc;border:1px dashed #cbd5e1;border-radius:12px;padding:14px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:12px">
       <div><div style="font-weight:800;font-size:13px;margin-bottom:2px">⇪ Import from Syllabus Document</div><div class="small">Upload a PDF or Word file to auto-populate topics from your course outline.</div></div>
@@ -1357,7 +1315,7 @@
       </div>
     </div>
     <div class="form-row"><label>Estimated Hours *</label><input placeholder="e.g. 3" type="number" min="1"></div>
-    <div style="display:flex;gap:10px;margin-top:16px"><button class="btn" data-toast="Topic saved" type="button">Save Topic</button><button class="ghost" data-close-modal type="button">Cancel</button></div>
+    <div style="display:flex;gap:10px;margin-top:16px"><button class="btn" data-toast="Topic saved" onclick="setupStepSaved('outline')" type="button">Save Topic</button><button class="ghost" data-close-modal type="button">Cancel</button></div>
   </div></div>
 
   <!-- ===== OBE GENERATE MODAL ===== -->
@@ -1604,7 +1562,7 @@
       </div>
     </div>
 
-    <button class="btn wide" style="margin-top:18px" data-toast="Resources uploaded successfully" type="button">Save Resources</button>
+    <button class="btn wide" style="margin-top:18px" data-toast="Resources uploaded successfully" onclick="setupStepSaved('resource');materialUploaded()" type="button">Save Resources</button>
   </div></div>
 
   <!-- LINK MODAL (kept as fallback) -->
@@ -1641,32 +1599,16 @@
   </div></div>
 
   <!-- SESSION END MODAL -->
-  <div class="modal" id="endSessionModal"><div class="modal-card"><div class="modal-head"><h3>End &amp; Archive 2025/2026?</h3><button class="close" data-close-modal type="button">×</button></div>
-    <div class="notice" style="margin-bottom:14px"><strong>This will lock the current session.</strong> All attendance, assessments, assignments, and student records for 2025/2026 become read-only. This cannot be undone.</div>
-    <p class="small" style="margin-bottom:14px">Ensure all grades are entered and all assessments are graded before archiving.</p>
-    <div style="display:flex;gap:10px"><button class="danger" data-toast="Session archived — start a new session when ready" type="button">Yes, End &amp; Archive</button><button class="ghost" data-close-modal type="button">Cancel</button></div>
-  </div></div>
-
   <!-- NEW SESSION MODAL -->
-  <div class="modal" id="newSessionModal"><div class="modal-card"><div class="modal-head"><h3>Start New Session</h3><button class="close" data-close-modal type="button">×</button></div>
-    <p class="small" style="margin-bottom:14px">A fresh teaching context for this course. Previous session data stays archived and viewable.</p>
+  <div class="modal" id="newSessionModal"><div class="modal-card"><div class="modal-head"><h3>Teach this course again</h3><button class="close" data-close-modal type="button">×</button></div>
+    <p class="small" style="margin-bottom:14px">Start the next semester for this course. Your outline and resources carry over, and past semesters stay saved.</p>
     <div class="form-grid"><div><label>Academic Year</label><select><option>2026/2027</option><option>2025/2026</option></select></div><div><label>Semester</label><select><option>1st Semester</option><option>2nd Semester</option></select></div></div>
-    <button class="btn" style="margin-top:14px" data-toast="New session started for CSC 401" type="button">Start New Session</button>
+    <button class="btn" style="margin-top:14px" data-toast="New semester started for CSC 401" type="button">Teach again</button>
   </div></div>
 </div></div>
-  <!-- SESSION MANAGEMENT MODAL -->
-  <div class="modal" id="sessionMgmtModal"><div class="modal-card" style="max-width:520px"><div class="modal-head"><h3>Session Management</h3><button class="close" data-close-modal type="button">×</button></div>
-    <p class="small" style="margin-bottom:16px">End and archive the active session for this course. Archived records become read-only and remain viewable but cannot be mixed with the next semester.</p>
-    <div class="session-card">
-      <div class="session-card-meta">
-        <div class="session-card-label">Current session</div>
-        <div class="session-card-value">2025/2026 · 1st Semester · Full-time · Group A</div>
-      </div>
-      <button class="danger wide" data-modal="endSessionModal" type="button">
-        <iconify-icon icon="hugeicons:square-lock-02" aria-hidden="true"></iconify-icon>
-        End &amp; Archive 2025/2026
-      </button>
-    </div>
+  <!-- END SEMESTER (replaces "Session Management" + "End & Archive" modals): one screen, then a short confirmation -->
+  <div class="modal" id="endSemesterModal"><div class="modal-card" style="max-width:580px"><div class="modal-head"><h3 id="endSemTitle">End semester</h3><button class="close" data-close-modal type="button">×</button></div>
+    <div id="endSemBody"></div>
   </div></div>
 
   <!-- ADD NEW CLASS MODAL -->
@@ -1691,9 +1633,9 @@
         <div><label>End Date</label><input type="date"></div>
       </div>
     </div>
-    <div style="display:flex;gap:10px"><button class="btn" data-toast="Class scheduled successfully" type="button">Schedule Class</button><button class="ghost" data-close-modal type="button">Cancel</button></div>
+    <div style="display:flex;gap:10px"><button class="btn" data-toast="Class scheduled successfully" onclick="setupStepSaved('class')" type="button">Schedule Class</button><button class="ghost" data-close-modal type="button">Cancel</button></div>
   </div></div>
-  <div class="modal" id="historyModal"><div class="modal-card"><div class="modal-head"><h3>Previous Session Records</h3><button class="close" data-close-modal type="button">×</button></div><div class="notice">You are viewing records from a previous session. This will not affect your current class list.</div><div class="form-grid"><div><label>Academic Session</label><select><option>2024/2025</option><option>2023/2024</option></select></div><div><label>Semester</label><select><option>1st Semester</option><option>2nd Semester</option></select></div></div><div class="grid3" style="margin-top:16px"><div class="card"><p>Students</p><h3>132</h3></div><div class="card"><p>Avg. Attendance</p><h3>74%</h3></div><div class="card"><p>Assessment Avg.</p><h3>69%</h3></div></div><button class="btn" style="margin-top:16px" data-toast="Historical records loaded" type="button">View Records</button></div></div>
+  <div class="modal" id="historyModal"><div class="modal-card"><div class="modal-head"><h3>Past semesters</h3><button class="close" data-close-modal type="button">×</button></div><div class="notice">You are viewing a past semester. Records are read-only and won't affect your current courses.</div><div class="form-grid"><div><label>Academic year</label><select><option>2024/2025</option><option>2023/2024</option></select></div><div><label>Semester</label><select><option>1st Semester</option><option>2nd Semester</option></select></div></div><div class="grid3" style="margin-top:16px"><div class="card"><p>Students</p><h3>132</h3></div><div class="card"><p>Avg. Attendance</p><h3>74%</h3></div><div class="card"><p>Assessment Avg.</p><h3>69%</h3></div></div><button class="btn" style="margin-top:16px" data-toast="Past semester opened" type="button">Open semester</button></div></div>
   <div class="modal" id="directMarkModal"><div class="modal-card" style="max-width:600px"><div class="modal-head"><h3>Mark Manual Attendance</h3><button class="close" data-close-modal type="button">×</button></div>
     <p class="small" style="margin-bottom:4px">Configure your attendance session and choose how students will check in.</p>
     <p class="small" style="margin-bottom:14px" id="manualSelectedCount">0 student(s) selected</p>
@@ -1762,7 +1704,7 @@
   <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script>
-    const titles={dashboard:'Dashboard',today:"Today's Class",courses:'Courses',courseDetail:'Course Details',courseOnboarding:'Course Setup',calendar:'Calendar',resources:'Resources',announcements:'Announcements',analytics:'AI Intelligence',settings:'Settings'};
+    const titles={dashboard:'Dashboard',today:"Today's Class",courses:'Courses',courseDetail:'Course Details',calendar:'Calendar',resources:'Resources',announcements:'Announcements',analytics:'AI Intelligence',settings:'Settings'};
     const one=s=>document.querySelector(s); const all=s=>Array.from(document.querySelectorAll(s));
 
     // --- Attendance session state ---
@@ -1828,35 +1770,140 @@
       const pctEl = one('#setupPercent'); if (pctEl) pctEl.textContent = pct+'%';
       if (done === 4) showToast('Setup complete! Your portal is ready.');
     }
-    // Per-course onboarding (reached from the dashboard nudge; keeps the main dashboard intact)
-    let courseSteps = [true, false, false, false];
-    function completeCourseStep(num) {
-      courseSteps[num-1] = true;
-      const step = one('#csStep'+num);
-      if (step) {
-        step.style.opacity = '1';
-        step.style.borderColor = 'var(--brand)';
-        step.style.background = 'var(--brand-soft)';
-        const btn = step.querySelector('button');
-        if (btn) { btn.textContent = '✓ Done'; btn.className = 'success'; btn.disabled = true; }
-        const numEl = step.querySelector('div[style*="width:40px"]');
-        if (numEl) { numEl.style.background = 'var(--brand)'; numEl.style.color = '#fff'; numEl.textContent = '✓'; }
-      }
-      const nextStep = one('#csStep'+(num+1));
-      if (nextStep) {
-        nextStep.style.opacity = '1';
-        const nb = nextStep.querySelector('button');
-        if (nb) nb.disabled = false;
-        const nn = nextStep.querySelector('div[style*="width:40px"]');
-        if (nn) { nn.style.background = 'var(--brand-soft)'; nn.style.color = 'var(--brand)'; }
-      }
-      const done = courseSteps.filter(Boolean).length;
-      const pct = Math.round(done / 4 * 100);
-      const bar = one('#csProgressBar'); if (bar) bar.style.width = pct+'%';
-      const lbl = one('#csStepsLabel'); if (lbl) lbl.textContent = done+' of 4 steps completed';
-      const pctEl = one('#csPercent'); if (pctEl) pctEl.textContent = pct+'%';
-      const pill = one('#courseOnboardPill'); if (pill) pill.textContent = done+' of 4 steps';
-      if (done === 4) { showToast('CSC 305 onboarding complete!'); one('#courseOnboardCard')?.classList.add('hidden'); }
+    // ===== New-course setup checklist (dashboard) =====
+    // Shown only for a course added to an account that already has courses; existing dashboard summaries stay visible.
+    // Appears: course added + any of the 3 steps incomplete. Disappears: all 3 done (brief success state) or "Hide for now" (returns next login).
+    const SETUP_STEPS = [
+      { key:'outline',  label:'Add course outline', btn:'Add outline',    modal:'topicModal' },
+      { key:'class',    label:'Schedule a class',   btn:'Schedule class', modal:'classModal' },
+      { key:'resource', label:'Upload resources',   btn:'Upload',         modal:'resourceModal' }
+    ];
+    const SETUP_MAX_VISIBLE = 3;
+    let setupCourses = [];
+    let _setupPending = null;
+    function demoAddCourse() {
+      setupCourses = []; renderCourseSetup();
+      addCourseSetup('BIO 201', 'Introduction to Cell Biology');
+    }
+    // One source of truth (setupCourses) drawn in three places: dashboard, Courses list, and the course page itself.
+    function renderCourseSetup() { renderDashSetup(); renderCoursesPageSetup(); renderDetailSetup(); }
+    const stepsDone = c => SETUP_STEPS.filter(s => c.done[s.key]).length;
+    // Numbered steps; the next step to do is the primary button, the rest are secondary.
+    function setupStepsGrid(c) {
+      const next = SETUP_STEPS.find(s => !c.done[s.key]);
+      return `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px">` + SETUP_STEPS.map((s, i) => c.done[s.key]
+        ? `<div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border:1.5px solid var(--green);background:var(--green-soft);border-radius:14px"><span style="width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:900;flex:0 0 auto">✓</span><span style="font-weight:800;font-size:14px;flex:1">${s.label}</span><span class="small" style="font-weight:800;color:var(--green)">Done</span></div>`
+        : `<div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border:1.5px solid ${s===next?'var(--brand)':'var(--line)'};background:#fff;border-radius:14px"><span style="width:26px;height:26px;border-radius:50%;background:${s===next?'var(--brand)':'#e2e8f0'};color:${s===next?'#fff':'var(--muted)'};display:grid;place-items:center;font-size:13px;font-weight:900;flex:0 0 auto">${i+1}</span><span style="font-weight:800;font-size:14px;flex:1">${s.label}</span><button class="${s===next?'btn':'ghost'}" style="padding:6px 12px;font-size:13px" type="button" onclick="startSetupStep('${c.code}','${s.key}')">${s.btn}</button></div>`
+      ).join('') + `</div>`;
+    }
+    const progressBar = c => `<div style="height:6px;background:var(--line);border-radius:999px;overflow:hidden"><div style="height:100%;background:var(--brand);width:${Math.round(stepsDone(c)/SETUP_STEPS.length*100)}%;transition:.4s"></div></div>`;
+
+    // 1) Dashboard — only after a course is added; existing summaries stay below.
+    function renderDashSetup() {
+      const mount = one('#courseSetupMount'); if (!mount) return;
+      const open = setupCourses.filter(c => !c.hidden && !c.complete);
+      if (!open.length) { mount.innerHTML = ''; return; }
+      const shown = open.slice(0, SETUP_MAX_VISIBLE), extra = open.length - shown.length, single = open.length === 1;
+      const blocks = shown.map(c => c.ready
+        ? `<div style="display:flex;align-items:center;gap:10px;padding:12px 0;border-top:1px solid var(--line)"><span style="color:var(--green);font-weight:900">✓</span><span style="font-weight:800">${c.code} is ready</span><span class="small">Students can now enroll.</span></div>`
+        : `<div style="padding:14px 0 4px;border-top:1px solid var(--line)">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px">
+              ${single ? `<span class="tag blue">${stepsDone(c)} of ${SETUP_STEPS.length} done</span>` : `<div><span style="font-weight:850">${c.code}</span> <span class="small">· ${c.name}</span></div><span class="tag blue">${stepsDone(c)} of ${SETUP_STEPS.length} done</span>`}
+              <button type="button" class="iconbtn" style="width:28px;height:28px;border-radius:8px;font-size:12px" title="Hide for now" aria-label="Hide ${c.code} setup for now" onclick="hideCourseSetup('${c.code}')">×</button>
+            </div>
+            <div style="margin-bottom:12px">${progressBar(c)}</div>
+            ${setupStepsGrid(c)}
+          </div>`).join('');
+      mount.innerHTML = `<div class="card" style="margin-bottom:22px;padding:18px 20px;border:1.5px solid var(--brand);background:linear-gradient(135deg,var(--brand-soft) 0%,#fff 65%)">
+        <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px"><div style="width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:19px;flex:0 0 auto">📘</div>
+          <div><div class="title" style="font-size:16px">${single ? 'Complete setup for '+open[0].code : 'Complete setup for '+open.length+' new courses'}</div><div class="small">${single ? open[0].name+' · ' : ''}Your other courses are unchanged below.</div></div></div>
+        ${blocks}${extra > 0 ? `<div class="small" style="padding-top:10px;border-top:1px solid var(--line)">+${extra} more course${extra>1?'s':''} still need setup — finish one to see the next.</div>` : ''}
+      </div>`;
+    }
+
+    // 2) Courses page — the new course appears in the list with its setup status (stays after setup is done).
+    function renderCoursesPageSetup() {
+      const mount = one('#newCourseCards'); if (!mount) return;
+      mount.innerHTML = setupCourses.map(c => {
+        const n = stepsDone(c), complete = c.complete || c.ready, nextStep = SETUP_STEPS.find(s => !c.done[s.key]);
+        return `<article class="course-card" style="cursor:pointer;border:1.5px solid ${complete?'var(--line)':'var(--brand)'}" onclick="openCourseSetup('${c.code}')">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+            <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">${c.code}</span>${complete ? '<span class="tag green">Active</span>' : '<span class="tag amber">New · Setup needed</span>'}</div>
+            <span class="tag blue" style="font-size:11px">2025/2026 · S1</span>
+          </div>
+          <h3>${c.name}</h3>
+          <div class="course-meta"><span>👥 0 students</span><span>📅 0 attendance sessions</span></div>
+          ${complete ? '<div class="small" style="color:var(--green);font-weight:800">✓ Setup complete</div>' : `<div style="display:flex;justify-content:space-between;margin-bottom:8px"><strong>Setup</strong><strong style="color:var(--brand)">${n} of ${SETUP_STEPS.length} done</strong></div>${progressBar(c)}<button class="btn" style="margin-top:14px;font-size:13px;padding:8px 14px" type="button" onclick="event.stopPropagation();startSetupStep('${c.code}','${nextStep.key}')">Next: ${nextStep.label}</button>`}
+        </article>`;
+      }).join('');
+    }
+
+    // 3) Course page — a setup banner at the top for a course that still needs setup.
+    let _detailCode = null;
+    function openCourseSetup(code) { window._detailCode = code; showPage('courseDetail'); }
+    function applyDetail(code) {
+      _detailCode = code || null;
+      const c = setupCourses.find(x => x.code === _detailCode);
+      one('#detailTitle').textContent = c ? c.name : 'Operating Systems in Computing Technology';
+      one('#detailCode').textContent = c ? c.code : 'CSC 401';
+      renderDetailSetup();
+    }
+    function renderDetailSetup() {
+      const m = one('#courseDetailSetup'); if (!m) return;
+      const c = setupCourses.find(x => x.code === _detailCode);
+      if (!c || c.complete) { m.innerHTML = ''; return; }
+      m.innerHTML = c.ready
+        ? `<div class="card" style="margin:14px 0;border:1.5px solid var(--green);background:var(--green-soft)"><strong>✅ ${c.code} is ready</strong> <span class="small">Students can now enroll.</span></div>`
+        : `<div class="card" style="margin:14px 0;padding:18px 20px;border:1.5px solid var(--brand);background:linear-gradient(135deg,var(--brand-soft) 0%,#fff 65%)">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px"><div><div class="title" style="font-size:16px">Finish setting up ${c.code}</div><div class="small">Students can enroll once you've added an outline, scheduled a class and uploaded resources.</div></div><span class="tag blue">${stepsDone(c)} of ${SETUP_STEPS.length} done</span></div>
+            <div style="margin-bottom:12px">${progressBar(c)}</div>${setupStepsGrid(c)}
+          </div>`;
+    }
+    function startSetupStep(code, key) {
+      _setupPending = { code, key };
+      openModal(SETUP_STEPS.find(s => s.key === key).modal);
+    }
+    // Prototype: a step completes when its modal is saved from the checklist. In production, derive from data (any outline topic / scheduled class / resource on the course).
+    function setupStepSaved(key) {
+      if (!_setupPending || _setupPending.key !== key) return;
+      const c = setupCourses.find(x => x.code === _setupPending.code); _setupPending = null;
+      if (!c) return;
+      c.done[key] = true;
+      if (SETUP_STEPS.every(s => c.done[s.key])) {
+        c.ready = true; renderCourseSetup();
+        setTimeout(() => { c.complete = true; renderCourseSetup(); }, 4000);
+      } else renderCourseSetup();
+    }
+    function hideCourseSetup(code) {
+      const c = setupCourses.find(x => x.code === code); if (c) c.hidden = true;
+      renderCourseSetup(); showToast('Setup hidden for now — it will return next time you sign in');
+    }
+
+    // ===== Material-request alerts (dashboard) =====
+    // One alert per course (not per student). Addressed when a resource is uploaded to that course.
+    let materialAlerts = [];
+    let _materialPending = null;
+    function resetMaterialAlerts() {
+      materialAlerts = [{ code:'BIO 201', name:'Introduction to Cell Biology', students:14, first:'2 days ago', status:'open' }];
+      renderMaterialAlerts();
+    }
+    function renderMaterialAlerts() {
+      const mount = one('#materialAlertMount'); if (!mount) return;
+      mount.innerHTML = materialAlerts.map(a => a.status === 'addressed'
+        ? `<div class="item"><div><div class="title" style="color:var(--green)">✓ Request for ${a.code} addressed</div><div class="small">${a.students} students have been notified that materials are available.</div></div></div>`
+        : `<div class="item"><div><div class="title">Students are requesting materials for ${a.code}</div><div class="small">Upload a resource to help them begin studying.</div></div><button class="btn" type="button" style="white-space:nowrap" onclick="uploadForRequest('${a.code}')">Upload materials</button></div>`).join('');
+    }
+    function uploadForRequest(code) {
+      _materialPending = code;
+      openCourse('courseResources');
+      openModal('resourceModal');
+    }
+    function materialUploaded() {
+      if (!_materialPending) return;
+      const a = materialAlerts.find(x => x.code === _materialPending); _materialPending = null;
+      if (!a) return;
+      a.status = 'addressed'; renderMaterialAlerts();
+      setTimeout(() => { materialAlerts = materialAlerts.filter(x => x !== a); renderMaterialAlerts(); }, 6000);
     }
     const ctx = { programType: 'Full-time', group: 'Group A' };
     function ctxLabel(){ return ctx.group ? ctx.programType+' · '+ctx.group : ctx.programType; }
@@ -1928,6 +1975,7 @@
       const m = document.getElementById(id); if(!m) return;
       _modalReturnFocus = document.activeElement;
       closeModals();
+      if(id==='courseModal'){ setCourseModal(window._cmMode||'pick'); window._cmMode=null; }
       m.classList.add('open');
       document.body.style.overflow = 'hidden';
       const focusTarget = m.querySelector(FOCUSABLE);
@@ -1980,11 +2028,12 @@
       const title=one('#pageTitle'); if(title) title.textContent=titles[id]||'Dashboard';
       document.title = (titles[id]||'Dashboard') + ' · Cubbes Lecturer Portal';
       all('.nav').forEach(n=>{
-        const isActive = n.dataset.page===id || ((id==='courseDetail'||id==='courseOnboarding') && n.dataset.page==='courses');
+        const isActive = n.dataset.page===id || (id==='courseDetail' && n.dataset.page==='courses');
         n.classList.toggle('active', isActive);
         if (isActive) n.setAttribute('aria-current','page'); else n.removeAttribute('aria-current');
       });
       closeSide(); window.scrollTo(0,0);
+      if(id==='courseDetail'){ applyDetail(window._detailCode||null); window._detailCode=null; }
       if(id==='analytics') ensureChatBooted();
     }
     function openCourse(tab){showPage('courseDetail');const btn=document.querySelector('[data-tab="'+tab+'"]');if(btn)btn.click()}
@@ -2077,14 +2126,183 @@
       if(linkRow&&label){ linkRow.innerHTML=label.outerHTML+one('#obeBlockClos').value.split(',').map(s=>s.trim()).filter(Boolean).map(s=>'<span class="tag blue">'+escapeHtml(s)+'</span>').join(''); }
       _obeEditBlock=null; closeModals(); showToast('Topic updated — still a draft until approved');
     }
-    function fillCourse(value){
-      const sel = one('#departmentCourseSelect');
-      // If manual toggle is checked, don't auto-fill
-      const manual = one('#manualCourseToggle');
-      if(manual && manual.checked) return;
-      if(value==='os'){one('#courseTitle').value='Operating Systems in Computing Technology';one('#courseCode').value='CSC 401';one('#courseUnits').value='3';one('#courseDept').value='Computer Science';one('#courseDesc').value='This course covers process management, memory management, file systems, scheduling, and synchronization.';}
-      else if(value==='db'){one('#courseTitle').value='Database Systems and Management';one('#courseCode').value='CSC 305';one('#courseUnits').value='3';one('#courseDept').value='Computer Science';one('#courseDesc').value='This course covers database models, SQL, normalization, transactions, and database administration.';}
-      else if(value==='ds'){one('#courseTitle').value='Data Structures & Algorithms';one('#courseCode').value='CSC 301';one('#courseUnits').value='3';one('#courseDept').value='Computer Science';one('#courseDesc').value='This course covers arrays, linked lists, trees, graphs, sorting and searching algorithms.';}
+    const DEPT_COURSES = {
+      os:{title:'Operating Systems in Computing Technology',code:'CSC 401',units:'3',dept:'Computer Science',year:'2025/2026',sem:'1st Semester',desc:'This course covers process management, memory management, file systems, scheduling, and synchronization.'},
+      db:{title:'Database Systems and Management',code:'CSC 305',units:'3',dept:'Computer Science',year:'2025/2026',sem:'1st Semester',desc:'This course covers database models, SQL, normalization, transactions, and database administration.'},
+      ds:{title:'Data Structures & Algorithms',code:'CSC 301',units:'3',dept:'Computer Science',year:'2025/2026',sem:'1st Semester',desc:'This course covers arrays, linked lists, trees, graphs, sorting and searching algorithms.'},
+      se:{title:'Software Engineering',code:'CSC 310',units:'3',dept:'Computer Science',year:'2025/2026',sem:'1st Semester',desc:'This course covers requirements, design, testing and project management for software systems.'},
+      cn:{title:'Computer Networks',code:'CSC 402',units:'3',dept:'Computer Science',year:'2025/2026',sem:'1st Semester',desc:'This course covers network layers, protocols, routing and network security.'},
+      pg:{title:'Computer Programming II',code:'CSC 202',units:'3',dept:'Computer Science',year:'2025/2026',sem:'1st Semester',desc:'This course covers object-oriented programming, data handling and software testing.'},
+      nm:{title:'Numerical Methods',code:'MTH 301',units:'2',dept:'Mathematics',year:'2025/2026',sem:'1st Semester',desc:'This course covers root finding, interpolation, numerical integration and differential equations.'}
+    };
+    const COURSE_REQUIRED = ['#courseTitle','#courseCode','#courseUnits','#courseDept'];
+    let _courseMode = 'pick';
+    let _picked = [];
+    // Add-course modal: 'pick' (tick existing courses, default) | 'manual' (new record) | 'added' (after a new record) | 'edit' (edit current course)
+    function setCourseModal(mode){
+      _courseMode = mode;
+      one('#courseViewPick')?.classList.toggle('hidden', mode!=='pick');
+      one('#courseViewManual')?.classList.toggle('hidden', mode!=='manual' && mode!=='edit');
+      one('#courseViewAnother')?.classList.toggle('hidden', mode!=='added');
+      one('#courseBackToList')?.classList.toggle('hidden', mode==='edit');
+      one('#courseFormError')?.classList.add('hidden');
+      COURSE_REQUIRED.forEach(id=>one(id).style.borderColor='');
+      one('#courseModalTitle').textContent = mode==='edit' ? 'Edit Course' : (mode==='manual' ? '+ Add Course — New Record' : '+ Add Courses');
+      one('#courseManualIntro').textContent = mode==='edit' ? 'Update the details of this course.' : 'Enter the details of your course. Fields marked * are required.';
+      one('#courseConfirmManual').textContent = mode==='edit' ? 'Save changes' : 'Confirm and add course';
+      if(mode==='pick'){ _picked = []; one('#deptCourseSearch').value=''; one('#pickEndDate').value=''; one('#pickSem').value = _es.archived.length ? '2nd Semester' : '1st Semester'; renderDeptList(); }
+      else if(mode==='manual'){ setCourseFields({title:'',code:'',units:'3',year:'2025/2026',dept:'',sem:'1st Semester',desc:''}); }
+      else if(mode==='edit'){ setCourseFields(DEPT_COURSES.os); }
+    }
+    function setCourseFields(c){
+      one('#courseTitle').value=c.title; one('#courseCode').value=c.code; one('#courseUnits').value=c.units;
+      one('#courseEndDate').value=courseEnds[c.code]||''; one('#courseYear').value=c.year; one('#courseDept').value=c.dept; one('#courseSemester').value=c.sem; one('#courseDesc').value=c.desc;
+    }
+    // Courses the lecturer already has (active ones, or a new-course checklist) can't be added twice. Archived courses become available again.
+    function activeCourseCodes(){
+      return [...ES_COURSES.filter(c=>!_es.archived.includes(c.code)).map(c=>c.code), ...setupCourses.map(c=>c.code)];
+    }
+    function renderDeptList(){
+      const q = (one('#deptCourseSearch')?.value||'').trim().toLowerCase();
+      const have = activeCourseCodes();
+      const prev = c => _es.archived.includes(c.code);   // taught last semester
+      const list = Object.entries(DEPT_COURSES).filter(([k,c]) => !q || (c.title+' '+c.code).toLowerCase().includes(q)).sort((a,b)=>prev(b[1])-prev(a[1]));
+      one('#deptCourseList').innerHTML = list.length ? list.map(([k,c]) => {
+        const owned = have.includes(c.code), on = _picked.includes(k);
+        return `<label style="display:flex;gap:12px;align-items:flex-start;margin:0;padding:11px 13px;border:1.5px solid ${on?'var(--brand)':'var(--line)'};background:${on?'var(--brand-soft)':'#fff'};border-radius:12px;cursor:${owned?'default':'pointer'};${owned?'opacity:.55':''}"><input type="checkbox" style="width:auto;margin-top:3px" ${on?'checked':''} ${owned?'disabled':''} onchange="togglePick('${k}',this.checked)"><span><span style="font-weight:850">${c.code} · ${c.title}</span><br><span class="small">${c.units} units · ${c.dept}${owned?' · Already in your courses':''}</span>${prev(c)?' <span class="tag green" style="padding:2px 8px;font-size:11px">Taught last semester · outline &amp; resources carry over</span>':''}</span></label>`;
+      }).join('') : '<div class="small" style="padding:10px">No matching courses. You can enter a new record below.</div>';
+      renderPickReview();
+    }
+    function togglePick(key, on){
+      _picked = on ? [...new Set([..._picked, key])] : _picked.filter(k=>k!==key);
+      renderDeptList();
+    }
+    // Selected courses are shown for review (read-only) — nothing to type.
+    function renderPickReview(){
+      const n = _picked.length;
+      one('#courseDetailsReview').classList.toggle('hidden', !n);
+      one('#courseConfirmPick').classList.toggle('hidden', !n);
+      one('#courseConfirmPick').textContent = n>1 ? 'Add '+n+' courses' : 'Add course';
+      one('#rvHeading').textContent = n>1 ? 'Review '+n+' selected courses' : 'Review course details';
+      one('#rvList').innerHTML = _picked.map(k=>{ const c=DEPT_COURSES[k]; return `<div style="padding:8px 0;border-top:1px solid #bfdbfe"><div style="font-weight:850">${c.code} · ${c.title}</div><div class="small">${c.units} units · ${c.dept}</div></div>`; }).join('');
+    }
+    function confirmAddCourse(){
+      if(_courseMode==='pick'){
+        const picks = _picked.map(k=>DEPT_COURSES[k]); if(!picks.length) return;
+        const end = one('#pickEndDate').value;
+        picks.forEach(c => { if(end) courseEnds[c.code] = end; addCourseSetup(c.code, c.title, _es.archived.includes(c.code) ? {outline:true, resource:true} : undefined); });
+        showToast(picks.length>1 ? picks.length+' courses added to your teaching list' : 'Course added to current teaching list');
+        return;
+      }
+      const missing = COURSE_REQUIRED.filter(id=>!one(id).value.trim());
+      COURSE_REQUIRED.forEach(id=>one(id).style.borderColor = missing.includes(id) ? 'var(--red)' : '');
+      const err = one('#courseFormError');
+      if(missing.length){ err.textContent='Please fill in all required fields (*).'; err.classList.remove('hidden'); return; }
+      const code = one('#courseCode').value.trim(), title = one('#courseTitle').value.trim();
+      if(one('#courseEndDate').value) courseEnds[code] = one('#courseEndDate').value;
+      if(_courseMode==='edit'){ showToast('Course updated'); return; }
+      addCourseSetup(code, title);
+      one('#anotherTitle').textContent = code+' · '+title+' added';
+      setCourseModal('added');
+    }
+    // ===== End semester flow: one screen (what happens, courses, one button), then a short confirmation =====
+    // Ending a semester is the signal ("semester_ended") that starts the follow-up emails. Archived semesters stay viewable (read-only) under Past semesters.
+    const ES_SEMESTER = '1st Semester 2025/2026';
+    const ES_COURSES = [
+      { code:'CSC 401', name:'Operating Systems in Computing Technology', program:'Full-time · Group A', issues:[{text:'3 of 5 syllabus topics not ticked off', action:"openCourse('overview')", label:'Syllabus tracker'},{text:'22 submissions not graded', action:"openModal('submissionModal')", label:'Grade'},{text:'1 scheduled announcement still to publish', action:"showPage('announcements')", label:'Review'}] },
+      { code:'CSC 305', name:'Database Systems and Management', program:'Full-time · Group A', issues:[{text:'4 of 7 syllabus topics not ticked off', action:"openCourse('overview')", label:'Syllabus tracker'}] },
+      { code:'CSC 202', name:'Computer Programming II', program:'Full-time · Group A', issues:[] }
+    ];
+    let _es = { codes:[], step:1, archived:[], open:[] };
+    const courseEnds = {};      // code -> expected end date (optional, from add-course)
+    const semesterEvents = [];  // one record per course when a semester is ended: this is the data the follow-up emails read
+    const fmtDate = iso => new Date(iso+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+    const todayISO = () => new Date().toISOString().slice(0,10);
+    function openEndSemester(code){
+      _es = { codes: code ? [code] : ES_COURSES.filter(c=>!_es.archived.includes(c.code)).map(c=>c.code), step:1, archived:_es.archived, scoped:!!code, open:[] };
+      if(!_es.codes.length){ showToast('All your courses are already archived'); return; }
+      renderEndSemester(); openModal('endSemesterModal');
+    }
+    function esToggle(code, on){ _es.codes = on ? [...new Set([..._es.codes, code])] : _es.codes.filter(c=>c!==code); renderEndSemester(); }
+    function esExpand(code){ _es.open = _es.open.includes(code) ? _es.open.filter(c=>c!==code) : [..._es.open, code]; renderEndSemester(); }
+    // One screen: what happens + the courses (unfinished items tucked away) + one button. Warnings never block.
+    function renderEndSemester(){
+      const body = one('#endSemBody');
+      const sel = ES_COURSES.filter(c=>_es.codes.includes(c.code));
+      if(_es.step===2){
+        one('#endSemTitle').textContent = 'Semester ended';
+        body.innerHTML = `<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px"><span style="font-size:22px">✅</span><div><div class="title">${sel.map(c=>c.code).join(', ')} archived</div><div class="small">Find ${sel.length>1?'them':'it'} any time under Past semesters.</div></div></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button" onclick="openModal('courseModal')">Add next semester's courses</button><button class="ghost" type="button" onclick="closeModals()">Not now</button></div>`;
+        return;
+      }
+      one('#endSemTitle').textContent = 'End '+ES_SEMESTER+'?';
+      const rows = ES_COURSES.filter(c=>!_es.archived.includes(c.code) && (!_es.scoped || c.code===_es.codes[0])).map(c=>{
+        const on = _es.codes.includes(c.code), open = _es.open.includes(c.code), n = c.issues.length;
+        const label = _es.scoped ? `<span style="font-weight:850">${c.code} · ${c.name}</span>` : `<label style="display:flex;gap:10px;align-items:center;margin:0;cursor:pointer"><input type="checkbox" style="width:auto" ${on?'checked':''} onchange="esToggle('${c.code}',this.checked)"><span style="font-weight:850">${c.code}</span><span class="small">${c.name}</span></label>`;
+        const status = n ? `<button class="ghost" type="button" style="padding:4px 10px;font-size:12px;color:#b45309" onclick="esExpand('${c.code}')">⚠ ${n} thing${n>1?'s':''} left ${open?'▴':'▾'}</button>` : `<span class="small" style="color:var(--green);font-weight:800">✓ All done</span>`;
+        const items = n && open ? c.issues.map(i=>`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px"><span class="small" style="color:#b45309;font-weight:700">${i.text}</span><button class="ghost" style="padding:4px 10px;font-size:12px" type="button" onclick="closeModals();${i.action}">${i.label}</button></div>`).join('') : '';
+        return `<div style="border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:8px;${on?'':'opacity:.55'}"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">${label}${status}</div>${items}</div>`;
+      }).join('');
+      body.innerHTML = `<p style="margin:0 0 14px;color:var(--text)">Your students, attendance and grades are saved under <strong>Past semesters</strong>. Nothing is deleted.</p>
+        ${_es.scoped ? '' : '<div class="small" style="margin-bottom:8px">Untick any course that is still running.</div>'}${rows}
+        <div style="display:flex;gap:10px;margin-top:14px"><button class="btn" type="button" ${sel.length?'':'disabled'} onclick="confirmEndSemester()">End semester</button><button class="ghost" type="button" onclick="closeModals()">Cancel</button></div>`;
+    }
+    function confirmEndSemester(){
+      const endedOn = todayISO();   // the day the lecturer ended it
+      _es.endDate = endedOn;
+      _es.archived = [...new Set([..._es.archived, ..._es.codes])];
+      _es.codes.forEach(code => {
+        const c = ES_COURSES.find(x=>x.code===code);
+        semesterEvents.push({ event:'semester_ended', course:code, semester:ES_SEMESTER, program:c.program, expectedEnd:courseEnds[code]||null, endedOn, recordedAt:new Date().toISOString(), source:'lecturer' });
+        const card = document.querySelector(`.course-card[data-course="${code}"]`); if(!card) return;
+        card.style.background = '#f8fafc'; card.style.opacity = '.85'; card.style.cursor = 'default'; card.removeAttribute('onclick');
+        const tag = card.querySelector('.tag.green'); if(tag){ tag.className=''; tag.textContent='Ended · '+fmtDate(endedOn).replace(/ \d{4}$/,''); tag.style.cssText='background:#f1f5f9;color:var(--muted);padding:4px 10px;border-radius:20px;font-size:12px;font-weight:800'; }
+      });
+      nextSemPrompt = { codes:_es.codes.slice(), active:true }; renderNextSemester(); renderSemesterEnding();
+      _es.step = 2; renderEndSemester();
+    }
+    // ===== Semester-ending prompt (dashboard) =====
+    // Shown from 3 days before a course's expected end date until its semester is ended. It only prompts: it never ends or archives anything.
+    const SEM_PROMPT_DAYS = 3;
+    let _semPromptHidden = false;
+    function daysUntil(iso){ return Math.round((new Date(iso+'T00:00:00') - new Date(todayISO()+'T00:00:00'))/86400000); }
+    function renderSemesterEnding(){
+      const m = one('#semesterEndingMount'); if(!m) return;
+      const due = ES_COURSES.filter(c => !_es.archived.includes(c.code) && courseEnds[c.code] && daysUntil(courseEnds[c.code]) <= SEM_PROMPT_DAYS);
+      if(!due.length || _semPromptHidden){ m.innerHTML=''; return; }
+      const first = due.map(c=>courseEnds[c.code]).sort()[0], d = daysUntil(first);
+      const when = d < 0 ? 'was due to end on '+fmtDate(first) : d === 0 ? 'ends today' : 'ends '+(d===1?'tomorrow':'in '+d+' days')+' ('+fmtDate(first)+')';
+      m.innerHTML = `<div class="card" style="margin-bottom:22px;padding:16px 20px;border:1.5px solid #fcd34d;background:linear-gradient(135deg,var(--amber-soft) 0%,#fff 70%)">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:12px"><span style="font-size:22px">🗓️</span><div><div class="title" style="font-size:15px">Your semester ${when}</div><div class="small">${due.map(c=>c.code).join(', ')} · When you're ready, end the semester to archive your courses and start the next one. Nothing happens until you do.</div></div></div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn" type="button" onclick="openEndSemester()">End semester</button><button class="ghost" type="button" onclick="_semPromptHidden=true;renderSemesterEnding()">Remind me later</button></div>
+        </div>
+      </div>`;
+    }
+    function demoSemesterEnding(){
+      const d = new Date(); d.setDate(d.getDate()+2); const iso = d.toISOString().slice(0,10);
+      courseEnds['CSC 401'] = iso; courseEnds['CSC 305'] = iso; _semPromptHidden = false;
+      renderSemesterEnding(); showPage('dashboard');
+    }
+    // Dashboard prompt: shown after a semester is ended until the lecturer adds a course or teaches one again (or hides it).
+    let nextSemPrompt = { codes:[], active:false };
+    function renderNextSemester(){
+      const m = one('#nextSemesterMount'); if(!m) return;
+      if(!nextSemPrompt.active){ m.innerHTML=''; return; }
+      const names = nextSemPrompt.codes.join(', ');
+      m.innerHTML = `<div class="card" style="margin-bottom:22px;padding:16px 20px;border:1.5px solid var(--green);background:linear-gradient(135deg,var(--green-soft) 0%,#fff 65%)">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:12px"><span style="font-size:22px">✅</span><div><div class="title" style="font-size:15px">Semester ended</div><div class="small">${names} ${nextSemPrompt.codes.length>1?'are':'is'} archived. Add your courses for the next semester.</div></div></div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn" type="button" onclick="openModal('courseModal')">Add courses</button><button type="button" class="iconbtn" style="width:28px;height:28px;border-radius:8px;font-size:12px" title="Hide for now" aria-label="Hide for now" onclick="nextSemPrompt.active=false;renderNextSemester()">×</button></div>
+        </div>
+      </div>`;
+    }
+    // A newly added course gets its own setup checklist on the dashboard
+    function addCourseSetup(code, name, done){
+      if(nextSemPrompt.active){ nextSemPrompt.active=false; renderNextSemester(); }
+      setupCourses = setupCourses.filter(c=>c.code!==code);
+      setupCourses.push({ code, name, done:Object.assign({outline:false,class:false,resource:false}, done), hidden:false, ready:false });
+      renderCourseSetup(); showPage('dashboard');
     }
     // --- Assignment question builder ---
     let aqCount = 1;
@@ -3319,11 +3537,6 @@ What would you like to look at?`;
       if(t) t.value = total;
     }
 
-    // ── Course modal: toggle manual entry, disable search ──
-    function toggleManualCourse(cb) {
-      const sel = one('#departmentCourseSelect');
-      if (sel) { sel.disabled = cb.checked; sel.style.opacity = cb.checked ? '.4' : '1'; }
-    }
 
     // ── Prototype page state switcher ──
     function setPageState(page, state) {
@@ -3532,20 +3745,6 @@ What would you like to look at?`;
       else { retEl?.classList.add('hidden'); newEl?.classList.remove('hidden'); }
     }
 
-    // ── Manual course entry toggle ──
-    function toggleManualCourse(checkbox) {
-      const sel = one('#departmentCourseSelect');
-      if(!sel) return;
-      if(checkbox.checked){
-        sel.disabled = true;
-        sel.style.opacity='0.4';
-        sel.style.pointerEvents='none';
-      } else {
-        sel.disabled = false;
-        sel.style.opacity='1';
-        sel.style.pointerEvents='auto';
-      }
-    }
 
     function bindEvents(){
       one('#signInButton')?.addEventListener('click',enterApp);
@@ -3561,8 +3760,8 @@ What would you like to look at?`;
       all('[data-toast]').forEach(x=>x.addEventListener('click',()=>showToast(x.dataset.toast)));
       all('[data-tab]').forEach(tab=>tab.addEventListener('click',()=>{all('[data-tab]').forEach(x=>x.classList.remove('active'));all('.tab-content').forEach(x=>x.classList.remove('active'));tab.classList.add('active');document.getElementById(tab.dataset.tab+'Tab')?.classList.add('active')}));
       all('[data-settings]').forEach(tab=>tab.addEventListener('click',()=>{all('[data-settings]').forEach(x=>x.classList.remove('active'));all('.settings-panel').forEach(x=>x.classList.remove('active'));tab.classList.add('active');document.getElementById(tab.dataset.settings+'Settings')?.classList.add('active')}));
-      one('#departmentCourseSelect')?.addEventListener('change',e=>fillCourse(e.target.value));
       initModalA11y();
+      renderCourseSetup(); resetMaterialAlerts(); renderSemesterEnding();
       initChatHistoryMenu();
     }
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bindEvents);else bindEvents();
