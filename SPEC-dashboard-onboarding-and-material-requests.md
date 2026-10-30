@@ -84,9 +84,10 @@ Principle for v1: keep it simple. Lecturers learn to add courses themselves. Not
 
 **Two paths, never shown together:**
 1. **Pick existing courses (default):**
+   - Courses taught last semester (just archived) are listed first, tagged "carry over".
    - A searchable list of department courses with checkboxes. The lecturer can tick several.
    - Ticked courses show in one Review box (title, code, units, department, year, semester). Nothing to type.
-   - Optional date: "When does this semester end?", applied to all ticked courses.
+   - Academic year and semester selectors, and an optional date: "When does this semester end?", applied to all ticked courses.
    - One confirm: "Add course" or "Add N courses".
    - Courses the lecturer already teaches are greyed out ("Already in your courses"). An archived course becomes available again.
 2. **Enter new record:** only after tapping "Can't find your course? **Enter new record**".
@@ -117,19 +118,21 @@ Principle for v1: keep it simple. Lecturers learn to add courses themselves. Not
 - Course page: **End semester** (that course).
 - Dashboard prompts (below).
 
-**Dialog, 3 steps:**
-1. **Check.** Pick the courses that have finished (courses still running can be left out). Each shows what is outstanding with a link: syllabus topics not ticked off (Syllabus tracker), submissions not graded (Grade), scheduled announcements still to publish (Review). A fully clear course shows "✓ Everything is up to date". The button reads "Continue anyway" when anything is outstanding. Warnings do not block.
-2. **End semester.** Plain explanation: everything is saved under Past semesters, nothing is deleted, it can be opened any time and can't be edited, and the course leaves the current list.
-3. **What's next?** A hub. Both options are shown at once:
-   - **Add a new course** opens the add-course list, with "← Back to What's next". After adding, the lecturer returns here.
-   - **Teach a course again:** tick which archived courses (not all of them). Choose year and semester. Outline and resources carry over, so only "Schedule a class" remains in the checklist.
-   - A green box lists what has been done ("✓ Teaching CSC 401 again…", "✓ Added CSC 301"). The close button reads **Done** (something done) or **Skip for now**.
+**Dialog: one screen, then a short confirmation.**
+1. **One screen:** "End 1st Semester 2025/2026?"
+   - One line: "Your students, attendance and grades are saved under Past semesters. Nothing is deleted."
+   - The courses, one line each. On the Courses page each has a checkbox ("Untick any course that is still running"). Started from a course page, it shows that course only.
+   - Each course shows "✓ All done", or "⚠ N things left ▾". The unfinished items (syllabus topics not ticked off, submissions not graded, scheduled announcements) are hidden until the lecturer expands them, and each has a link (Syllabus tracker, Grade, Review).
+   - One primary button, **End semester**, and **Cancel**. Warnings never block.
+2. **Confirmation:** "CSC 401, CSC 305 archived. Find them any time under Past semesters." with **Add next semester's courses** and **Not now**.
+
+**Teaching a course again** is not a separate flow. Courses just archived appear first in the add-course list, tagged "Taught last semester · outline & resources carry over". The lecturer ticks the ones they are teaching again, chooses the academic year and semester (it defaults to the 2nd semester), and adds them with everything else. Carried-over courses only need "Schedule a class" in their setup checklist.
 
 **Events recorded** (what the follow-up emails read): one `semester_ended` record per course: `course`, `semester`, `program`, `expectedEnd` (from add-course, may be empty), `endedOn` (the day the lecturer pressed End semester), `recordedAt`, `source: lecturer`.
 
 **Dashboard prompts (neither ends anything):**
 - **Semester ending:** shown from 3 days before a course's expected end date until it is ended. "Your semester ends in 2 days (30 Oct). When you're ready, end the semester… Nothing happens until you do." Buttons: **End semester**, **Remind me later**. Only courses with an expected end date can trigger it.
-- **Semester ended:** shown after a semester is ended and nothing new has been added. "Semester ended — what's next?" Buttons: Add new course, Teach a course again, × (hide). Disappears when a course is added or taught again.
+- **Semester ended:** shown after a semester is ended and nothing new has been added. "Semester ended — CSC 401, CSC 305 are archived. Add your courses for the next semester." Buttons: **Add courses**, × (hide). Disappears when a course is added.
 
 ---
 

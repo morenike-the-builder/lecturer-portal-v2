@@ -1268,7 +1268,6 @@
   <div class="modal" id="quickModal"><div class="modal-card"><div class="modal-head"><h3>Quick Actions</h3><button class="close" data-close-modal type="button">×</button></div><div class="grid3"><button class="soft" data-open-course="attendance" type="button">Start Attendance</button><button class="soft" data-modal="assessmentModal" type="button">Create Assessment</button><button class="soft" data-modal="announcementModal" type="button">Schedule Announcement</button></div></div></div>
   <div class="modal" id="courseModal"><div class="modal-card"><div class="modal-head"><h3 id="courseModalTitle">+ Add Course</h3><button class="close" data-close-modal type="button">×</button></div>
 
-    <button type="button" id="courseBackToEs" class="ghost hidden" onclick="backToEndSemester()" style="margin-bottom:14px;padding:6px 12px;font-size:13px">← Back to What's next</button>
     <!-- VIEW 1: pick existing courses (default). Tick one or more. Manual fields stay hidden. -->
     <div id="courseViewPick">
       <p class="small" style="margin-bottom:12px">Tick the department courses you teach. Details and outlines load automatically — nothing to type.</p>
@@ -1277,6 +1276,7 @@
       <div id="courseDetailsReview" class="hidden" style="border:1.5px solid var(--brand);background:var(--brand-soft);border-radius:14px;padding:14px 16px;margin-bottom:6px">
         <div class="small" style="font-weight:800;margin-bottom:8px" id="rvHeading">Review</div>
         <div id="rvList"></div>
+        <div class="form-grid" style="margin-top:12px"><div><label>Academic year</label><select id="pickYear"><option>2025/2026</option><option>2026/2027</option></select></div><div><label>Semester</label><select id="pickSem"><option>1st Semester</option><option>2nd Semester</option></select></div></div>
         <div class="form-row" style="margin:12px 0 0"><label>When does this semester end? <span class="small" style="font-weight:600">(optional)</span></label><input type="date" id="pickEndDate"><div class="small" style="margin-top:6px">Applies to the selected courses. Helps us remind you to archive them when the semester finishes.</div></div>
       </div>
       <button class="btn hidden" id="courseConfirmPick" style="margin-top:12px" onclick="confirmAddCourse()" type="button">Add course</button>
@@ -1298,7 +1298,7 @@
     <!-- VIEW 3: shown after a new record is saved -->
     <div id="courseViewAnother" class="hidden">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px"><span style="font-size:22px">✅</span><div><div class="title" id="anotherTitle"></div><div class="small">It's on your dashboard checklist, ready to set up.</div></div></div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button" onclick="setCourseModal('manual')">Add another new record</button><button class="ghost" type="button" onclick="setCourseModal('pick')">Pick from course list</button><button class="ghost" type="button" onclick="_courseFrom==='es' ? backToEndSemester() : closeModals()">Done</button></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button" onclick="setCourseModal('manual')">Add another new record</button><button class="ghost" type="button" onclick="setCourseModal('pick')">Pick from course list</button><button class="ghost" type="button" onclick="closeModals()">Done</button></div>
     </div>
   </div></div>
   <div class="modal" id="topicModal"><div class="modal-card" style="max-width:560px"><div class="modal-head"><h3>Add / Edit Outline Topic</h3><button class="close" data-close-modal type="button">×</button></div>
@@ -1606,9 +1606,8 @@
     <button class="btn" style="margin-top:14px" data-toast="New semester started for CSC 401" type="button">Teach again</button>
   </div></div>
 </div></div>
-  <!-- END SEMESTER (replaces "Session Management" + "End & Archive" modals): 1 Check → 2 End semester → 3 What's next -->
+  <!-- END SEMESTER (replaces "Session Management" + "End & Archive" modals): one screen, then a short confirmation -->
   <div class="modal" id="endSemesterModal"><div class="modal-card" style="max-width:580px"><div class="modal-head"><h3 id="endSemTitle">End semester</h3><button class="close" data-close-modal type="button">×</button></div>
-    <div class="gen-steps" id="endSemSteps" style="margin-bottom:16px"></div>
     <div id="endSemBody"></div>
   </div></div>
 
@@ -1976,7 +1975,7 @@
       const m = document.getElementById(id); if(!m) return;
       _modalReturnFocus = document.activeElement;
       closeModals();
-      if(id==='courseModal'){ _courseFrom = window._cmFrom||null; window._cmFrom=null; setCourseModal(window._cmMode||'pick'); window._cmMode=null; }
+      if(id==='courseModal'){ setCourseModal(window._cmMode||'pick'); window._cmMode=null; }
       m.classList.add('open');
       document.body.style.overflow = 'hidden';
       const focusTarget = m.querySelector(FOCUSABLE);
@@ -2133,12 +2132,12 @@
       ds:{title:'Data Structures & Algorithms',code:'CSC 301',units:'3',dept:'Computer Science',year:'2025/2026',sem:'1st Semester',desc:'This course covers arrays, linked lists, trees, graphs, sorting and searching algorithms.'},
       se:{title:'Software Engineering',code:'CSC 310',units:'3',dept:'Computer Science',year:'2025/2026',sem:'1st Semester',desc:'This course covers requirements, design, testing and project management for software systems.'},
       cn:{title:'Computer Networks',code:'CSC 402',units:'3',dept:'Computer Science',year:'2025/2026',sem:'1st Semester',desc:'This course covers network layers, protocols, routing and network security.'},
+      pg:{title:'Computer Programming II',code:'CSC 202',units:'3',dept:'Computer Science',year:'2025/2026',sem:'1st Semester',desc:'This course covers object-oriented programming, data handling and software testing.'},
       nm:{title:'Numerical Methods',code:'MTH 301',units:'2',dept:'Mathematics',year:'2025/2026',sem:'1st Semester',desc:'This course covers root finding, interpolation, numerical integration and differential equations.'}
     };
     const COURSE_REQUIRED = ['#courseTitle','#courseCode','#courseUnits','#courseDept'];
     let _courseMode = 'pick';
     let _picked = [];
-    let _courseFrom = null;   // 'es' when opened from the End semester "What's next?" step
     // Add-course modal: 'pick' (tick existing courses, default) | 'manual' (new record) | 'added' (after a new record) | 'edit' (edit current course)
     function setCourseModal(mode){
       _courseMode = mode;
@@ -2146,13 +2145,12 @@
       one('#courseViewManual')?.classList.toggle('hidden', mode!=='manual' && mode!=='edit');
       one('#courseViewAnother')?.classList.toggle('hidden', mode!=='added');
       one('#courseBackToList')?.classList.toggle('hidden', mode==='edit');
-      one('#courseBackToEs')?.classList.toggle('hidden', _courseFrom!=='es' || mode==='edit');
       one('#courseFormError')?.classList.add('hidden');
       COURSE_REQUIRED.forEach(id=>one(id).style.borderColor='');
       one('#courseModalTitle').textContent = mode==='edit' ? 'Edit Course' : (mode==='manual' ? '+ Add Course — New Record' : '+ Add Courses');
       one('#courseManualIntro').textContent = mode==='edit' ? 'Update the details of this course.' : 'Enter the details of your course. Fields marked * are required.';
       one('#courseConfirmManual').textContent = mode==='edit' ? 'Save changes' : 'Confirm and add course';
-      if(mode==='pick'){ _picked = []; one('#deptCourseSearch').value=''; one('#pickEndDate').value=''; renderDeptList(); }
+      if(mode==='pick'){ _picked = []; one('#deptCourseSearch').value=''; one('#pickEndDate').value=''; one('#pickSem').value = _es.archived.length ? '2nd Semester' : '1st Semester'; renderDeptList(); }
       else if(mode==='manual'){ setCourseFields({title:'',code:'',units:'3',year:'2025/2026',dept:'',sem:'1st Semester',desc:''}); }
       else if(mode==='edit'){ setCourseFields(DEPT_COURSES.os); }
     }
@@ -2167,10 +2165,11 @@
     function renderDeptList(){
       const q = (one('#deptCourseSearch')?.value||'').trim().toLowerCase();
       const have = activeCourseCodes();
-      const list = Object.entries(DEPT_COURSES).filter(([k,c]) => !q || (c.title+' '+c.code).toLowerCase().includes(q));
+      const prev = c => _es.archived.includes(c.code);   // taught last semester
+      const list = Object.entries(DEPT_COURSES).filter(([k,c]) => !q || (c.title+' '+c.code).toLowerCase().includes(q)).sort((a,b)=>prev(b[1])-prev(a[1]));
       one('#deptCourseList').innerHTML = list.length ? list.map(([k,c]) => {
         const owned = have.includes(c.code), on = _picked.includes(k);
-        return `<label style="display:flex;gap:12px;align-items:flex-start;margin:0;padding:11px 13px;border:1.5px solid ${on?'var(--brand)':'var(--line)'};background:${on?'var(--brand-soft)':'#fff'};border-radius:12px;cursor:${owned?'default':'pointer'};${owned?'opacity:.55':''}"><input type="checkbox" style="width:auto;margin-top:3px" ${on?'checked':''} ${owned?'disabled':''} onchange="togglePick('${k}',this.checked)"><span><span style="font-weight:850">${c.code} · ${c.title}</span><br><span class="small">${c.units} units · ${c.dept}${owned?' · Already in your courses':''}</span></span></label>`;
+        return `<label style="display:flex;gap:12px;align-items:flex-start;margin:0;padding:11px 13px;border:1.5px solid ${on?'var(--brand)':'var(--line)'};background:${on?'var(--brand-soft)':'#fff'};border-radius:12px;cursor:${owned?'default':'pointer'};${owned?'opacity:.55':''}"><input type="checkbox" style="width:auto;margin-top:3px" ${on?'checked':''} ${owned?'disabled':''} onchange="togglePick('${k}',this.checked)"><span><span style="font-weight:850">${c.code} · ${c.title}</span><br><span class="small">${c.units} units · ${c.dept}${owned?' · Already in your courses':''}</span>${prev(c)?' <span class="tag green" style="padding:2px 8px;font-size:11px">Taught last semester · outline &amp; resources carry over</span>':''}</span></label>`;
       }).join('') : '<div class="small" style="padding:10px">No matching courses. You can enter a new record below.</div>';
       renderPickReview();
     }
@@ -2185,15 +2184,14 @@
       one('#courseConfirmPick').classList.toggle('hidden', !n);
       one('#courseConfirmPick').textContent = n>1 ? 'Add '+n+' courses' : 'Add course';
       one('#rvHeading').textContent = n>1 ? 'Review '+n+' selected courses' : 'Review course details';
-      one('#rvList').innerHTML = _picked.map(k=>{ const c=DEPT_COURSES[k]; return `<div style="padding:8px 0;border-top:1px solid #bfdbfe"><div style="font-weight:850">${c.code} · ${c.title}</div><div class="small">${c.units} units · ${c.dept} · ${c.year} · ${c.sem}</div></div>`; }).join('');
+      one('#rvList').innerHTML = _picked.map(k=>{ const c=DEPT_COURSES[k]; return `<div style="padding:8px 0;border-top:1px solid #bfdbfe"><div style="font-weight:850">${c.code} · ${c.title}</div><div class="small">${c.units} units · ${c.dept}</div></div>`; }).join('');
     }
     function confirmAddCourse(){
       if(_courseMode==='pick'){
         const picks = _picked.map(k=>DEPT_COURSES[k]); if(!picks.length) return;
         const end = one('#pickEndDate').value;
-        picks.forEach(c => { if(end) courseEnds[c.code] = end; addCourseSetup(c.code, c.title); });
+        picks.forEach(c => { if(end) courseEnds[c.code] = end; addCourseSetup(c.code, c.title, _es.archived.includes(c.code) ? {outline:true, resource:true} : undefined); });
         showToast(picks.length>1 ? picks.length+' courses added to your teaching list' : 'Course added to current teaching list');
-        if(_courseFrom==='es'){ _es.added.push(...picks.map(c=>c.code)); backToEndSemester(); }
         return;
       }
       const missing = COURSE_REQUIRED.filter(id=>!one(id).value.trim());
@@ -2204,11 +2202,10 @@
       if(one('#courseEndDate').value) courseEnds[code] = one('#courseEndDate').value;
       if(_courseMode==='edit'){ showToast('Course updated'); return; }
       addCourseSetup(code, title);
-      if(_courseFrom==='es') _es.added.push(code);
       one('#anotherTitle').textContent = code+' · '+title+' added';
       setCourseModal('added');
     }
-    // ===== End semester flow: 1 Check → 2 End semester → 3 What's next =====
+    // ===== End semester flow: one screen (what happens, courses, one button), then a short confirmation =====
     // Ending a semester is the signal ("semester_ended") that starts the follow-up emails. Archived semesters stay viewable (read-only) under Past semesters.
     const ES_SEMESTER = '1st Semester 2025/2026';
     const ES_COURSES = [
@@ -2216,64 +2213,39 @@
       { code:'CSC 305', name:'Database Systems and Management', program:'Full-time · Group A', issues:[{text:'4 of 7 syllabus topics not ticked off', action:"openCourse('overview')", label:'Syllabus tracker'}] },
       { code:'CSC 202', name:'Computer Programming II', program:'Full-time · Group A', issues:[] }
     ];
-    let _es = { codes:[], step:1, archived:[] };
+    let _es = { codes:[], step:1, archived:[], open:[] };
     const courseEnds = {};      // code -> expected end date (optional, from add-course)
     const semesterEvents = [];  // one record per course when a semester is ended: this is the data the follow-up emails read
     const fmtDate = iso => new Date(iso+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
     const todayISO = () => new Date().toISOString().slice(0,10);
     function openEndSemester(code){
-      _es = { codes: code ? [code] : ES_COURSES.filter(c=>!_es.archived.includes(c.code)).map(c=>c.code), step:1, archived:_es.archived, scoped:!!code, taught:[], added:[] };
+      _es = { codes: code ? [code] : ES_COURSES.filter(c=>!_es.archived.includes(c.code)).map(c=>c.code), step:1, archived:_es.archived, scoped:!!code, open:[] };
       if(!_es.codes.length){ showToast('All your courses are already archived'); return; }
       renderEndSemester(); openModal('endSemesterModal');
     }
     function esToggle(code, on){ _es.codes = on ? [...new Set([..._es.codes, code])] : _es.codes.filter(c=>c!==code); renderEndSemester(); }
-    function esGo(step){ _es.step = step; renderEndSemester(); }
+    function esExpand(code){ _es.open = _es.open.includes(code) ? _es.open.filter(c=>c!==code) : [..._es.open, code]; renderEndSemester(); }
+    // One screen: what happens + the courses (unfinished items tucked away) + one button. Warnings never block.
     function renderEndSemester(){
-      const sel = ES_COURSES.filter(c=>_es.codes.includes(c.code));
-      const names = sel.map(c=>c.code).join(', ');
-      const steps = ['1 · Check','2 · End semester',"3 · What's next"];
-      one('#endSemSteps').innerHTML = steps.map((t,i)=>(i?'<span class="gen-step-line"></span>':'')+`<span class="gen-step${_es.step===i+1?' active':''}">${t}</span>`).join('');
-      one('#endSemTitle').textContent = _es.step===3 ? 'Semester ended' : 'End '+ES_SEMESTER;
       const body = one('#endSemBody');
-      if(_es.step===1){
-        const pick = _es.scoped ? '' : `<div class="small" style="margin-bottom:8px">Choose the courses that have finished. Leave out any that are still running.</div>`;
-        const rows = ES_COURSES.filter(c=>!_es.archived.includes(c.code)).map(c=>{
-          const on = _es.codes.includes(c.code);
-          const issues = c.issues.length ? c.issues.map(i=>`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px"><span class="small" style="color:#b45309;font-weight:700">⚠ ${i.text}</span><button class="ghost" style="padding:4px 10px;font-size:12px" type="button" onclick="closeModals();${i.action}">${i.label}</button></div>`).join('') : `<div class="small" style="color:var(--green);font-weight:700;margin-top:6px">✓ Everything is up to date</div>`;
-          const head = _es.scoped ? `<div style="font-weight:850">${c.code} · ${c.name}</div>` : `<label style="display:flex;gap:10px;align-items:center;margin:0;cursor:pointer"><input type="checkbox" style="width:auto" ${on?'checked':''} onchange="esToggle('${c.code}',this.checked)"><span style="font-weight:850">${c.code} · ${c.name}</span></label>`;
-          return `<div style="border:1.5px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px;${on?'':'opacity:.5'}">${head}<div class="small" style="margin:2px 0 0 ${_es.scoped?0:26}px">${c.program}</div>${on?`<div style="margin-left:${_es.scoped?0:26}px">${issues}</div>`:''}</div>`;
-        }).join('');
-        const anyIssue = sel.some(c=>c.issues.length);
-        body.innerHTML = pick + rows + `<div style="display:flex;gap:10px;margin-top:6px"><button class="btn" type="button" ${sel.length?'':'disabled'} onclick="esGo(2)">${anyIssue?'Continue anyway':'Continue'}</button><button class="ghost" data-close-modal type="button" onclick="closeModals()">Cancel</button></div>`;
-      } else if(_es.step===2){
-        body.innerHTML = `<p style="margin:0 0 12px">You're ending <strong>${ES_SEMESTER}</strong> for <strong>${names}</strong>.</p>
-          <div style="background:var(--brand-soft);border:1px solid #bfdbfe;border-radius:14px;padding:14px 16px;margin-bottom:14px">
-            <div style="font-weight:850;margin-bottom:6px">What happens</div>
-            <div class="small" style="color:var(--text);line-height:1.7">✓ Your students, attendance, assessments and grades are saved under <strong>Past semesters</strong>. Nothing is deleted.<br>✓ You can open them any time, to view or export. They can't be edited.<br>✓ ${sel.length>1?'These courses leave':'This course leaves'} your current list, so the new semester starts clean.</div>
-          </div>
-          <div style="display:flex;gap:10px"><button class="btn" type="button" onclick="confirmEndSemester()">End semester</button><button class="ghost" type="button" onclick="esGo(1)">Back</button></div>`;
-      } else {
-        const one_ = sel.length===1;
-        const left = sel.filter(c=>!_es.taught.includes(c.code));
-        const done = [..._es.taught.map(t=>'✓ Teaching '+t.code+' again in '+t.when), ..._es.added.map(x=>'✓ Added '+x)];
-        body.innerHTML = `<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:22px">✅</span><div><div class="title">${names} ${one_?'is':'are'} archived</div><div class="small">Find ${one_?'it':'them'} any time under Past semesters.</div></div></div>
-          ${done.length ? `<div style="background:var(--green-soft);border-radius:12px;padding:10px 14px;margin:12px 0 0;font-size:13px;font-weight:700;color:#166534;line-height:1.7">${done.join('<br>')}</div>` : ''}
-          <div class="small" style="font-weight:800;margin:16px 0 8px">What's next? You can do both.</div>
-          <div style="display:flex;flex-direction:column;gap:12px">
-            <div style="border:1.5px solid var(--brand);border-radius:14px;padding:16px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
-              <div style="flex:1;min-width:220px"><div style="font-weight:850">➕ Add a new course</div><div class="small" style="margin-top:4px">Teaching something different next semester? Choose from your department's course list, or enter a new record. You can add several.</div></div>
-              <button class="btn" type="button" onclick="esAddNew()">${_es.added.length?'Add more courses':'Add new course'}</button>
-            </div>
-            ${left.length ? `<div style="border:1.5px solid var(--brand);border-radius:14px;padding:16px">
-              <div style="font-weight:850">🔁 Teach a course again</div>
-              <div class="small" style="margin:4px 0 10px">Tick the ones you're teaching again. Outline and resources carry over, so you'll only need to schedule classes.</div>
-              ${left.map(c=>`<label style="display:flex;gap:10px;align-items:center;margin:0 0 8px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer"><input type="checkbox" class="esTeachCk" value="${c.code}" style="width:auto" onchange="esTeachCheck()"><span><span style="font-weight:850">${c.code}</span> · ${c.name}</span></label>`).join('')}
-              <div class="form-grid" style="margin:12px 0"><div><label>Academic year</label><select id="esNextYear"><option>2025/2026</option><option>2026/2027</option></select></div><div><label>Semester</label><select id="esNextSem"><option>2nd Semester</option><option>1st Semester</option></select></div></div>
-              <button class="btn" type="button" id="esTeachBtn" onclick="esTeachAgain()" disabled>Teach again</button>
-            </div>` : ''}
-          </div>
-          <div style="margin-top:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap"><button class="ghost" type="button" onclick="closeModals()">${done.length?'Done':'Skip for now'}</button><span class="small">You can add courses any time from Courses → + Add Course.</span></div>`;
+      const sel = ES_COURSES.filter(c=>_es.codes.includes(c.code));
+      if(_es.step===2){
+        one('#endSemTitle').textContent = 'Semester ended';
+        body.innerHTML = `<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px"><span style="font-size:22px">✅</span><div><div class="title">${sel.map(c=>c.code).join(', ')} archived</div><div class="small">Find ${sel.length>1?'them':'it'} any time under Past semesters.</div></div></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button" onclick="openModal('courseModal')">Add next semester's courses</button><button class="ghost" type="button" onclick="closeModals()">Not now</button></div>`;
+        return;
       }
+      one('#endSemTitle').textContent = 'End '+ES_SEMESTER+'?';
+      const rows = ES_COURSES.filter(c=>!_es.archived.includes(c.code) && (!_es.scoped || c.code===_es.codes[0])).map(c=>{
+        const on = _es.codes.includes(c.code), open = _es.open.includes(c.code), n = c.issues.length;
+        const label = _es.scoped ? `<span style="font-weight:850">${c.code} · ${c.name}</span>` : `<label style="display:flex;gap:10px;align-items:center;margin:0;cursor:pointer"><input type="checkbox" style="width:auto" ${on?'checked':''} onchange="esToggle('${c.code}',this.checked)"><span style="font-weight:850">${c.code}</span><span class="small">${c.name}</span></label>`;
+        const status = n ? `<button class="ghost" type="button" style="padding:4px 10px;font-size:12px;color:#b45309" onclick="esExpand('${c.code}')">⚠ ${n} thing${n>1?'s':''} left ${open?'▴':'▾'}</button>` : `<span class="small" style="color:var(--green);font-weight:800">✓ All done</span>`;
+        const items = n && open ? c.issues.map(i=>`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px"><span class="small" style="color:#b45309;font-weight:700">${i.text}</span><button class="ghost" style="padding:4px 10px;font-size:12px" type="button" onclick="closeModals();${i.action}">${i.label}</button></div>`).join('') : '';
+        return `<div style="border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:8px;${on?'':'opacity:.55'}"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">${label}${status}</div>${items}</div>`;
+      }).join('');
+      body.innerHTML = `<p style="margin:0 0 14px;color:var(--text)">Your students, attendance and grades are saved under <strong>Past semesters</strong>. Nothing is deleted.</p>
+        ${_es.scoped ? '' : '<div class="small" style="margin-bottom:8px">Untick any course that is still running.</div>'}${rows}
+        <div style="display:flex;gap:10px;margin-top:14px"><button class="btn" type="button" ${sel.length?'':'disabled'} onclick="confirmEndSemester()">End semester</button><button class="ghost" type="button" onclick="closeModals()">Cancel</button></div>`;
     }
     function confirmEndSemester(){
       const endedOn = todayISO();   // the day the lecturer ended it
@@ -2287,18 +2259,7 @@
         const tag = card.querySelector('.tag.green'); if(tag){ tag.className=''; tag.textContent='Ended · '+fmtDate(endedOn).replace(/ \d{4}$/,''); tag.style.cssText='background:#f1f5f9;color:var(--muted);padding:4px 10px;border-radius:20px;font-size:12px;font-weight:800'; }
       });
       nextSemPrompt = { codes:_es.codes.slice(), active:true }; renderNextSemester(); renderSemesterEnding();
-      esGo(3);
-    }
-    function esTeachCheck(){
-      const n = all('.esTeachCk:checked').length;
-      const b = one('#esTeachBtn'); if(!b) return;
-      b.disabled = !n; b.textContent = n>1 ? 'Teach '+n+' courses again' : 'Teach again';
-    }
-    function esTeachAgain(){
-      const codes = all('.esTeachCk:checked').map(x=>x.value); if(!codes.length) return;
-      const when = one('#esNextSem').value+' '+one('#esNextYear').value;
-      codes.forEach(code => { const c = ES_COURSES.find(x=>x.code===code); addCourseSetup(c.code, c.name, {outline:true, resource:true}); _es.taught.push({code, when}); });
-      renderEndSemester();   // stay on step 3 so the lecturer sees what's done and what's left
+      _es.step = 2; renderEndSemester();
     }
     // ===== Semester-ending prompt (dashboard) =====
     // Shown from 3 days before a course's expected end date until its semester is ended. It only prompts: it never ends or archives anything.
@@ -2331,17 +2292,11 @@
       const names = nextSemPrompt.codes.join(', ');
       m.innerHTML = `<div class="card" style="margin-bottom:22px;padding:16px 20px;border:1.5px solid var(--green);background:linear-gradient(135deg,var(--green-soft) 0%,#fff 65%)">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
-          <div style="display:flex;align-items:center;gap:12px"><span style="font-size:22px">✅</span><div><div class="title" style="font-size:15px">Semester ended — what's next?</div><div class="small">${names} ${nextSemPrompt.codes.length>1?'are':'is'} archived. Add your courses for the next semester.</div></div></div>
-          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn" type="button" onclick="openModal('courseModal')">Add new course</button><button class="ghost" type="button" onclick="openNextSteps()">Teach a course again</button><button type="button" class="iconbtn" style="width:28px;height:28px;border-radius:8px;font-size:12px" title="Hide for now" aria-label="Hide for now" onclick="nextSemPrompt.active=false;renderNextSemester()">×</button></div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="font-size:22px">✅</span><div><div class="title" style="font-size:15px">Semester ended</div><div class="small">${names} ${nextSemPrompt.codes.length>1?'are':'is'} archived. Add your courses for the next semester.</div></div></div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn" type="button" onclick="openModal('courseModal')">Add courses</button><button type="button" class="iconbtn" style="width:28px;height:28px;border-radius:8px;font-size:12px" title="Hide for now" aria-label="Hide for now" onclick="nextSemPrompt.active=false;renderNextSemester()">×</button></div>
         </div>
       </div>`;
     }
-    function openNextSteps(){
-      _es = { codes:nextSemPrompt.codes.slice(), step:3, archived:_es.archived, scoped:false, taught:[], added:[] };
-      renderEndSemester(); openModal('endSemesterModal');
-    }
-    function esAddNew(){ window._cmFrom = 'es'; openModal('courseModal'); }
-    function backToEndSemester(){ renderEndSemester(); openModal('endSemesterModal'); }
     // A newly added course gets its own setup checklist on the dashboard
     function addCourseSetup(code, name, done){
       if(nextSemPrompt.active){ nextSemPrompt.active=false; renderNextSemester(); }
