@@ -619,7 +619,7 @@
             </div>
           </div>
         </section>
-        <section class="page" id="courseDetail"><button class="ghost" data-page-link="courses" type="button">← Back to Courses</button><div id="courseDetailSetup"></div><div class="hero" style="margin-top:14px"><div style="display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap"><div><h2><span id="detailTitle">Operating Systems in Computing Technology</span> <span class="tag green">Active</span></h2><h3 id="detailCode" style="color:var(--brand);margin:0 0 10px">CSC 401</h3><p>Core concepts in operating systems, process management, memory, filesystems, scheduling, and synchronization.</p><div class="small">👥 145 current students • 2025/2026 • 1st Semester • 3 units • 300 Level • Full-time · Group A</div></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="ghost" data-modal="historyModal" type="button">Past semesters</button><button class="ghost" data-modal="courseModal" onclick="window._cmMode='edit'" type="button">Edit Course</button><button class="ghost" onclick="openEndSemester('CSC 401')" type="button">End semester</button></div></div><div class="kpis"><div><span class="small">Course Progress</span><h3>68%</h3></div><div><span class="small">Average Attendance</span><h3>80%</h3></div><div><span class="small">Attendance Sessions</span><h3>13</h3></div><div><span class="small">Next Class</span><h3 style="font-size:18px">Today, 10:00 AM</h3></div></div></div><div class="tabs"><button class="tab active" data-tab="overview" type="button">Overview</button><button class="tab" data-tab="obe" type="button">Outcomes (OBE)</button><button class="tab" data-tab="students" type="button">Students</button><button class="tab" data-tab="attendance" type="button">Attendance</button><button class="tab" data-tab="assignments" type="button">Assignments</button><button class="tab" data-tab="assessments" type="button">Assessments</button><button class="tab" data-tab="courseResources" type="button">Resources</button><button class="tab" data-tab="courseAnnouncements" type="button">Announcements</button></div>
+        <section class="page" id="courseDetail"><button class="ghost" data-page-link="courses" type="button">← Back to Courses</button><div id="courseDetailSetup"></div><div class="hero" style="margin-top:14px"><div style="display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap"><div><h2><span id="detailTitle">Operating Systems in Computing Technology</span> <span class="tag green">Active</span></h2><h3 id="detailCode" style="color:var(--brand);margin:0 0 10px">CSC 401</h3><p>Core concepts in operating systems, process management, memory, filesystems, scheduling, and synchronization.</p><div class="small">👥 145 current students • 2025/2026 • 1st Semester • 3 units • 300 Level • Full-time · Group A</div></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="ghost" data-modal="historyModal" type="button">Past semesters</button><button class="ghost" data-modal="courseModal" onclick="window._cmMode='edit'" type="button">Edit Course</button><button class="btn" onclick="openExamPrepFor(_detailCode||'CSC 401')" type="button">Exam prep</button><button class="ghost" onclick="openEndSemester('CSC 401')" type="button">End semester</button></div></div><div class="kpis"><div><span class="small">Course Progress</span><h3>68%</h3></div><div><span class="small">Average Attendance</span><h3>80%</h3></div><div><span class="small">Attendance Sessions</span><h3>13</h3></div><div><span class="small">Next Class</span><h3 style="font-size:18px">Today, 10:00 AM</h3></div></div></div><div class="tabs"><button class="tab active" data-tab="overview" type="button">Overview</button><button class="tab" data-tab="obe" type="button">Outcomes (OBE)</button><button class="tab" data-tab="students" type="button">Students</button><button class="tab" data-tab="attendance" type="button">Attendance</button><button class="tab" data-tab="assignments" type="button">Assignments</button><button class="tab" data-tab="assessments" type="button">Assessments</button><button class="tab" data-tab="courseResources" type="button">Resources</button><button class="tab" data-tab="courseAnnouncements" type="button">Announcements</button></div>
           <div class="tab-content active" id="overviewTab"><div class="two"><div class="card"><div class="card-head"><h3>Syllabus Progress Tracker</h3><button class="ghost" data-modal="topicModal" type="button">+ Add Topic</button></div><div class="progress-summary"><div><strong>68%</strong><span class="small">Overall Progress</span></div><div><strong>2/5</strong><span class="small">Topics Completed</span></div><div><strong>9/22h</strong><span class="small">Hours Done</span></div></div><div class="item completed"><div class="item-left"><span class="checkbox done" onclick="toggleTopicDone(this)" style="cursor:pointer" title="Mark as not done">✓</span><div><div class="title"><s>Introduction to OS</s></div><div style="margin-top:6px;display:flex;flex-direction:column;gap:3px"><span class="small" style="display:flex;align-items:center;gap:6px"><span onclick="toggleSubtopic(this)" style="cursor:pointer;width:14px;height:14px;border-radius:4px;background:#020617;color:#fff;display:inline-grid;place-items:center;font-size:9px;flex:0 0 auto">✓</span><s>History of Operating Systems</s></span><span class="small" style="display:flex;align-items:center;gap:6px"><span onclick="toggleSubtopic(this)" style="cursor:pointer;width:14px;height:14px;border-radius:4px;background:#020617;color:#fff;display:inline-grid;place-items:center;font-size:9px;flex:0 0 auto">✓</span><s>OS Types &amp; Structure</s></span></div></div></div><div style="display:flex;align-items:center;gap:6px"><span class="tag">3h</span><button class="iconbtn" style="width:30px;height:30px;border-radius:8px;font-size:13px" data-modal="topicModal" title="Edit" type="button">✎</button><button class="iconbtn" style="width:30px;height:30px;border-radius:8px;font-size:13px;color:var(--red)" data-toast="Topic deleted" title="Delete" type="button">🗑</button></div></div><div class="item completed"><div class="item-left"><span class="checkbox done" onclick="toggleTopicDone(this)" style="cursor:pointer" title="Mark as not done">✓</span><div><div class="title"><s>Process Management</s></div><div style="margin-top:6px;display:flex;flex-direction:column;gap:3px"><span class="small" style="display:flex;align-items:center;gap:6px"><span onclick="toggleSubtopic(this)" style="cursor:pointer;width:14px;height:14px;border-radius:4px;background:#020617;color:#fff;display:inline-grid;place-items:center;font-size:9px;flex:0 0 auto">✓</span><s>CPU Scheduling</s></span><span class="small" style="display:flex;align-items:center;gap:6px"><span onclick="toggleSubtopic(this)" style="cursor:pointer;width:14px;height:14px;border-radius:4px;background:#020617;color:#fff;display:inline-grid;place-items:center;font-size:9px;flex:0 0 auto">✓</span><s>Deadlocks &amp; Synchronization</s></span></div></div></div><div style="display:flex;align-items:center;gap:6px"><span class="tag">6h</span><button class="iconbtn" style="width:30px;height:30px;border-radius:8px;font-size:13px" data-modal="topicModal" title="Edit" type="button">✎</button><button class="iconbtn" style="width:30px;height:30px;border-radius:8px;font-size:13px;color:var(--red)" data-toast="Topic deleted" title="Delete" type="button">🗑</button></div></div><div class="item"><div class="item-left"><span class="checkbox" onclick="toggleTopicDone(this)" style="cursor:pointer" title="Mark as done"></span><div><div class="title">Memory Management</div><div style="margin-top:6px;display:flex;flex-direction:column;gap:3px"><span class="small" style="display:flex;align-items:center;gap:6px"><span onclick="toggleSubtopic(this)" style="cursor:pointer;width:14px;height:14px;border-radius:4px;border:1px solid #cbd5e1;background:#fff;display:inline-grid;place-items:center;font-size:9px;flex:0 0 auto"></span>Virtual Memory</span><span class="small" style="display:flex;align-items:center;gap:6px"><span onclick="toggleSubtopic(this)" style="cursor:pointer;width:14px;height:14px;border-radius:4px;border:1px solid #cbd5e1;background:#fff;display:inline-grid;place-items:center;font-size:9px;flex:0 0 auto"></span>Paging &amp; Segmentation</span></div></div></div><div style="display:flex;align-items:center;gap:6px"><span class="tag">6h</span><button class="iconbtn" style="width:30px;height:30px;border-radius:8px;font-size:13px" data-modal="topicModal" title="Edit" type="button">✎</button><button class="iconbtn" style="width:30px;height:30px;border-radius:8px;font-size:13px;color:var(--red)" data-toast="Topic deleted" title="Delete" type="button">🗑</button></div></div></div><div class="card"><h3>Course Information</h3><div class="divider"></div><p><strong>Source:</strong> Existing department course</p><p><strong>Department:</strong> Computer Science</p><p><strong>Instructor:</strong> Samson Lecturer</p><p><strong>Status:</strong> Active</p><p><strong>Session:</strong> 2025/2026 · 1st Semester</p><p><strong>Program:</strong> Full-time · Group A</p></div></div></div>
           <div class="tab-content" id="studentsTab"><div class="grid3" style="margin-bottom:18px"><div class="card stat"><div><p>Total Enrolled</p><h3>145</h3></div><div class="stat-icon">👥</div></div><div class="card stat"><div><p>Active Students</p><h3>145</h3></div><div class="stat-icon" style="background:var(--green-soft);color:var(--green)">👥</div></div><div class="card stat"><div><p>Inactive Students</p><h3>0</h3></div><div class="stat-icon" style="background:var(--red-soft);color:var(--red)">👥</div></div></div><div class="card"><div class="card-head"><div><h3>Current Students</h3><p class="small">Students appear here when they enroll in this course for 2025/2026 · 1st Semester · Full-time · Group A.</p></div><button class="ghost" type="button">Export CSV</button></div><input placeholder="Search students by name, matric number, or email"><div class="table-wrap"><table class="table"><thead><tr><th>Student</th><th>Matric No.</th><th>Status</th><th>Attendance Count</th><th>Attendance %</th><th>Assessment Avg.</th><th>Action</th></tr></thead><tbody><tr><td>Adebayo Tunde</td><td>CSC/2024/001</td><td><span class="tag green">Active</span></td><td style="font-weight:850">12 of 13</td><td>92%</td><td>78%</td><td><button class="danger" data-modal="removeStudentModal" type="button">Remove</button></td></tr><tr><td>Morenike Ade</td><td>CSC/2024/018</td><td><span class="tag green">Active</span></td><td style="font-weight:850">10 of 13</td><td>77%</td><td>81%</td><td><button class="danger" data-modal="removeStudentModal" type="button">Remove</button></td></tr><tr><td>Ifeoluwa James</td><td>CSC/2024/047</td><td><span class="tag red">At Risk</span></td><td style="font-weight:850;color:var(--red)">6 of 13</td><td style="color:var(--red)">46%</td><td>39%</td><td><button class="danger" data-modal="removeStudentModal" type="button">Remove</button></td></tr></tbody></table></div></div></div>
           <div class="tab-content" id="attendanceTab">
@@ -1310,6 +1310,14 @@
       <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button" onclick="setCourseModal('manual')">Add another new record</button><button class="ghost" type="button" onclick="setCourseModal('pick')">Pick from course list</button><button class="ghost" type="button" onclick="closeModals()">Done</button></div>
     </div>
   </div></div>
+  <!-- EXAM PREP: confirmation after an action, with a clear way back -->
+  <div class="modal" id="examDoneModal"><div class="modal-card" style="max-width:440px;text-align:center"><div class="modal-head"><h3>Done</h3><button class="close" data-close-modal type="button">×</button></div>
+    <div style="font-size:40px;margin:4px 0 8px">✅</div>
+    <div class="title" id="examDoneTitle" style="font-size:18px"></div>
+    <div class="small" id="examDoneDetail" style="margin:4px 0 18px"></div>
+    <button class="btn" type="button" onclick="backToExamPrep()">Back to Exam Prep</button>
+  </div></div>
+
   <div class="modal" id="topicModal"><div class="modal-card" style="max-width:560px"><div class="modal-head"><h3>Add / Edit Outline Topic</h3><button class="close" data-close-modal type="button">×</button></div>
     <div style="background:#f8fafc;border:1px dashed #cbd5e1;border-radius:12px;padding:14px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:12px">
       <div><div style="font-weight:800;font-size:13px;margin-bottom:2px">⇪ Import from Syllabus Document</div><div class="small">Upload a PDF or Word file to auto-populate topics from your course outline.</div></div>
@@ -1511,7 +1519,7 @@
   </div></div>
 
   <!-- ASSESSMENT MODAL -->
-  <div class="modal" id="assessmentModal"><div class="modal-card" style="max-width:820px"><div class="modal-head"><h3>Create Assessment</h3><div style="display:flex;gap:8px"><button class="ghost" data-toast="Draft saved" type="button">Save Draft</button><button class="btn" data-toast="Assessment published" type="button">Publish</button></div><button class="close" data-close-modal type="button">×</button></div>
+  <div class="modal" id="assessmentModal"><div class="modal-card" style="max-width:820px"><div class="modal-head"><h3>Create Assessment</h3><div style="display:flex;gap:8px"><button class="ghost" data-toast="Draft saved" type="button">Save Draft</button><button class="btn" data-toast="Assessment published" onclick="examActionSaved('quiz')" type="button">Publish</button></div><button class="close" data-close-modal type="button">×</button></div>
     <div style="display:grid;grid-template-columns:250px 1fr;gap:20px">
       <div style="border-right:1px solid var(--line);padding-right:20px;overflow-y:auto;max-height:68vh">
         <div style="margin-bottom:12px"><label style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em">Title</label><input placeholder="e.g. Mid-Semester Quiz" style="margin-top:6px"></div>
@@ -1571,7 +1579,7 @@
       </div>
     </div>
 
-    <button class="btn wide" style="margin-top:18px" data-toast="Resources uploaded successfully" onclick="setupStepSaved('resource');materialUploaded()" type="button">Save Resources</button>
+    <button class="btn wide" style="margin-top:18px" data-toast="Resources uploaded successfully" onclick="setupStepSaved('resource');materialUploaded();examActionSaved('upload')" type="button">Save Resources</button>
   </div></div>
 
   <!-- LINK MODAL (kept as fallback) -->
@@ -1588,7 +1596,7 @@
     <div style="margin-bottom:14px"><label class="toggle-row"><input type="checkbox" id="commentsToggle"> Allow student comments on this announcement</label></div>
     <div style="margin-bottom:14px"><label style="font-weight:800;font-size:13px;display:block;margin-bottom:6px">Publish Options</label><select id="publishOption" onchange="toggleScheduleFields()" style="width:100%"><option value="now">Publish now</option><option value="schedule">Schedule for later</option><option value="draft">Save as draft</option></select></div>
     <div id="scheduleFields" style="display:none;margin-bottom:14px"><div class="form-grid"><div><label>Schedule Date</label><input type="date"></div><div><label>Schedule Time</label><input type="time"></div></div></div>
-    <button class="btn wide" data-toast="Announcement saved" type="button">Save Announcement</button>
+    <button class="btn wide" data-toast="Announcement saved" onclick="examActionSaved('remind')" type="button">Save Announcement</button>
   </div></div>
 
   <!-- ANNOUNCEMENT VIEW MODAL with comments -->
@@ -1642,7 +1650,7 @@
         <div><label>End Date</label><input type="date"></div>
       </div>
     </div>
-    <div style="display:flex;gap:10px"><button class="btn" data-toast="Class scheduled successfully" onclick="setupStepSaved('class')" type="button">Schedule Class</button><button class="ghost" data-close-modal type="button">Cancel</button></div>
+    <div style="display:flex;gap:10px"><button class="btn" data-toast="Class scheduled successfully" onclick="setupStepSaved('class');examActionSaved('class')" type="button">Schedule Class</button><button class="ghost" data-close-modal type="button">Cancel</button></div>
   </div></div>
   <div class="modal" id="historyModal"><div class="modal-card"><div class="modal-head"><h3>Past semesters</h3><button class="close" data-close-modal type="button">×</button></div><div class="notice">You are viewing a past semester. Records are read-only and won't affect your current courses.</div><div class="form-grid"><div><label>Academic year</label><select><option>2024/2025</option><option>2023/2024</option></select></div><div><label>Semester</label><select><option>1st Semester</option><option>2nd Semester</option></select></div></div><div class="grid3" style="margin-top:16px"><div class="card"><p>Students</p><h3>132</h3></div><div class="card"><p>Avg. Attendance</p><h3>74%</h3></div><div class="card"><p>Assessment Avg.</p><h3>69%</h3></div></div><button class="btn" style="margin-top:16px" data-toast="Past semester opened" type="button">Open semester</button></div></div>
   <div class="modal" id="directMarkModal"><div class="modal-card" style="max-width:600px"><div class="modal-head"><h3>Mark Manual Attendance</h3><button class="close" data-close-modal type="button">×</button></div>
@@ -1982,6 +1990,7 @@
     const FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]):not([type="hidden"]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
     function closeModals(){
       const wasOpen = all('.modal.open');
+      if (wasOpen.length && window._examCtx) window._examCtx.active = false;
       wasOpen.forEach(m=>m.classList.remove('open'));
       if (wasOpen.length) {
         document.body.style.overflow = '';
@@ -1996,6 +2005,7 @@
       _modalReturnFocus = document.activeElement;
       closeModals();
       if(id==='courseModal'){ setCourseModal(window._cmMode||'pick'); window._cmMode=null; }
+      if (typeof syncExamCtxBanner === 'function') syncExamCtxBanner(id);
       m.classList.add('open');
       document.body.style.overflow = 'hidden';
       const focusTarget = m.querySelector(FOCUSABLE);
@@ -2319,56 +2329,73 @@
       </div>`;
     }
     // ===== Exam prep (sample data) =====
-    // Two journeys per course: "Prepare your students" (what to re-teach, finish, send) and "Prepare the exam paper" (plan → questions → paper → marking guide → review & export).
-    // Topics come from the lecturer's syllabus tracker. The exam date is set by the lecturer or comes from the university's exam timetable.
+    // Home: course + exam date, then two options. "Prepare your students" turns results into a few prioritised recommendations, each connected to existing features
+    // (resources, assessments, class scheduling, messages) with the course, topic and audience carried forward. "Prepare your exam paper" is a saved four-step flow.
     const dayFromNow = n => { const d = new Date(); d.setDate(d.getDate()+n); return d.toISOString().slice(0,10); };
     const COURSE_TOPICS = {   // mirrors the Syllabus Progress Tracker: state = covered | progress | todo; avg = class average on quiz questions for that topic
       'CSC 401': [{name:'Introduction to OS',state:'covered',avg:81},{name:'Process Management',state:'covered',avg:74},{name:'Memory Management',state:'progress',avg:48},{name:'File Systems',state:'todo'},{name:'Security & Protection',state:'todo'}],
       'CSC 305': [{name:'Database models',state:'covered',avg:72},{name:'SQL',state:'covered',avg:79},{name:'Normalization',state:'progress',avg:44},{name:'Transactions',state:'todo'}],
-      'CSC 202': [{name:'Object-oriented programming',state:'covered',avg:78},{name:'Data handling',state:'covered',avg:76},{name:'Software testing',state:'covered',avg:77}]
+      'CSC 202': [{name:'Object-oriented programming',state:'covered'},{name:'Data handling',state:'covered'},{name:'Software testing',state:'covered'}]
+    };
+    const MATERIALS = {
+      'CSC 401': [{id:'m1',title:'Operating Systems Fundamentals',type:'PDF',topic:'Introduction to OS'},{id:'m2',title:'Process Synchronization slides',type:'Slides',topic:'Process Management'},{id:'m3',title:'OS Scheduling Algorithms',type:'Video',topic:'Process Management'},{id:'m4',title:'Memory Management Notes',type:'DOCX',topic:'Memory Management'}],
+      'CSC 305': [{id:'m5',title:'Database models intro',type:'PDF',topic:'Database models'},{id:'m6',title:'SQL Joins cheat sheet',type:'PDF',topic:'SQL'},{id:'m7',title:'Normalization walkthrough',type:'Video',topic:'Normalization'}],
+      'CSC 202': [{id:'m8',title:'OOP lecture notes',type:'PDF',topic:'Object-oriented programming'},{id:'m9',title:'Data handling slides',type:'Slides',topic:'Data handling'},{id:'m10',title:'Testing basics',type:'PDF',topic:'Software testing'}]
     };
     // How we know the exam day: the lecturer sets it, or the university's exam timetable provides it (schools with an institution account).
     const EXAM_DATES = { 'CSC 401':{date:dayFromNow(12),source:'you'}, 'CSC 305':{date:dayFromNow(20),source:'institution'}, 'CSC 202':null };
     const examDays = code => EXAM_DATES[code] ? daysUntil(EXAM_DATES[code].date) : null;
     const dayName = iso => new Date(iso+'T00:00:00').toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'short',year:'numeric'});
+    const fmtTime = t => { const [h,m] = t.split(':').map(Number); return (h%12||12)+(m?':'+String(m).padStart(2,'0'):'')+' '+(h<12?'am':'pm'); };
     const EXAM_PREP = {
-      'CSC 401': { name:'Operating Systems in Computing Technology', students:145,
-        verdict:'Process Management looks solid. Memory Management is the biggest risk, and 3 topics are not finished yet.',
-        actions:[
-          { id:'a1', topic:'Memory Management', icon:'🧠', title:'Re-teach Memory Management', why:'62% missed the Belady\'s anomaly question. Most picked "Clock" because they mix it up with FIFO. Only 31% have opened the notes.',
-            buttons:[['Generate revision notes',"openGenerate('notes')",true],['Remind students',"openGenerate('announcement')"]], ask:"Explain Belady's anomaly and why students confuse FIFO with Clock",
+      'CSC 401': { name:'Operating Systems in Computing Technology', students:145, results:true,
+        basis:'Based on the Mid-Semester Quiz · 132 of 145 students attempted (91%)',
+        recs:[
+          { id:'r1', topic:'Memory Management', title:'Revisit Memory Management', primary:{label:'Plan a revision activity',kind:'panel'}, audience:'The 82 students who struggled with this topic', resources:['Memory Management Notes','OS Scheduling Algorithms'],
+            why:()=>'82 of the 132 students who attempted the Mid-Semester Quiz struggled with this topic. Most picked "Clock" where the answer was "FIFO". Only 31% have opened the notes.',
             evidence:()=>`<div class="small" style="font-weight:800;margin-bottom:6px">Mid-Semester Quiz · Q1 · 132 responses</div><div style="font-weight:700;margin-bottom:4px">Which page-replacement policy can show Belady's anomaly?</div>${optionBars([{k:'A',t:'LRU',p:9},{k:'B',t:'FIFO',p:38,ok:true},{k:'C',t:'Optimal',p:7},{k:'D',t:'Clock',p:46}])}<div class="small" style="margin-top:8px">Memory Management Notes: opened by 45 of 145 students (31%), median 3 min.</div>` },
-          { id:'a2', topic:'File Systems', deadline:true, icon:'📚', title:'Finish the syllabus', why:'3 of 5 topics are not finished: Memory Management (in progress), File Systems and Security & Protection.',
-            buttons:[['Schedule a class',"openModal('classModal')",true],['Open syllabus tracker',"openCourse('overview')"]], ask:'Suggest a plan to cover File Systems and Security & Protection in the time left',
-            evidence:()=>`<div class="small">Covered: Introduction to OS, Process Management.<br>In progress: Memory Management.<br>Not started: File Systems, Security &amp; Protection.</div>` },
-          { id:'a3', icon:'🙋', title:'Reach out to 12 students at risk', why:'They have missed several classes, scored low on quizzes, or have not opened any material.',
-            buttons:[['Message these students',"openGenerate('announcement')",true]], ask:'What is the best way to reach students who have disengaged before exams?',
-            evidence:()=>[['Adebayo Tunde','CSC/2024/001','Missed 4 of 13 classes · quiz 38%'],['Temi Afolabi','CSC/2024/072','Missed both quizzes'],['Chukwuemeka Obi','CSC/2024/055','Has not opened any material'],['Seun Adebayo','CSC/2024/089','Attendance 52%'],['Ifeoluwa James','CSC/2024/047','Quiz 41% · attendance 58%']].map(r=>`<div style="display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)"><span><strong>${r[0]}</strong> <span class="small">${r[1]}</span></span><span class="small">${r[2]}</span></div>`).join('')+'<div class="small" style="margin-top:6px">+ 7 more</div>' },
-          { id:'a4', topic:'Memory Management', icon:'✍️', title:'Publish a revision quiz on the weak topics', why:'Only 38% have tried a past question this semester. A short revision quiz on Memory Management shows you which parts still need explaining.',
-            buttons:[['Create revision quiz',"openGenerate('assessment')",true]], ask:'Which topics should a revision quiz cover before the CSC 401 exam?',
-            evidence:()=>`<div class="small">55 of 145 students have attempted at least one past question. Students who practised scored 14 points higher on the Mid-Semester Quiz on average. Results of the revision quiz will appear here by topic.</div>` }
+          { id:'r2', topic:'File Systems', title:'Finish the syllabus', primary:{label:'Schedule a class',kind:'class'},
+            why:d=>'3 of 5 topics are not finished: Memory Management (in progress), File Systems and Security & Protection.'+(d!=null&&d>=0?' The exam is in '+d+' day'+(d===1?'':'s')+'.':''),
+            evidence:()=>`<div class="small">Covered: Introduction to OS, Process Management.<br>In progress: Memory Management.<br>Not started: File Systems, Security &amp; Protection.</div><div style="margin-top:8px"><button class="ghost" style="padding:5px 11px;font-size:12px" type="button" onclick="openCourse('overview')">Open syllabus tracker</button></div>` },
+          { id:'r3', topic:'', title:"12 students haven't attempted the Mid-Semester Quiz", primary:{label:'Remind students',kind:'remind'}, audience:'The 12 students who have not attempted the quiz',
+            why:()=>'Their understanding has not been assessed yet.',
+            evidence:()=>[['Adebayo Tunde','CSC/2024/001'],['Temi Afolabi','CSC/2024/072'],['Chukwuemeka Obi','CSC/2024/055'],['Seun Adebayo','CSC/2024/089'],['Ifeoluwa James','CSC/2024/047']].map(r=>`<div style="padding:5px 0;border-bottom:1px solid var(--line)"><strong>${r[0]}</strong> <span class="small">${r[1]}</span></div>`).join('')+'<div class="small" style="margin-top:6px">+ 7 more</div>' }
         ] },
-      'CSC 305': { name:'Database Systems and Management', students:98,
-        verdict:'SQL is going well. Normalization needs another pass, and Transactions has not been taught.',
-        actions:[
-          { id:'b1', topic:'Normalization', icon:'🧠', title:'Re-teach Normalization', why:'56% missed the 3NF question. Most picked "Another non-key attribute", which suggests they mix up 2NF and 3NF.',
-            buttons:[['Generate revision notes',"openGenerate('notes')",true],['Remind students',"openGenerate('announcement')"]], ask:'Explain the difference between 2NF and 3NF with an example',
+      'CSC 305': { name:'Database Systems and Management', students:98, results:true,
+        basis:'Based on Quiz 1 · 91 of 98 students attempted (93%)',
+        recs:[
+          { id:'r4', topic:'Normalization', title:'Revisit Normalization', primary:{label:'Plan a revision activity',kind:'panel'}, audience:'The 51 students who struggled with this topic', resources:['Normalization walkthrough'],
+            why:()=>'51 of the 91 students who attempted Quiz 1 struggled with this topic. Most picked "Another non-key attribute", which suggests they mix up 2NF and 3NF.',
             evidence:()=>`<div class="small" style="font-weight:800;margin-bottom:6px">Quiz 1 · 91 responses</div><div style="font-weight:700;margin-bottom:4px">A table is in 3NF when every non-key attribute depends on…</div>${optionBars([{k:'A',t:'Part of the key',p:18},{k:'B',t:'The key, the whole key and nothing but the key',p:44,ok:true},{k:'C',t:'Another non-key attribute',p:31},{k:'D',t:'Any candidate key',p:7}])}` },
-          { id:'b2', topic:'Transactions', deadline:true, icon:'📚', title:'Finish the syllabus', why:'2 of 4 topics are not finished: Normalization (in progress) and Transactions.',
-            buttons:[['Schedule a class',"openModal('classModal')",true],['Open syllabus tracker',"openCourse('overview')"]], ask:'Suggest a plan to cover the remaining Database Systems topics',
+          { id:'r5', topic:'Transactions', title:'Finish the syllabus', primary:{label:'Schedule a class',kind:'class'},
+            why:d=>'2 of 4 topics are not finished: Normalization (in progress) and Transactions.'+(d!=null&&d>=0?' The exam is in '+d+' day'+(d===1?'':'s')+'.':''),
             evidence:()=>`<div class="small">Covered: Database models, SQL.<br>In progress: Normalization.<br>Not started: Transactions.</div>` }
         ] },
-      'CSC 202': { name:'Computer Programming II', students:76, verdict:'Students look ready. Nothing urgent before the exam.', actions:[
-          { id:'c1', icon:'✍️', title:'Optional: publish a last revision quiz', why:'66% have tried a past question. A final quiz would keep the rest on track.', buttons:[['Create revision quiz',"openGenerate('assessment')",true]], ask:'Suggest a final practice set for CSC 202', evidence:()=>`<div class="small">50 of 76 students have attempted at least one past question.</div>` } ] }
+      'CSC 202': { name:'Computer Programming II', students:76, results:false,
+        basis:'Early results · 9 of 76 students have responded (12%). Results update as more students respond.',
+        recs:[
+          { id:'r6', topic:'Software testing', title:'Revisit Software testing', primary:{label:'Plan a revision activity',kind:'panel'}, audience:'The 6 students who struggled with this topic', resources:['Testing basics'],
+            why:()=>'6 of the 9 students who attempted the diagnostic quiz struggled with this topic. This is early evidence, so treat it as a first signal.',
+            evidence:()=>`<div class="small">Diagnostic quiz · 9 responses so far. Software testing: 33% correct. Object-oriented programming: 78% correct. Data handling: 71% correct.</div>` },
+          { id:'r7', topic:'', title:"67 students haven't attempted the diagnostic quiz", primary:{label:'Remind students',kind:'remind'}, audience:'The 67 students who have not attempted the quiz',
+            why:()=>'Their understanding has not been assessed yet.', evidence:()=>`<div class="small">67 of 76 enrolled students have not opened the quiz.</div>` }
+        ] }
     };
-    let _examCourse = 'CSC 401', _examTab = 'students', _examEditDate = false;
-    const _examDone = new Set(), _examOpen = new Set();
-    const askAi = text => { showPage('analytics'); setTimeout(() => { const i = one('#askInput'); if (i) { i.value = text; i.focus(); } }, 60); };
-    const examLeft = code => (EXAM_PREP[code]?.actions || []).filter(a => !_examDone.has(a.id));
-    function setExamCourse(code){ _examCourse = code; _examEditDate = false; renderExamPrep(); }
-    function setExamTab(t){ _examTab = t; renderExamPrep(); }
-    function toggleExamDone(id){ _examDone.has(id) ? _examDone.delete(id) : _examDone.add(id); renderExamPrep(); }
-    function toggleExamOpen(id){ _examOpen.has(id) ? _examOpen.delete(id) : _examOpen.add(id); renderExamPrep(); }
+    let _examCourse = 'CSC 401', _examTab = null, _examEditDate = false, _examPanel = null, _examSub = null, _examDismiss = null, _showDismissed = false;
+    const _examEvidence = new Set(), _rec = {}, _diag = {}, _papers = {};
+    const recState = (code,id) => (_rec[code] || (_rec[code] = {}))[id] || (_rec[code][id] = {status:'open'});
+    const hasResults = code => EXAM_PREP[code].results || _diag[code] === 'results';
+    const visibleRecs = code => hasResults(code) ? EXAM_PREP[code].recs.filter(r => recState(code,r.id).status !== 'dismissed') : [];
+    const needsAttention = code => visibleRecs(code).filter(r => recState(code,r.id).status === 'open');
+
+    // --- Saved progress: returning lecturers continue where they stopped
+    const EXAM_KEY = 'cubbes-exam-prep-v2';
+    function saveExamState(){ try { localStorage.setItem(EXAM_KEY, JSON.stringify({_rec,_diag,_papers,EXAM_DATES,_examCourse,_examTab})); } catch(e){} }
+    function loadExamState(){ try { const s = JSON.parse(localStorage.getItem(EXAM_KEY)||'null'); if(!s) return; Object.assign(_rec,s._rec||{}); Object.assign(_diag,s._diag||{}); Object.assign(_papers,s._papers||{}); Object.assign(EXAM_DATES,s.EXAM_DATES||{}); if(s._examCourse && EXAM_PREP[s._examCourse]) _examCourse = s._examCourse; _examTab = s._examTab||null; } catch(e){} }
+    function resetExamDemo(){ try { localStorage.removeItem(EXAM_KEY); } catch(e){} location.reload(); }
+    function openExamPrepFor(code, tab){ _examCourse = EXAM_PREP[code] ? code : _examCourse; _examTab = tab || null; showPage('examprep'); }
+    function setExamCourse(code){ _examCourse = code; _examEditDate = false; _examPanel = null; _examSub = null; renderExamPrep(); }
+    function setExamTab(t){ _examTab = t; _examPanel = null; renderExamPrep(); }
     function saveExamDate(){ const v = one('#examDateInput').value; if (!v) return; EXAM_DATES[_examCourse] = { date:v, source:'you' }; _examEditDate = false; renderExamPrep(); }
     function optionBars(opts){
       const topWrong = Math.max(...opts.filter(o=>!o.ok).map(o=>o.p));
@@ -2376,7 +2403,56 @@
         return `<div style="display:grid;grid-template-columns:22px 1fr 44px;gap:8px;align-items:center;margin:5px 0;font-size:13px"><b>${o.k}</b><div><span>${o.t}${o.ok?' <span class="tag green" style="padding:1px 7px;font-size:11px">Correct</span>':''}</span><div style="height:7px;background:#f1f5f9;border-radius:999px;overflow:hidden;margin-top:3px"><div style="height:100%;width:${o.p}%;background:${col}"></div></div></div><span style="text-align:right;font-weight:800">${o.p}%</span></div>`; }).join('');
     }
 
-    // --- Exam day card: set by the lecturer, or from the university timetable; prompts when missing
+    // --- Context carried into existing features, and the way back
+    function syncExamCtxBanner(id){
+      const m = document.getElementById(id); if (!m) return;
+      m.querySelector('.exam-ctx')?.remove();
+      const x = window._examCtx; if (!x || !x.active || x.modal !== id) return;
+      const d = document.createElement('div'); d.className = 'exam-ctx';
+      d.style.cssText = 'background:var(--brand-soft);border:1px solid #bfdbfe;border-radius:12px;padding:10px 14px;margin-bottom:14px;font-size:13px;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap';
+      d.innerHTML = `<span>📘 <strong>From Exam Prep</strong> · ${x.banner}</span><button class="ghost" style="padding:4px 10px;font-size:12px" type="button" onclick="backToExamPrep()">← Back to Exam Prep</button>`;
+      m.querySelector('.modal-head').after(d);
+    }
+    function backToExamPrep(){ closeModals(); showPage('examprep'); }
+    function startExamAction(recId, kind){
+      const code = _examCourse, r = EXAM_PREP[code].recs.find(x => x.id === recId) || {}, topic = r.topic || '';
+      const covered = COURSE_TOPICS[code].filter(t => t.state !== 'todo').map(t => t.name).join(', ');
+      const ctx = { active:true, code, recId, kind, topic };
+      const pick = (sel, val) => { const e = document.querySelector(sel); if (e) e.value = val; };
+      const setCourse = modal => { const s = document.querySelector('#'+modal+' select'); const o = s && [...s.options].find(x => x.text.startsWith(code)); if (o) s.value = o.value; };
+      if (kind === 'class') { Object.assign(ctx, {modal:'classModal', banner:`Revision class · ${code}${topic?' · '+topic:''}`}); setCourse('classModal'); pick('#classModal textarea', topic ? 'Revision class: '+topic : 'Catch-up class on the remaining topics'); }
+      else if (kind === 'quiz') { Object.assign(ctx, {modal:'assessmentModal', banner:`Revision quiz · ${code} · ${topic}`}); pick('#assessmentModal input', topic+' revision quiz'); }
+      else if (kind === 'diagnostic') { Object.assign(ctx, {modal:'assessmentModal', banner:`Diagnostic quiz · ${code} · topics: ${covered}`}); pick('#assessmentModal input', 'Diagnostic quiz · '+code); }
+      else if (kind === 'remind') { Object.assign(ctx, {modal:'announcementModal', banner:`To: ${r.audience||'the relevant students'}`}); pick('#announcementModal input', topic ? 'Revision: '+topic : 'Reminder: '+(r.title||'')); pick('#announcementModal textarea', topic ? 'Hi everyone, we will revisit '+topic+' before the exam. Please review the notes and come with questions.' : 'Hi, you have not attempted the quiz yet. It only takes a few minutes and helps us know where to focus before the exam.'); }
+      else if (kind === 'upload') { Object.assign(ctx, {modal:'resourceModal', banner:`Resource for ${code}${topic?' · '+topic:''}`}); }
+      else if (kind === 'paperSource') { Object.assign(ctx, {modal:'resourceModal', banner:`Exam paper · add a source for ${topic||code}`}); }
+      window._examCtx = ctx; openModal(ctx.modal);
+    }
+    // Called from the Save/Publish buttons of the existing dialogs. Only does anything when the dialog was opened from Exam Prep.
+    function examActionSaved(kind){
+      const x = window._examCtx; if (!x || !x.active) return;
+      const match = x.kind === kind || (kind === 'quiz' && x.kind === 'diagnostic') || (kind === 'upload' && x.kind === 'paperSource');
+      if (!match) return; window._examCtx = null;
+      let title, detail;
+      if (x.kind === 'class') { const d = document.querySelector('#classModal input[type=date]')?.value, t = document.querySelector('#classModal input[type=time]')?.value; title = 'Revision class scheduled'; detail = (x.topic||x.code)+' · '+(d ? new Date(d+'T00:00:00').toLocaleDateString('en-GB',{weekday:'long'}) : 'Tuesday')+', '+(t ? fmtTime(t) : '2 pm'); }
+      else if (x.kind === 'quiz') { title = 'Revision quiz published'; detail = x.topic+' · students can start now'; }
+      else if (x.kind === 'diagnostic') { title = 'Diagnostic quiz published'; detail = x.code+' · results will appear in Exam Prep as students respond'; _diag[x.code] = 'live'; }
+      else if (x.kind === 'remind') { title = 'Reminder sent'; detail = (EXAM_PREP[x.code].recs.find(r=>r.id===x.recId)||{}).audience || 'Selected students'; }
+      else if (x.kind === 'paperSource') { title = 'Material added'; detail = 'It is now available as a source for your exam paper'; (MATERIALS[x.code]||(MATERIALS[x.code]=[])).push({id:'m'+Date.now(),title:'New material',type:'File',topic:x.topic||''}); }
+      else { title = 'Resource shared'; detail = (x.topic||x.code)+' · uploaded for students'; }
+      completeExamAction(x.code, x.recId, x.kind, title, detail);
+    }
+    function completeExamAction(code, recId, kind, title, detail){
+      if (recId && kind !== 'paperSource') { const st = recState(code, recId); st.status = 'acted'; st.label = title; st.detail = detail; }
+      _examPanel = null; _examSub = null; saveExamState();
+      // deferred so the dialog's own toast handler (which closes dialogs) runs first
+      setTimeout(() => { one('#examDoneTitle').textContent = title; one('#examDoneDetail').textContent = detail; openModal('examDoneModal'); }, 0);
+    }
+    function shareResource(recId, title){ const code = _examCourse, r = EXAM_PREP[code].recs.find(x=>x.id===recId); completeExamAction(code, recId, 'share', 'Resource shared', title+' · shared with students'); }
+    function dismissRec(id, reason){ recState(_examCourse,id).status = 'dismissed'; recState(_examCourse,id).reason = reason; _examDismiss = null; renderExamPrep(); }
+    function restoreRec(id){ recState(_examCourse,id).status = 'open'; renderExamPrep(); }
+
+    // --- Exam day card: set by the lecturer, or from the university timetable; asks when missing
     function examDateCard(code){
       const e = EXAM_DATES[code], d = examDays(code), end = courseEnds[code];
       if (_examEditDate || !e) return `<div class="card" style="margin-bottom:18px;border:1.5px solid #fcd34d;background:var(--amber-soft)"><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap"><div><div class="title" style="font-size:16px">${e?'Change the exam date':'When is the '+code+' exam?'}</div><div class="small" style="color:var(--text)">${e?'':'Add the date to get a countdown and a revision timeline. '}${end?'Your semester ends '+fmtDate(end)+'.':''}</div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><input type="date" id="examDateInput" value="${e?e.date:''}" style="width:auto"><button class="btn" type="button" onclick="saveExamDate()">Save date</button>${e?'<button class="ghost" type="button" onclick="_examEditDate=false;renderExamPrep()">Cancel</button>':''}</div></div></div>`;
@@ -2384,45 +2460,84 @@
       return `<div class="card" style="margin-bottom:18px;border:1.5px solid var(--brand);background:linear-gradient(135deg,var(--brand-soft) 0%,#fff 65%)"><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap"><div><div class="small" style="font-weight:800">${code} · ${EXAM_PREP[code].students} students</div><h3 style="margin:2px 0 2px;font-size:20px">${label}</h3><div class="small">${dayName(e.date)} · ${e.source==='institution' ? 'From the university exam timetable' : 'Set by you'}</div></div>${e.source==='institution' ? '<span class="small">Wrong date? Contact the exam office.</span>' : '<button class="ghost" type="button" onclick="_examEditDate=true;renderExamPrep()">Change date</button>'}</div></div>`;
     }
     const TOPIC_STATE = { covered:['green','Covered'], progress:['amber','In progress'], todo:['red','Not taught yet'] };
-    function topicReadiness(t){ return t.state==='todo' ? ['red','Not taught yet'] : (t.avg < 60 || t.state==='progress') ? ['amber','Needs revision'] : ['green','Ready']; }
+    function topicReadiness(t){ return t.state==='todo' ? ['red','Not taught yet'] : t.avg == null ? ['','No data yet'] : (t.avg < 60 || t.state==='progress') ? ['amber','Needs revision'] : ['green','Ready']; }
 
-    // --- Journey 1: Prepare your students
-    function studentsTab(code){
-      const d = EXAM_PREP[code], left = examLeft(code), days = examDays(code), topics = COURSE_TOPICS[code];
-      return `<div class="card" style="margin-bottom:22px"><p style="margin:0;font-size:15px;color:var(--text)">${d.verdict}</p><div style="margin-top:8px"><span class="tag ${left.length?'amber':'green'}">${left.length ? left.length+' thing'+(left.length>1?'s':'')+' to do' : 'All done'}</span></div></div>
-        <div class="small" style="font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin:0 0 10px">Do these before the exam</div>
-        ${d.actions.map(a => { const done = _examDone.has(a.id), open = _examOpen.has(a.id);
-          const why = a.why + (a.deadline && days != null && days >= 0 ? ' The exam is in '+days+' day'+(days===1?'':'s')+'.' : '');
-          return `<div class="card" style="margin-bottom:12px;${done?'opacity:.6':''}"><div style="display:flex;gap:14px;align-items:flex-start">
-            <button type="button" onclick="toggleExamDone('${a.id}')" aria-label="${done?'Mark as not done':'Mark as done'}" style="all:unset;cursor:pointer;width:26px;height:26px;border-radius:50%;border:2px solid ${done?'var(--green)':'#cbd5e1'};background:${done?'var(--green)':'#fff'};color:#fff;display:grid;place-items:center;font-size:13px;font-weight:900;flex:0 0 auto;margin-top:2px">${done?'✓':''}</button>
-            <div style="flex:1;min-width:0"><div class="title" style="font-size:16px;${done?'text-decoration:line-through':''}">${a.icon} ${a.title}</div>${a.topic?`<div style="margin:4px 0"><span class="tag blue" style="padding:2px 8px;font-size:11px">Syllabus topic: ${a.topic}</span></div>`:''}<div class="small" style="color:var(--text);margin:4px 0 10px">${why}</div>
-              <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${a.buttons.map(b=>`<button class="${b[2]?'btn':'ghost'}" style="padding:7px 13px;font-size:13px" type="button" onclick="${b[1]}">${b[0]}</button>`).join('')}<button class="ghost" style="padding:7px 13px;font-size:13px" type="button" onclick="askAi(${JSON.stringify(a.ask).replace(/"/g,'&quot;')})">Ask AI</button><button type="button" onclick="toggleExamOpen('${a.id}')" style="all:unset;cursor:pointer;color:var(--brand);font-size:13px;font-weight:800;margin-left:4px">${open?'Hide the data':'See the data'}</button></div>
-              ${open ? `<div style="margin-top:12px;padding:12px 14px;background:#f8fafc;border:1px solid var(--line);border-radius:12px">${a.evidence()}</div>` : ''}</div></div></div>`; }).join('')}
-        <div class="card" style="margin-top:22px"><div class="card-head"><div><h3>Topic by topic</h3><p class="small" style="margin:2px 0 0">Topics come from your syllabus tracker. Readiness uses quiz results and past-question practice.</p></div><a style="cursor:pointer;color:var(--brand)" onclick="openCourse('overview')">Open syllabus tracker</a></div>
-          ${topics.map(t => { const r = topicReadiness(t), s = TOPIC_STATE[t.state];
-            return `<div class="item"><div><div class="title">${t.name}</div><div class="small">${t.state==='todo' ? 'Not taught yet, so there is no student data.' : 'Class average '+t.avg+'% on quiz questions.'}</div></div><div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><span class="tag">${s[1]}</span><span class="tag ${r[0]}">${r[1]}</span></div></div>`; }).join('')}</div>`;
+    // --- Home: two clear options, with saved progress
+    function examHome(code){
+      const P = _papers[code], started = P && (P.qs.length || P.step > 1), attention = needsAttention(code).length;
+      const studentsLine = hasResults(code) ? (attention ? attention+' thing'+(attention>1?'s':'')+' need'+(attention>1?'':'s')+' attention' : 'Nothing needs attention right now') : (_diag[code]==='live' ? 'Diagnostic quiz is live' : 'Find out where your students need help');
+      const paperLine = started ? 'Step '+P.step+' of 4 · '+PAPER_STEPS[P.step-1]+(P.qs.length?' · '+P.qs.filter(q=>!q.removed).length+' questions':'') : 'Not started';
+      const card = (icon, title, text, line, btn, tab) => `<div class="card" style="display:flex;flex-direction:column"><div style="font-size:28px;margin-bottom:6px">${icon}</div><h3 style="margin:0 0 4px">${title}</h3><p class="small" style="margin:0 0 12px;flex:1">${text}</p><div class="small" style="font-weight:800;color:var(--brand);margin-bottom:12px">${line}</div><button class="btn" type="button" onclick="setExamTab('${tab}')">${btn}</button></div>`;
+      return `<div class="small" style="font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin:0 0 10px">What would you like to do?</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+          ${card('🎯','Prepare your students','See what needs attention and take action.',studentsLine,'Open','students')}
+          ${card('📝','Prepare your exam paper','Create, review and export your paper.',paperLine,started?'Continue your exam paper':'Start','paper')}
+        </div>`;
     }
 
-    // --- Journey 2: Prepare the exam paper
-    const PAPER_STEPS = ['Plan','Questions','Paper','Marking guide','Review & export'];
-    const _papers = {};
-    const paperFor = code => _papers[code] || (_papers[code] = { step:1, plan:{ topics:COURSE_TOPICS[code].filter(t=>t.state!=='todo').map(t=>t.name), duration:120, marks:70, mix:{obj:40,short:30,essay:30} }, qs:[] });
+    // --- Journey 1: Prepare your students
+    function recCard(code, r, days){
+      const st = recState(code, r.id), ev = _examEvidence.has(r.id), panel = _examPanel === r.id, dis = _examDismiss === r.id;
+      const acted = st.status === 'acted';
+      const primary = r.primary.kind === 'panel' ? `toggleExamPanel('${r.id}')` : `startExamAction('${r.id}','${r.primary.kind}')`;
+      return `<div class="card" style="margin-bottom:12px;${acted?'border-color:var(--green)':''}">
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><div class="title" style="font-size:16px">${r.title}</div>${r.topic?`<span class="tag blue" style="padding:2px 8px;font-size:11px">Syllabus topic: ${r.topic}</span>`:''}</div>
+        <div class="small" style="color:var(--text);margin:4px 0 10px">${r.why(days)}</div>
+        ${acted ? `<div style="margin:0 0 10px;padding:10px 12px;background:var(--green-soft);border-radius:12px"><div style="font-weight:850;color:#166534">✓ ${st.label}</div><div class="small" style="color:#166534">${st.detail}</div><div class="small" style="margin-top:4px">Waiting for new results. We'll only show improvement once fresh assessment evidence supports it.</div></div>` : ''}
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button class="${acted?'ghost':'btn'}" style="padding:7px 13px;font-size:13px" type="button" onclick="${primary}">${acted ? (r.primary.kind==='panel'?'Plan another activity':r.primary.label+' again') : r.primary.label}</button>
+          <button type="button" onclick="toggleEvidence('${r.id}')" style="all:unset;cursor:pointer;color:var(--brand);font-size:13px;font-weight:800">${ev?'Hide evidence':'View evidence'}</button>
+          <button type="button" onclick="toggleDismiss('${r.id}')" style="all:unset;cursor:pointer;color:var(--muted);font-size:13px;font-weight:700;margin-left:auto">Dismiss ▾</button></div>
+        ${dis ? `<div style="display:flex;gap:8px;margin-top:8px;justify-content:flex-end"><button class="ghost" style="padding:4px 10px;font-size:12px" type="button" onclick="dismissRec('${r.id}','Already addressed')">Already addressed</button><button class="ghost" style="padding:4px 10px;font-size:12px" type="button" onclick="dismissRec('${r.id}','Not relevant')">Not relevant</button></div>` : ''}
+        ${ev ? `<div style="margin-top:12px;padding:12px 14px;background:#f8fafc;border:1px solid var(--line);border-radius:12px">${r.evidence()}</div>` : ''}
+        ${panel ? examPanelHtml(code, r) : ''}</div>`;
+    }
+    function toggleDismiss(id){ _examDismiss = _examDismiss === id ? null : id; renderExamPrep(); }
+    function toggleExamPanel(id){ _examPanel = _examPanel === id ? null : id; _examSub = null; renderExamPrep(); }
+    function toggleEvidence(id){ _examEvidence.has(id) ? _examEvidence.delete(id) : _examEvidence.add(id); renderExamPrep(); }
+    function examOpt(id, kind){ if (kind === 'resource') { _examSub = id; renderExamPrep(); } else startExamAction(id, kind); }
+    function examPanelHtml(code, r){
+      const opts = [['resource','📎','Share a resource','Suggest an existing course resource, or upload another.'],['quiz','📝','Create a revision quiz','Opens an assessment draft with '+r.topic+' already selected.'],['class','📅','Schedule a revision class','Opens scheduling with '+code+' and '+r.topic+' filled in.'],['remind','💬','Remind selected students',r.audience]];
+      return `<div style="margin-top:12px;padding:12px;border:1.5px solid var(--brand);border-radius:14px;background:var(--brand-soft)"><div class="small" style="font-weight:800;margin-bottom:8px">Choose how to help with ${r.topic}</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px">${opts.map(o => `<button type="button" onclick="examOpt('${r.id}','${o[0]}')" style="all:unset;cursor:pointer;box-sizing:border-box;display:block;padding:10px 12px;border:1.5px solid ${_examSub===r.id&&o[0]==='resource'?'var(--brand)':'var(--line)'};border-radius:12px;background:#fff"><div style="font-weight:850">${o[1]} ${o[2]}</div><div class="small">${o[3]}</div></button>`).join('')}</div>
+        ${_examSub === r.id ? `<div style="margin-top:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px"><div class="small" style="font-weight:800;margin-bottom:6px">Suggested from your course resources</div>${(r.resources||[]).map(t => `<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)"><span>${t}</span><button class="soft" style="padding:4px 12px;font-size:12px" type="button" onclick="shareResource('${r.id}','${t.replace(/'/g,"\\'")}')">Share</button></div>`).join('')}<button class="ghost" style="margin-top:8px;padding:5px 12px;font-size:12px" type="button" onclick="startExamAction('${r.id}','upload')">Upload another</button></div>` : ''}</div>`;
+    }
+    function studentsTab(code){
+      const d = EXAM_PREP[code], days = examDays(code), topics = COURSE_TOPICS[code];
+      let main;
+      if (!hasResults(code)) {
+        const st = _diag[code] || 'none';
+        main = st === 'none'
+          ? `<div class="card" style="text-align:center;padding:36px 24px;border:1.5px dashed var(--line)"><div style="font-size:36px;margin-bottom:8px">🧪</div><h3 style="margin:0 0 6px">Find out where your students need help</h3><p class="small" style="max-width:440px;margin:0 auto 16px">A short quiz can help you identify topics to revisit before the exam.</p><button class="btn" type="button" onclick="startExamAction(null,'diagnostic')">Create a diagnostic quiz</button></div>`
+          : `<div class="card" style="text-align:center;padding:36px 24px;border:1.5px solid var(--green);background:var(--green-soft)"><div style="font-size:36px;margin-bottom:8px">✅</div><h3 style="margin:0 0 6px">Your diagnostic quiz is live</h3><p class="small" style="max-width:440px;margin:0 auto 16px;color:#166534">Results will appear here as students respond.</p><button class="btn" type="button" onclick="_diag['${code}']='results';saveExamState();renderExamPrep()">View responses</button></div>`;
+      } else {
+        const recs = visibleRecs(code), dismissed = d.recs.filter(r => recState(code,r.id).status === 'dismissed');
+        main = `<div class="small" style="margin:0 0 12px">${d.basis}</div>
+          ${recs.length ? recs.map(r => recCard(code, r, days)).join('') : '<div class="card"><p class="small" style="margin:0">Nothing needs attention right now. New recommendations appear as students respond.</p></div>'}
+          ${dismissed.length ? `<div style="margin-top:6px"><button type="button" onclick="_showDismissed=!_showDismissed;renderExamPrep()" style="all:unset;cursor:pointer;color:var(--muted);font-size:13px;font-weight:700">${_showDismissed?'Hide':'Show'} ${dismissed.length} dismissed</button>${_showDismissed ? dismissed.map(r => `<div class="item"><div><div class="title">${r.title}</div><div class="small">${recState(code,r.id).reason}</div></div><button class="ghost" style="padding:4px 10px;font-size:12px" type="button" onclick="restoreRec('${r.id}')">Restore</button></div>`).join('') : ''}</div>` : ''}`;
+      }
+      return main + `<div class="card" style="margin-top:22px"><div class="card-head"><div><h3>Topic by topic</h3><p class="small" style="margin:2px 0 0">Topics come from your syllabus tracker.</p></div><a style="cursor:pointer;color:var(--brand)" onclick="openCourse('overview')">Open syllabus tracker</a></div>
+        ${topics.length ? topics.map(t => { const r = topicReadiness(t), s = TOPIC_STATE[t.state]; return `<div class="item"><div><div class="title">${t.name}</div><div class="small">${t.state==='todo' ? 'Not taught yet, so there is no student data.' : t.avg==null ? 'No results yet.' : 'Class average '+t.avg+'% on quiz questions.'}</div></div><div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><span class="tag">${s[1]}</span>${r[1]?`<span class="tag ${r[0]}">${r[1]}</span>`:''}</div></div>`; }).join('') : '<p class="small">Add topics to your syllabus tracker to get started.</p>'}</div>`;
+    }
+
+    // --- Journey 2: Prepare your exam paper (saved, four steps)
+    const PAPER_STEPS = ['Set up','Choose sources','Build and review','Check and export'];
+    const paperFor = code => _papers[code] || (_papers[code] = { step:1, plan:{ topics:COURSE_TOPICS[code].filter(t=>t.state!=='todo').map(t=>t.name), duration:120, marks:70, mix:{obj:40,short:30,essay:30} }, sources:(MATERIALS[code]||[]).map(m=>m.id), qs:[], preview:false });
     const UNIT = { obj:2, short:5, essay:10 }, CAP = { obj:3, short:3, essay:2 }, TYPE_NAME = { obj:'Objective', short:'Short answer', essay:'Essay' };
     const Q_TEMPLATES = {
       'Memory Management': { obj:["Which page-replacement policy can show Belady's anomaly?","With 4 KB pages, how many bits of a 32-bit virtual address are the page offset?","Which technique allows a process to run while only part of it is in memory?"], short:['Differentiate between paging and segmentation.','Explain what causes thrashing and one way to reduce it.','Describe how a page table translates a virtual address.'], essay:['Compare FIFO, LRU and Optimal page replacement using a worked reference string.','Discuss virtual memory and why it improves multiprogramming.'] },
       'Process Management': { obj:['Which of these is NOT a necessary condition for deadlock?','Which scheduling algorithm can cause starvation?','What does a process control block store?'], short:['Define a process control block and list four fields it holds.','State the difference between a process and a thread.','Explain round-robin scheduling and the effect of the time quantum.'], essay:['Describe the producer–consumer problem and show how semaphores solve it.','Compare preemptive and non-preemptive CPU scheduling.'] }
     };
-    const SRC = { 'Memory Management':'Memory Management Notes', 'Process Management':'Process Synchronization slides', 'Introduction to OS':'Operating Systems Fundamentals', 'SQL':'SQL Joins cheat sheet', 'Normalization':'Normalization walkthrough' };
     function templatesFor(t){ return Q_TEMPLATES[t] || { obj:[1,2,3].map(i=>'Which of the following best describes a key idea in '+t+' (question '+i+')?'), short:[1,2,3].map(i=>'Explain one important concept in '+t+' with an example ('+i+').'), essay:['Discuss the main principles of '+t+' and how they are applied.','Critically evaluate the role of '+t+' in the course.'] }; }
+    const sourceFor = (code, topic) => { const P = paperFor(code), m = (MATERIALS[code]||[]).find(x => x.topic === topic && P.sources.includes(x.id)); return m ? m.title : null; };
     function genPaper(code){
       const P = paperFor(code), p = P.plan, N = p.topics.length; if (!N) return;
       const qs = []; let id = 0;
       ['obj','short','essay'].forEach(type => {
         const tm = Math.round(p.marks * p.mix[type] / 100);
         const per = p.mix[type] ? Math.min(CAP[type], Math.max(1, Math.round(tm / UNIT[type] / N))) : 0;
-        p.topics.forEach((t, ti) => { const T = templatesFor(t)[type]; for (let i = 0; i < per; i++) qs.push({ id:++id, type, topic:t, text:T[i % T.length], src:(SRC[t]||'Course outline')+' · p.'+(3+ti*2+i), diff:['Easy','Medium','Hard'][(ti+i)%3], marks:0, removed:false, guide:'' }); });
+        p.topics.forEach((t, ti) => { const T = templatesFor(t)[type], s = sourceFor(code, t); for (let i = 0; i < per; i++) qs.push({ id:++id, type, topic:t, text:T[i % T.length], src:s ? s+' · p.'+(3+ti*2+i) : 'Course outline (no source selected)', diff:['Easy','Medium','Hard'][(ti+i)%3], marks:0, removed:false, guide:'', approved:false, showSrc:false }); });
       });
-      P.qs = qs; rebalance(code); P.step = 2;
+      P.qs = qs; rebalance(code);
     }
     // Marks per type are split across the questions still in the paper, so the total follows the plan.
     function rebalance(code){
@@ -2431,7 +2546,7 @@
         const list = P.qs.filter(q => q.type === type && !q.removed), tm = Math.round(p.marks * p.mix[type] / 100);
         list.forEach((q, i) => { q.marks = list.length ? Math.floor(tm / list.length) + (i < tm % list.length ? 1 : 0) : 0; });
       });
-      P.qs.forEach((q, i) => { if (!q.guide) q.guide = guideFor(q); });
+      P.qs.forEach(q => { if (!q.guide) q.guide = guideFor(q); });
     }
     function guideFor(q){
       if (q.type === 'obj') return 'Correct option: '+'ABCD'[q.id%4]+'. Award full marks for the correct option only.';
@@ -2446,11 +2561,16 @@
       const byTopic = {}; qs.forEach(q => byTopic[q.topic] = (byTopic[q.topic]||0) + q.marks);
       const missing = plan.topics.filter(t => !byTopic[t]), heavy = Object.entries(byTopic).filter(([t,m]) => plan.topics.length > 1 && m > total * 0.5);
       checks.push(missing.length ? [false,'No questions on: '+missing.join(', ')] : heavy.length ? [false,heavy[0][0]+' carries more than half the marks'] : [true,'Every selected topic is covered']);
-      const seen = {}, dupes = qs.filter(q => seen[q.text] ? true : (seen[q.text] = true));
+      const seen = {}, dupes = qs.filter(q => { const d = !!seen[q.text.trim().toLowerCase()]; seen[q.text.trim().toLowerCase()] = true; return d; });
       checks.push(dupes.length ? [false,dupes.length+' duplicate question(s)'] : [true,'No duplicate questions']);
+      checks.push(qs.some(q => !q.text.trim()) ? [false,'Some questions are empty'] : [true,'No empty questions']);
       checks.push(qs.every(q => q.guide && q.guide.trim()) ? [true,'Every question has a marking guide'] : [false,'Some questions have no marking guide']);
+      const unapproved = qs.filter(q => !q.approved).length;
+      checks.push(unapproved ? [false,unapproved+' question'+(unapproved>1?'s':'')+' not approved yet'] : [true,'Every question is approved']);
       const untaught = plan.topics.filter(t => COURSE_TOPICS[code].find(x => x.name === t)?.state === 'todo');
       checks.push(untaught.length ? [false,untaught.join(', ')+' has not been taught yet'] : [true,'All examined topics have been taught']);
+      const nosrc = plan.topics.filter(t => !sourceFor(code, t));
+      checks.push(nosrc.length ? [false,'No source material selected for: '+nosrc.join(', ')] : [true,'Every topic has a source']);
       return checks;
     }
     function setPlan(key, val, extra){
@@ -2460,45 +2580,55 @@
       else p[key] = +val || 0;
       renderExamPrep();
     }
-    function goPaperStep(n){ const P = paperFor(_examCourse); if (n > 1 && !P.qs.length) return; P.step = n; renderExamPrep(); }
+    function goPaperStep(n){ const P = paperFor(_examCourse); if (n > 3 && !P.qs.length) return; if (n === 3 && !P.qs.length) genPaper(_examCourse); P.step = n; renderExamPrep(); }
+    function toggleSource(id){ const P = paperFor(_examCourse); P.sources = P.sources.includes(id) ? P.sources.filter(x => x !== id) : [...P.sources, id]; renderExamPrep(); }
     function toggleQ(id){ const q = paperFor(_examCourse).qs.find(x => x.id === id); q.removed = !q.removed; rebalance(_examCourse); renderExamPrep(); }
-    function saveGuide(id, v){ paperFor(_examCourse).qs.find(x => x.id === id).guide = v; }
+    function approveQ(id, on){ paperFor(_examCourse).qs.find(x => x.id === id).approved = on; renderExamPrep(); }
+    function approveAll(){ paperQs(_examCourse).forEach(q => q.approved = true); renderExamPrep(); }
+    function editQ(id, v){ paperFor(_examCourse).qs.find(x => x.id === id).text = v; saveExamState(); }
+    function setQType(id, v){ paperFor(_examCourse).qs.find(x => x.id === id).type = v; rebalance(_examCourse); renderExamPrep(); }
+    function toggleSrc(id){ const q = paperFor(_examCourse).qs.find(x => x.id === id); q.showSrc = !q.showSrc; renderExamPrep(); }
+    function addOwnQuestion(){ const P = paperFor(_examCourse), id = Math.max(0, ...P.qs.map(q=>q.id)) + 1; P.qs.push({ id, type:'short', topic:P.plan.topics[0]||'', text:'', src:'Written by you', diff:'Medium', marks:0, removed:false, guide:'', approved:false, showSrc:false, custom:true }); rebalance(_examCourse); renderExamPrep(); }
+    function saveGuide(id, v){ paperFor(_examCourse).qs.find(x => x.id === id).guide = v; saveExamState(); }
     function paperTab(code){
-      const P = paperFor(code), p = P.plan, step = P.step, topics = COURSE_TOPICS[code];
-      const stepper = `<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px">${PAPER_STEPS.map((s,i) => `<button type="button" onclick="goPaperStep(${i+1})" class="gen-step${step===i+1?' active':''}" style="border:0;cursor:${i&&!P.qs.length?'not-allowed':'pointer'};${i&&!P.qs.length?'opacity:.5':''}">${i+1} · ${s}</button>`).join('')}</div>`;
+      const P = paperFor(code), p = P.plan, step = P.step, topics = COURSE_TOPICS[code], mats = MATERIALS[code] || [];
+      const stepper = `<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">${PAPER_STEPS.map((s,i) => `<button type="button" onclick="goPaperStep(${i+1})" class="gen-step${step===i+1?' active':''}" style="border:0;cursor:pointer">${i+1} · ${s}</button>`).join('')}</div>
+        <div class="small" style="margin-bottom:14px">🔒 Your exam paper is private. Students never see it, and revision quizzes use separate questions. Progress is saved, so you can leave and come back.</div>`;
       let body = '';
       if (step === 1) {
         const mixSum = p.mix.obj + p.mix.short + p.mix.essay;
-        body = `<div class="card"><h3 style="margin:0 0 4px">Plan the paper</h3><p class="small" style="margin:0 0 14px">Choose what the paper covers. Cubbes drafts questions from your uploaded notes and resources, with the source shown for each.</p>
+        body = `<div class="card"><h3 style="margin:0 0 4px">Set up the paper</h3><p class="small" style="margin:0 0 14px">Confirm what the paper covers.</p>
           <label>Topics covered <span class="small" style="font-weight:600">(from your syllabus tracker)</span></label>
           <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">${topics.map(t => `<label style="display:flex;gap:10px;align-items:center;margin:0;padding:10px 12px;border:1.5px solid ${p.topics.includes(t.name)?'var(--brand)':'var(--line)'};border-radius:12px;cursor:pointer"><input type="checkbox" style="width:auto" ${p.topics.includes(t.name)?'checked':''} onchange="setPlan('topic',this.checked,'${t.name.replace(/'/g,"\\'")}')"><span style="flex:1;font-weight:800">${t.name}</span><span class="tag ${TOPIC_STATE[t.state][0]}">${TOPIC_STATE[t.state][1]}</span></label>`).join('')}</div>
           <div class="form-grid" style="margin-bottom:14px"><div><label>Duration</label><select onchange="setPlan('duration',this.value)">${[60,90,120,180].map(m=>`<option value="${m}" ${p.duration===m?'selected':''}>${m/60} hour${m>60?'s':''}</option>`).join('')}</select></div><div><label>Total marks</label><input type="number" min="10" value="${p.marks}" onchange="setPlan('marks',this.value)"></div></div>
-          <label>Question types <span class="small" style="font-weight:600">(share of the marks, %)</span></label>
-          <div class="form-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:6px">${['obj','short','essay'].map(k=>`<div><span class="small">${TYPE_NAME[k]}</span><input type="number" min="0" max="100" value="${p.mix[k]}" onchange="setPlan('mix',this.value,'${k}')"></div>`).join('')}</div>
+          <label>Sections and question types <span class="small" style="font-weight:600">(share of the marks, %)</span></label>
+          <div class="form-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:6px">${['obj','short','essay'].map((k,i)=>`<div><span class="small">Section ${'ABC'[i]} · ${TYPE_NAME[k]}</span><input type="number" min="0" max="100" value="${p.mix[k]}" onchange="setPlan('mix',this.value,'${k}')"></div>`).join('')}</div>
           <div class="small" style="margin-bottom:14px;color:${mixSum===100?'var(--green)':'var(--red)'};font-weight:700">${mixSum===100?'✓ Adds up to 100%':'Question types add up to '+mixSum+'%. They need to total 100%.'}</div>
-          <button class="btn" type="button" ${mixSum===100&&p.topics.length&&p.marks?'':'disabled'} onclick="genPaper('${code}');renderExamPrep()">${P.qs.length?'Regenerate draft':'Generate draft from course materials'}</button></div>`;
+          <button class="btn" type="button" ${mixSum===100&&p.topics.length&&p.marks?'':'disabled'} onclick="goPaperStep(2)">Continue to sources →</button></div>`;
       } else if (step === 2) {
-        const qs = P.qs;
-        body = `<div class="card"><div class="card-head"><div><h3>Review the questions</h3><p class="small" style="margin:2px 0 0">Draft from your course materials. Remove anything you don't want; marks rebalance automatically.</p></div><span class="tag ${paperTotal(code)===p.marks?'green':'amber'}">${paperTotal(code)} of ${p.marks} marks</span></div>
-          <div class="table-wrap"><table class="table" style="min-width:640px"><thead><tr><th>#</th><th>Question</th><th>Type</th><th>Marks</th><th>Source</th><th></th></tr></thead><tbody>${qs.map((q,i)=>`<tr style="${q.removed?'opacity:.4':''}"><td>${i+1}</td><td><div class="title" style="${q.removed?'text-decoration:line-through':''}">${q.text}</div><div class="small">${q.topic} · ${q.diff}</div></td><td><span class="tag">${TYPE_NAME[q.type]}</span></td><td><strong>${q.removed?'—':q.marks}</strong></td><td class="small">${q.src}</td><td><button class="ghost" style="padding:4px 10px;font-size:12px" type="button" onclick="toggleQ(${q.id})">${q.removed?'Restore':'Remove'}</button></td></tr>`).join('')}</tbody></table></div>
-          <div style="display:flex;gap:10px;margin-top:14px"><button class="btn" type="button" onclick="goPaperStep(3)">Build the paper →</button><button class="ghost" type="button" onclick="goPaperStep(1)">Back to plan</button></div></div>`;
+        const nosrc = p.topics.filter(t => !sourceFor(code, t));
+        body = `<div class="card"><h3 style="margin:0 0 4px">Choose sources</h3><p class="small" style="margin:0 0 14px">Cubbes drafts questions from the course materials you select, and shows the source for each question.</p>
+          ${mats.map(m => `<label style="display:flex;gap:10px;align-items:center;margin:0 0 8px;padding:10px 12px;border:1.5px solid ${P.sources.includes(m.id)?'var(--brand)':'var(--line)'};border-radius:12px;cursor:pointer"><input type="checkbox" style="width:auto" ${P.sources.includes(m.id)?'checked':''} onchange="toggleSource('${m.id}')"><span style="flex:1"><span style="font-weight:800">${m.title}</span> <span class="small">· ${m.type}</span></span><span class="tag blue">${m.topic}</span></label>`).join('')}
+          ${nosrc.length ? `<div class="notice" style="margin:12px 0">No source selected for: <strong>${nosrc.join(', ')}</strong>. Questions on these topics will use your course outline only.</div>` : ''}
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button class="btn" type="button" onclick="genPaper('${code}');goPaperStep(3)">${P.qs.length?'Regenerate draft':'Generate draft questions'} →</button><button class="ghost" type="button" onclick="startExamAction(null,'paperSource')">Add missing material</button><button class="ghost" type="button" onclick="goPaperStep(1)">Back</button></div></div>`;
       } else if (step === 3) {
-        const secs = [['obj','Section A','Answer all questions.'],['short','Section B','Answer all questions.'],['essay','Section C','Answer any questions. Show all working.']];
-        let n = 0;
-        body = `<div class="card"><div class="card-head"><div><h3>Exam paper</h3><p class="small" style="margin:2px 0 0">${code} · ${p.duration/60} hour${p.duration>60?'s':''} · ${paperTotal(code)} marks</p></div></div>
-          ${secs.map(s => { const list = paperQs(code).filter(q => q.type === s[0]); return list.length ? `<div style="margin-bottom:16px"><div style="font-weight:850;margin-bottom:2px">${s[1]} · ${TYPE_NAME[s[0]]} <span class="small">(${list.reduce((a,q)=>a+q.marks,0)} marks)</span></div><div class="small" style="margin-bottom:6px;font-style:italic">${s[2]}</div>${list.map(q=>`<div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--line)"><span>${++n}. ${q.text}</span><span class="small" style="white-space:nowrap">[${q.marks}]</span></div>`).join('')}</div>` : ''; }).join('')}
-          <div style="display:flex;gap:10px"><button class="btn" type="button" onclick="goPaperStep(4)">Marking guide →</button><button class="ghost" type="button" onclick="goPaperStep(2)">Back</button></div></div>`;
-      } else if (step === 4) {
-        body = `<div class="card"><div class="card-head"><div><h3>Marking guide</h3><p class="small" style="margin:2px 0 0">Drafted model answers and marking points. Edit anything before you export.</p></div></div>
-          ${paperQs(code).map((q,i)=>`<div style="margin-bottom:12px"><div style="font-weight:800;margin-bottom:4px">${i+1}. ${q.text} <span class="small">[${q.marks}]</span></div><textarea rows="2" style="min-height:0" onchange="saveGuide(${q.id},this.value)">${q.guide}</textarea></div>`).join('')}
-          <div style="display:flex;gap:10px"><button class="btn" type="button" onclick="goPaperStep(5)">Review &amp; export →</button><button class="ghost" type="button" onclick="goPaperStep(3)">Back</button></div></div>`;
+        body = `<div class="card"><div class="card-head"><div><h3>Build and review</h3><p class="small" style="margin:2px 0 0">Edit any question, inspect its source, and approve it. Marks rebalance when you remove one.</p></div><span class="tag ${paperTotal(code)===p.marks?'green':'amber'}">${paperTotal(code)} of ${p.marks} marks</span></div>
+          <div class="table-wrap"><table class="table" style="min-width:700px"><thead><tr><th>#</th><th>Question</th><th>Type</th><th>Marks</th><th>Approved</th><th></th></tr></thead><tbody>${P.qs.map((q,i)=>`<tr style="${q.removed?'opacity:.4':''}"><td>${i+1}</td><td><input value="${q.text.replace(/"/g,'&quot;')}" placeholder="Type your question" onchange="editQ(${q.id},this.value)" style="padding:8px 10px;${q.removed?'text-decoration:line-through':''}"><div class="small" style="margin-top:3px">${q.topic} · ${q.diff} · <a style="cursor:pointer;color:var(--brand)" onclick="toggleSrc(${q.id})">${q.showSrc?'Hide source':'Inspect source'}</a></div>${q.showSrc?`<div class="small" style="margin-top:4px;padding:6px 10px;background:#f8fafc;border-radius:8px">Source: ${q.src}</div>`:''}</td><td>${q.custom?`<select onchange="setQType(${q.id},this.value)" style="padding:6px">${['obj','short','essay'].map(k=>`<option value="${k}" ${q.type===k?'selected':''}>${TYPE_NAME[k]}</option>`).join('')}</select>`:`<span class="tag">${TYPE_NAME[q.type]}</span>`}</td><td><strong>${q.removed?'—':q.marks}</strong></td><td><input type="checkbox" style="width:auto" ${q.approved?'checked':''} ${q.removed?'disabled':''} onchange="approveQ(${q.id},this.checked)"></td><td><button class="ghost" style="padding:4px 10px;font-size:12px" type="button" onclick="toggleQ(${q.id})">${q.removed?'Restore':'Remove'}</button></td></tr>`).join('')}</tbody></table></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px"><button class="btn" type="button" onclick="goPaperStep(4)">Check and export →</button><button class="ghost" type="button" onclick="addOwnQuestion()">+ Add your own question</button><button class="ghost" type="button" onclick="approveAll()">Approve all</button><button class="ghost" type="button" onclick="paperFor('${code}').preview=!paperFor('${code}').preview;renderExamPrep()">${P.preview?'Hide':'Preview'} paper</button><button class="ghost" type="button" onclick="goPaperStep(2)">Back to sources</button></div>
+          ${P.preview ? paperPreview(code) : ''}</div>`;
       } else {
         const checks = paperChecks(code), bad = checks.filter(c=>!c[0]).length;
-        body = `<div class="card"><div class="card-head"><div><h3>Review before you export</h3><p class="small" style="margin:2px 0 0">${bad ? bad+' thing'+(bad>1?'s':'')+' worth checking' : 'No problems found'}</p></div></div>
+        body = `<div class="card" style="margin-bottom:16px"><div class="card-head"><div><h3>Marking guide</h3><p class="small" style="margin:2px 0 0">Drafted model answers and marking points. Edit anything before you export.</p></div></div>
+          ${paperQs(code).map((q,i)=>`<div style="margin-bottom:12px"><div style="font-weight:800;margin-bottom:4px">${i+1}. ${q.text || '(empty question)'} <span class="small">[${q.marks}]</span></div><textarea rows="2" style="min-height:0" onchange="saveGuide(${q.id},this.value)">${q.guide}</textarea></div>`).join('')}</div>
+          <div class="card"><div class="card-head"><div><h3>Check before you export</h3><p class="small" style="margin:2px 0 0">${bad ? bad+' thing'+(bad>1?'s':'')+' worth checking' : 'No problems found'}</p></div></div>
           ${checks.map(c=>`<div class="item"><div class="small" style="color:${c[0]?'var(--green)':'#b45309'};font-weight:800">${c[0]?'✓':'⚠'} ${c[1]}</div></div>`).join('')}
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px"><button class="btn" type="button" onclick="showToast('Exam paper exported — ${code} exam paper.docx')">Export paper</button><button class="ghost" type="button" onclick="showToast('Marking guide exported — ${code} marking guide.docx')">Export marking guide</button><button class="ghost" type="button" disabled title="Coming soon">Submit to departmental reviewer</button><button class="ghost" type="button" onclick="goPaperStep(2)">Back to questions</button></div></div>`;
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px"><button class="btn" type="button" onclick="showToast('Exam paper exported — ${code} exam paper.docx')">Export paper</button><button class="ghost" type="button" onclick="showToast('Marking guide exported — ${code} marking guide.docx')">Export marking guide</button><button class="ghost" type="button" disabled title="Coming soon">Submit to departmental reviewer</button><button class="ghost" type="button" onclick="goPaperStep(3)">Back to questions</button></div></div>`;
       }
       return stepper + body;
+    }
+    function paperPreview(code){
+      const p = paperFor(code).plan, secs = [['obj','Section A','Answer all questions.'],['short','Section B','Answer all questions.'],['essay','Section C','Answer any questions. Show all working.']]; let n = 0;
+      return `<div style="margin-top:16px;padding:16px;border:1px solid var(--line);border-radius:14px;background:#fff"><div style="font-weight:900;margin-bottom:2px">${code} · Exam paper</div><div class="small" style="margin-bottom:12px">${p.duration/60} hour${p.duration>60?'s':''} · ${paperTotal(code)} marks</div>${secs.map(s => { const list = paperQs(code).filter(q => q.type === s[0]); return list.length ? `<div style="margin-bottom:12px"><div style="font-weight:850">${s[1]} · ${TYPE_NAME[s[0]]} <span class="small">(${list.reduce((a,q)=>a+q.marks,0)} marks)</span></div><div class="small" style="margin-bottom:4px;font-style:italic">${s[2]}</div>${list.map(q=>`<div style="display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px solid var(--line)"><span>${++n}. ${q.text||'(empty)'}</span><span class="small" style="white-space:nowrap">[${q.marks}]</span></div>`).join('')}</div>` : ''; }).join('')}</div>`;
     }
 
     function renderExamPrep(){
@@ -2506,18 +2636,19 @@
       if (sel) sel.value = _examCourse;
       const body = one('#examBody');
       if (body) {
-        const tab = (k, label) => `<button type="button" class="tab${_examTab===k?' active':''}" onclick="setExamTab('${k}')">${label}</button>`;
-        body.innerHTML = examDateCard(_examCourse) + `<div class="tabs" style="margin-bottom:18px">${tab('students','Prepare your students')}${tab('paper','Prepare the exam paper')}</div>` + (_examTab === 'students' ? studentsTab(_examCourse) : paperTab(_examCourse));
+        const back = `<button class="ghost" type="button" onclick="setExamTab(null)" style="margin-bottom:14px">← Exam Prep</button><h3 style="margin:0 0 14px">${_examTab==='students'?'Prepare your students':'Prepare your exam paper'}</h3>`;
+        body.innerHTML = examDateCard(_examCourse) + (_examTab === null ? examHome(_examCourse) : back + (_examTab === 'students' ? studentsTab(_examCourse) : paperTab(_examCourse)))
+          + `<div style="margin-top:28px;padding-top:14px;border-top:1px dashed var(--line)"><span style="font-size:11px;color:var(--muted);font-weight:800;letter-spacing:.06em;text-transform:uppercase">Prototype:</span> <button class="tag amber" type="button" style="cursor:pointer" onclick="resetExamDemo()">Reset Exam Prep demo data</button></div>`;
       }
-      renderDashExam();
+      saveExamState(); renderDashExam();
     }
-    // Dashboard teaser: what to do before the exam, one line each. Detail lives on the Exam prep page.
+    // Dashboard teaser: what needs attention, one line each. Detail lives on the Exam prep page.
     function renderDashExam(){
       const m = one('#dashExamMount'); if (!m) return;
-      const left = examLeft('CSC 401'), days = examDays('CSC 401');
+      const left = needsAttention('CSC 401'), days = examDays('CSC 401');
       if (!left.length) { m.innerHTML = ''; return; }
-      m.innerHTML = `<div class="card" style="margin-bottom:22px"><div class="card-head"><div><h3>Exam prep · CSC 401</h3><p class="small" style="margin:2px 0 0">${days != null && days >= 0 ? 'Exam in '+days+' day'+(days===1?'':'s')+' · ' : ''}${left.length} thing${left.length>1?'s':''} to do</p></div><a style="cursor:pointer;color:var(--brand)" onclick="_examCourse='CSC 401';_examTab='students';showPage('examprep')">Open exam prep</a></div>
-        ${left.slice(0,2).map(a => `<div class="item"><div class="item-left"><div class="mini">${a.icon}</div><div><div class="title">${a.title}</div><div class="small">${a.why.split('. ')[0].replace(/\.$/,'')}</div></div></div><button class="ghost" type="button" onclick="_examCourse='CSC 401';_examTab='students';showPage('examprep')">See</button></div>`).join('')}</div>`;
+      m.innerHTML = `<div class="card" style="margin-bottom:22px"><div class="card-head"><div><h3>Exam prep · CSC 401</h3><p class="small" style="margin:2px 0 0">${days != null && days >= 0 ? 'Exam in '+days+' day'+(days===1?'':'s')+' · ' : ''}${left.length} thing${left.length>1?'s':''} need${left.length>1?'':'s'} attention</p></div><a style="cursor:pointer;color:var(--brand)" onclick="openExamPrepFor('CSC 401')">Open Exam Prep</a></div>
+        ${left.slice(0,2).map(r => `<div class="item"><div class="item-left"><div class="mini">${r.topic?'🧠':'🙋'}</div><div><div class="title">${r.title}</div><div class="small">${r.why(days).split('. ')[0].replace(/\.$/,'')}</div></div></div><button class="ghost" type="button" onclick="openExamPrepFor('CSC 401','students')">See</button></div>`).join('')}</div>`;
     }
     // A newly added course gets its own setup checklist on the dashboard
     function addCourseSetup(code, name, done){
@@ -3983,7 +4114,7 @@ What would you like to look at?`;
       all('[data-tab]').forEach(tab=>tab.addEventListener('click',()=>{all('[data-tab]').forEach(x=>x.classList.remove('active'));all('.tab-content').forEach(x=>x.classList.remove('active'));tab.classList.add('active');document.getElementById(tab.dataset.tab+'Tab')?.classList.add('active')}));
       all('[data-settings]').forEach(tab=>tab.addEventListener('click',()=>{all('[data-settings]').forEach(x=>x.classList.remove('active'));all('.settings-panel').forEach(x=>x.classList.remove('active'));tab.classList.add('active');document.getElementById(tab.dataset.settings+'Settings')?.classList.add('active')}));
       initModalA11y();
-      renderCourseSetup(); resetMaterialAlerts(); renderSemesterEnding(); renderExamPrep();
+      renderCourseSetup(); resetMaterialAlerts(); renderSemesterEnding(); loadExamState(); renderExamPrep();
       initChatHistoryMenu();
     }
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bindEvents);else bindEvents();
