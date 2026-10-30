@@ -372,7 +372,7 @@
           <li>
             <button class="nav" id="navAi" type="button" aria-expanded="true" aria-controls="aiSubnav" onclick="toggleAiNav()"><iconify-icon icon="hugeicons:magic-wand-01" aria-hidden="true"></iconify-icon>AI Intelligence<iconify-icon icon="hugeicons:arrow-down-01" aria-hidden="true" style="margin-left:auto;font-size:16px"></iconify-icon></button>
             <ul class="subnav" id="aiSubnav" role="list">
-              <li><button class="nav sub" data-page="insights" type="button">Insights</button></li>
+              <li><button class="nav sub" data-page="examprep" type="button">Exam prep</button></li>
               <li><button class="nav sub" data-page="analytics" type="button">Ask AI</button></li>
             </ul>
           </li>
@@ -433,9 +433,9 @@
 
             <div class="grid4" style="margin-bottom:22px"><div class="card stat"><div><p>Current Courses</p><h3>4</h3></div><div class="stat-icon">📘</div></div><div class="card stat"><div><p>Current Students</p><h3>363</h3></div><div class="stat-icon" style="background:var(--green-soft);color:var(--green)">👥</div></div><div class="card stat"><div><p>Needs Grading</p><h3>22</h3></div><div class="stat-icon" style="background:var(--amber-soft);color:#b45309">✍</div></div><div class="card stat"><div><p>Avg. Attendance</p><h3>80%</h3></div><div class="stat-icon" style="background:var(--purple-soft);color:var(--purple)">↗</div></div></div>
 
-            <div class="two" style="margin-bottom:22px"><div class="card"><div class="card-head"><h3>Today's Teaching Plan</h3><a data-page-link="calendar" style="cursor:pointer;color:var(--brand)">View Calendar</a></div><div class="item"><div class="item-left"><div class="mini">📍</div><div><div class="title">Operating Systems Lecture</div><div class="small">CSC 401 • 10:00 AM • Attendance ready</div></div></div><button class="soft" data-open-course="attendance" type="button">Start Attendance</button></div><div class="item"><div class="item-left"><div class="mini">🧪</div><div><div class="title">In-class Quiz</div><div class="small">CSC 401 • 11:20 AM • Location required</div></div></div><button class="ghost" data-modal="assessmentModal" type="button">Review</button></div></div><div class="card"><div class="card-head"><h3>Action Needed</h3><a data-page-link="analytics" style="cursor:pointer;color:var(--brand)">View Insights</a></div><div id="courseSetupMount"></div><div id="materialAlertMount"></div><div class="item"><div><div class="title">22 submissions need grading</div><div class="small">Assignment 3: Memory Management</div></div><button class="ghost" data-modal="submissionModal" type="button">Grade</button></div><div class="item"><div><div class="title">1 scheduled announcement</div><div class="small">Publishes tomorrow by 9:00 AM</div></div><button class="ghost" data-page-link="announcements" type="button">Manage</button></div></div></div>
+            <div class="two" style="margin-bottom:22px"><div class="card"><div class="card-head"><h3>Today's Teaching Plan</h3><a data-page-link="calendar" style="cursor:pointer;color:var(--brand)">View Calendar</a></div><div class="item"><div class="item-left"><div class="mini">📍</div><div><div class="title">Operating Systems Lecture</div><div class="small">CSC 401 • 10:00 AM • Attendance ready</div></div></div><button class="soft" data-open-course="attendance" type="button">Start Attendance</button></div><div class="item"><div class="item-left"><div class="mini">🧪</div><div><div class="title">In-class Quiz</div><div class="small">CSC 401 • 11:20 AM • Location required</div></div></div><button class="ghost" data-modal="assessmentModal" type="button">Review</button></div></div><div class="card"><div class="card-head"><h3>Action Needed</h3><a data-page-link="examprep" style="cursor:pointer;color:var(--brand)">Exam prep</a></div><div id="courseSetupMount"></div><div id="materialAlertMount"></div><div class="item"><div><div class="title">22 submissions need grading</div><div class="small">Assignment 3: Memory Management</div></div><button class="ghost" data-modal="submissionModal" type="button">Grade</button></div><div class="item"><div><div class="title">1 scheduled announcement</div><div class="small">Publishes tomorrow by 9:00 AM</div></div><button class="ghost" data-page-link="announcements" type="button">Manage</button></div></div></div>
 
-            <div id="dashInsightsMount"></div>
+            <div id="dashExamMount"></div>
 
             <div class="two">
               <div class="card" style="background:#f8fafc;border-color:var(--line)">
@@ -976,10 +976,9 @@
           </div>
         </div>
         </section>
-        <section class="page" id="insights">
-          <div class="welcome"><div><h2>Insights</h2><p>What your students find hard and how they use your materials, for the current semester.</p></div><select id="insightCourse" onchange="setInsightCourse(this.value)" style="width:auto;min-width:260px" aria-label="Course"></select></div>
-          <div class="small" id="insightMeta" style="margin:-8px 0 18px"></div>
-          <div id="insightBody"></div>
+        <section class="page" id="examprep">
+          <div class="welcome"><div><h2>Exam prep</h2><p>What to do before your students sit the exam: what to re-teach, what is still untaught, and who needs a nudge.</p></div><select id="examCourse" onchange="setExamCourse(this.value)" style="width:auto;min-width:260px" aria-label="Course"></select></div>
+          <div id="examBody"></div>
         </section>
 
         <section class="page" id="analytics">
@@ -1718,7 +1717,7 @@
   <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script>
-    const titles={dashboard:'Dashboard',today:"Today's Class",courses:'Courses',courseDetail:'Course Details',calendar:'Calendar',resources:'Resources',announcements:'Announcements',analytics:'Ask AI',insights:'Insights',settings:'Settings'};
+    const titles={dashboard:'Dashboard',today:"Today's Class",courses:'Courses',courseDetail:'Course Details',calendar:'Calendar',resources:'Resources',announcements:'Announcements',analytics:'Ask AI',examprep:'Exam prep',settings:'Settings'};
     const one=s=>document.querySelector(s); const all=s=>Array.from(document.querySelectorAll(s));
 
     // --- Attendance session state ---
@@ -2059,9 +2058,9 @@
       });
       closeSide(); window.scrollTo(0,0);
       if(id==='courseDetail'){ applyDetail(window._detailCode||null); window._detailCode=null; }
-      one('#navAi')?.classList.toggle('parent-active', id==='insights' || id==='analytics');
-      if(id==='insights' || id==='analytics') one('#aiSubnav')?.classList.remove('hidden');
-      if(id==='insights') renderInsights();
+      one('#navAi')?.classList.toggle('parent-active', id==='examprep' || id==='analytics');
+      if(id==='examprep' || id==='analytics') one('#aiSubnav')?.classList.remove('hidden');
+      if(id==='examprep') renderExamPrep();
       if(id==='analytics') ensureChatBooted();
     }
     function openCourse(tab){showPage('courseDetail');const btn=document.querySelector('[data-tab="'+tab+'"]');if(btn)btn.click()}
@@ -2325,92 +2324,92 @@
         </div>
       </div>`;
     }
-    // ===== Insights (sample data) =====
-    // Questions come from the lecturer's multiple-choice assessments (we record which option each student chose). Written assignments are not included.
-    // Material time = active time only. It signals engagement, not difficulty; difficulty is only suggested when scores point the same way.
-    const INSIGHT_MIN_RESPONSES = 20;
-    const INSIGHT_DATA = {
-      'CSC 401': { name:'Operating Systems in Computing Technology', students:145,
-        questions:[
-          { id:'q1', topic:'Memory Management', assess:'Mid-Semester Quiz', n:132, q:"Which page-replacement policy can show Belady's anomaly?", options:[{k:'A',t:'LRU',p:9},{k:'B',t:'FIFO',p:38,ok:true},{k:'C',t:'Optimal',p:7},{k:'D',t:'Clock',p:46}] },
-          { id:'q2', topic:'Memory Management', assess:'Mid-Semester Quiz', n:128, q:'With 4 KB pages, how many bits of a 32-bit virtual address are the page offset?', options:[{k:'A',t:'10 bits',p:21},{k:'B',t:'12 bits',p:33,ok:true},{k:'C',t:'20 bits',p:36},{k:'D',t:'32 bits',p:10}] },
-          { id:'q3', topic:'Process Management', assess:'Week 5 Quiz', n:140, q:'Which of these is NOT a necessary condition for deadlock?', options:[{k:'A',t:'Mutual exclusion',p:14},{k:'B',t:'No preemption',p:41},{k:'C',t:'Circular wait',p:12},{k:'D',t:'Process priority',p:33,ok:true}] }
+    // ===== Exam prep (sample data) =====
+    // A short brief for the weeks before an exam: what to re-teach, what is still untaught, who to reach, and what to send. Evidence sits behind "See the data".
+    const dayFromNow = n => { const d = new Date(); d.setDate(d.getDate()+n); return d.toISOString().slice(0,10); };
+    const EXAM_PREP = {
+      'CSC 401': { name:'Operating Systems in Computing Technology', students:145, examIn:12,
+        verdict:'Process Management looks solid. Memory Management is the biggest risk, and 3 topics are not finished yet.',
+        actions:[
+          { id:'a1', icon:'🧠', title:'Re-teach Memory Management', why:'62% missed the Belady\'s anomaly question. Most picked "Clock" because they mix it up with FIFO. Only 31% have opened the notes.',
+            buttons:[['Generate revision notes',"openGenerate('notes')",true],['Remind students',"openGenerate('announcement')"]], ask:"Explain Belady's anomaly and why students confuse FIFO with Clock",
+            evidence:()=>`<div class="small" style="font-weight:800;margin-bottom:6px">Mid-Semester Quiz · Q1 · 132 responses</div><div style="font-weight:700;margin-bottom:4px">Which page-replacement policy can show Belady's anomaly?</div>${optionBars([{k:'A',t:'LRU',p:9},{k:'B',t:'FIFO',p:38,ok:true},{k:'C',t:'Optimal',p:7},{k:'D',t:'Clock',p:46}])}<div class="small" style="margin-top:8px">Memory Management Notes: opened by 45 of 145 students (31%), median 3 min.</div>` },
+          { id:'a2', icon:'📚', title:'Finish the syllabus', why:'3 of 5 topics are not finished: Memory Management (in progress), File Systems and Security & Protection. The exam is in 12 days.',
+            buttons:[['Schedule a class',"openModal('classModal')",true],['Open syllabus tracker',"openCourse('overview')"]], ask:'Suggest a plan to cover File Systems and Security & Protection in the time left',
+            evidence:()=>`<div class="small">Covered: Introduction to OS, Process Management.<br>In progress: Memory Management.<br>Not started: File Systems, Security &amp; Protection.</div>` },
+          { id:'a3', icon:'🙋', title:'Reach out to 12 students at risk', why:'They have missed several classes, scored low on quizzes, or have not opened any material.',
+            buttons:[['Message these students',"openGenerate('announcement')",true]], ask:'What is the best way to reach students who have disengaged before exams?',
+            evidence:()=>[['Adebayo Tunde','CSC/2024/001','Missed 4 of 13 classes · quiz 38%'],['Temi Afolabi','CSC/2024/072','Missed both quizzes'],['Chukwuemeka Obi','CSC/2024/055','Has not opened any material'],['Seun Adebayo','CSC/2024/089','Attendance 52%'],['Ifeoluwa James','CSC/2024/047','Quiz 41% · attendance 58%']].map(r=>`<div style="display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)"><span><strong>${r[0]}</strong> <span class="small">${r[1]}</span></span><span class="small">${r[2]}</span></div>`).join('')+'<div class="small" style="margin-top:6px">+ 7 more</div>' },
+          { id:'a4', icon:'✍️', title:'Get students practising past questions', why:'Only 38% have tried a past question this semester.',
+            buttons:[['Share a practice set',"openGenerate('assessment')",true]], ask:'Which topics should a practice set cover before the CSC 401 exam?',
+            evidence:()=>`<div class="small">55 of 145 students have attempted at least one past question. Students who practised scored 14 points higher on the Mid-Semester Quiz on average.</div>` }
         ],
-        materials:[
-          { id:'m1', title:'Operating Systems Fundamentals', type:'PDF · 14 pages', topic:'Introduction to OS', opened:87, minutes:11, note:'Most students stop at page 6', tag:'most' },
-          { id:'m2', title:'Process Synchronization slides', type:'Slides · 22 slides', topic:'Process Management', opened:72, minutes:14, note:'Steady through to the end', tag:'most' },
-          { id:'m3', title:'OS Scheduling Algorithms', type:'YouTube · 24:10', topic:'Process Management', opened:54, minutes:9, note:'Most replayed: 12:10 – 13:00', tag:'' },
-          { id:'m4', title:'Memory Management Notes', type:'DOCX · 18 pages', topic:'Memory Management', opened:31, minutes:3, note:'Most leave at page 2', tag:'least' }
+        topics:[['Introduction to OS','ready','Class average 81% on quizzes.'],['Process Management','ready','Class average 74%. Slides opened by 72% of students.'],['Memory Management','revise','Class average 48%. Notes opened by 31%.'],['File Systems','todo','Not taught yet.'],['Security & Protection','todo','Not taught yet.']] },
+      'CSC 305': { name:'Database Systems and Management', students:98, examIn:20,
+        verdict:'SQL is going well. Normalization needs another pass, and Transactions has not been taught.',
+        actions:[
+          { id:'b1', icon:'🧠', title:'Re-teach Normalization', why:'56% missed the 3NF question. Most picked "Another non-key attribute", which suggests they mix up 2NF and 3NF.',
+            buttons:[['Generate revision notes',"openGenerate('notes')",true],['Remind students',"openGenerate('announcement')"]], ask:'Explain the difference between 2NF and 3NF with an example',
+            evidence:()=>`<div class="small" style="font-weight:800;margin-bottom:6px">Quiz 1 · 91 responses</div><div style="font-weight:700;margin-bottom:4px">A table is in 3NF when every non-key attribute depends on…</div>${optionBars([{k:'A',t:'Part of the key',p:18},{k:'B',t:'The key, the whole key and nothing but the key',p:44,ok:true},{k:'C',t:'Another non-key attribute',p:31},{k:'D',t:'Any candidate key',p:7}])}` },
+          { id:'b2', icon:'📚', title:'Finish the syllabus', why:'4 of 7 topics are not finished, including Transactions. The exam is in 20 days.',
+            buttons:[['Schedule a class',"openModal('classModal')",true],['Open syllabus tracker',"openCourse('overview')"]], ask:'Suggest a plan to cover the remaining Database Systems topics',
+            evidence:()=>`<div class="small">Covered: 3 topics. Remaining: Normalization (in progress), Transactions, Indexing, Database Administration.</div>` }
         ],
-        findings:[
-          { id:'f1', kind:'Misconception', icon:'🧠', title:'62% missed the Belady\'s anomaly question — 46% chose "Clock"', detail:'Mid-Semester Quiz · Q1 · Memory Management · 132 responses', action:'Draft announcement', run:"openGenerate('announcement')", ask:"Explain Belady's anomaly and why students confuse FIFO with Clock" },
-          { id:'f2', kind:'Skipped material', icon:'📄', title:'Only 31% opened Memory Management Notes — the topic with the most-missed questions', detail:'45 of 145 students · median 3 min of active time', action:'Remind students', run:"openGenerate('announcement')", ask:'Why might students be skipping the Memory Management notes?' },
-          { id:'f3', kind:'Drop-off', icon:'📉', title:'Most students leave Operating Systems Fundamentals at page 6', detail:'126 opened it · median 11 min · page 6 is where the drop starts', action:'Open material', run:"openCourse('courseResources')", ask:'What makes page 6 of Operating Systems Fundamentals hard to follow?' }
-        ] },
-      'CSC 305': { name:'Database Systems and Management', students:98,
-        questions:[ { id:'q4', topic:'Normalization', assess:'Quiz 1', n:91, q:'A table is in 3NF when every non-key attribute depends on…', options:[{k:'A',t:'Part of the key',p:18},{k:'B',t:'The key, the whole key and nothing but the key',p:44,ok:true},{k:'C',t:'Another non-key attribute',p:31},{k:'D',t:'Any candidate key',p:7}] } ],
-        materials:[ { id:'m5', title:'SQL Joins cheat sheet', type:'PDF · 4 pages', topic:'SQL', opened:81, minutes:6, note:'Steady through to the end', tag:'most' }, { id:'m6', title:'Normalization walkthrough', type:'YouTube · 18:30', topic:'Normalization', opened:38, minutes:5, note:'Most replayed: 6:40 – 8:10', tag:'least' } ],
-        findings:[ { id:'f4', kind:'Misconception', icon:'🧠', title:'56% missed the 3NF question — 31% chose "Another non-key attribute"', detail:'Quiz 1 · Normalization · 91 responses', action:'Draft announcement', run:"openGenerate('announcement')", ask:'Explain the difference between 2NF and 3NF with an example' } ] },
-      'CSC 202': { name:'Computer Programming II', students:76, questions:[], materials:[], findings:[] }
+        topics:[['SQL','ready','Class average 79%.'],['Database models','ready','Class average 72%.'],['Normalization','revise','Class average 44%.'],['Transactions','todo','Not taught yet.']] },
+      'CSC 202': { name:'Computer Programming II', students:76, examIn:9, verdict:'Students look ready. Nothing urgent before the exam.', actions:[
+          { id:'c1', icon:'✍️', title:'Optional: share a last practice set', why:'66% have tried a past question. A final set would keep the rest on track.', buttons:[['Share a practice set',"openGenerate('assessment')",true]], ask:'Suggest a final practice set for CSC 202', evidence:()=>`<div class="small">50 of 76 students have attempted at least one past question.</div>` } ],
+        topics:[['All topics','ready','Syllabus complete. Class average 77%.']] }
     };
-    let _insightCourse = 'CSC 401';
-    const _insightDismissed = new Set();
+    let _examCourse = 'CSC 401';
+    const _examDone = new Set(), _examOpen = new Set();
     const askAi = text => { showPage('analytics'); setTimeout(() => { const i = one('#askInput'); if (i) { i.value = text; i.focus(); } }, 60); };
-    function insightFindings(code){ return (INSIGHT_DATA[code]?.findings || []).filter(f => !_insightDismissed.has(f.id)); }
-    function dismissInsight(id){ _insightDismissed.add(id); renderInsights(); }
-    function setInsightCourse(code){ _insightCourse = code; renderInsights(); }
+    const examLeft = code => (EXAM_PREP[code]?.actions || []).filter(a => !_examDone.has(a.id));
+    function setExamCourse(code){ _examCourse = code; renderExamPrep(); }
+    function toggleExamDone(id){ _examDone.has(id) ? _examDone.delete(id) : _examDone.add(id); renderExamPrep(); }
+    function toggleExamOpen(id){ _examOpen.has(id) ? _examOpen.delete(id) : _examOpen.add(id); renderExamPrep(); }
     function optionBars(opts){
       const topWrong = Math.max(...opts.filter(o=>!o.ok).map(o=>o.p));
       return opts.map(o => { const col = o.ok ? 'var(--green)' : (o.p === topWrong ? 'var(--amber)' : '#cbd5e1');
-        return `<div style="display:grid;grid-template-columns:22px 1fr 44px;gap:8px;align-items:center;margin:5px 0;font-size:13px"><b>${o.k}</b><div><div style="display:flex;justify-content:space-between;gap:8px"><span>${o.t}${o.ok?' <span class="tag green" style="padding:1px 7px;font-size:11px">Correct</span>':''}</span></div><div style="height:7px;background:#f1f5f9;border-radius:999px;overflow:hidden;margin-top:3px"><div style="height:100%;width:${o.p}%;background:${col}"></div></div></div><span style="text-align:right;font-weight:800">${o.p}%</span></div>`; }).join('');
+        return `<div style="display:grid;grid-template-columns:22px 1fr 44px;gap:8px;align-items:center;margin:5px 0;font-size:13px"><b>${o.k}</b><div><span>${o.t}${o.ok?' <span class="tag green" style="padding:1px 7px;font-size:11px">Correct</span>':''}</span><div style="height:7px;background:#f1f5f9;border-radius:999px;overflow:hidden;margin-top:3px"><div style="height:100%;width:${o.p}%;background:${col}"></div></div></div><span style="text-align:right;font-weight:800">${o.p}%</span></div>`; }).join('');
     }
-    function renderInsights(){
-      const sel = one('#insightCourse'); if (sel && sel.options.length === 0) sel.innerHTML = Object.keys(INSIGHT_DATA).map(c => `<option value="${c}">${c} · ${INSIGHT_DATA[c].name}</option>`).join('');
-      if (sel) sel.value = _insightCourse;
-      const d = INSIGHT_DATA[_insightCourse], body = one('#insightBody');
+    function renderExamPrep(){
+      const sel = one('#examCourse'); if (sel && !sel.options.length) sel.innerHTML = Object.keys(EXAM_PREP).map(c => `<option value="${c}">${c} · ${EXAM_PREP[c].name}</option>`).join('');
+      if (sel) sel.value = _examCourse;
+      const d = EXAM_PREP[_examCourse], body = one('#examBody');
       if (body && d) {
-        one('#insightMeta').textContent = '1st Semester 2025/2026 · '+d.students+' students · updated today';
-        const findings = insightFindings(_insightCourse);
-        if (!d.questions.length && !d.materials.length) {
-          body.innerHTML = `<div class="card" style="text-align:center;padding:48px 24px;border:1.5px dashed var(--line)"><div style="font-size:38px;margin-bottom:10px">📊</div><h3 style="margin:0 0 6px">Not enough data yet</h3><p class="small" style="max-width:420px;margin:0 auto">Insights appear once at least ${INSIGHT_MIN_RESPONSES} students have answered a multiple-choice assessment or opened your materials.</p></div>`;
-        } else {
-          const topics = {}; d.questions.forEach(q => topics[q.topic] = (topics[q.topic]||0) + 1);
-          const topTopic = Object.entries(topics).sort((a,b)=>b[1]-a[1])[0];
-          const qs = d.questions.map(q => { const ok = q.options.find(o=>o.ok).p, wrong = 100 - ok;
-            return `<div style="border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:12px">
-              <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px"><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag blue">${q.topic}</span><span class="tag">${q.assess}</span></div><span class="tag amber">${wrong}% got it wrong · ${q.n} responses</span></div>
-              <div style="font-weight:800;margin:6px 0 8px">${q.q}</div>${optionBars(q.options)}
-              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="soft" style="padding:6px 12px;font-size:13px" type="button" onclick="openGenerate('announcement')">Draft announcement</button><button class="ghost" style="padding:6px 12px;font-size:13px" type="button" onclick="openGenerate('notes')">Generate explainer</button></div>
-            </div>`; }).join('');
-          const mats = d.materials.map(m => `<tr><td><div class="title">${m.title}</div><div class="small">${m.type} · ${m.topic}</div></td><td><strong>${m.opened}%</strong> <span class="small">opened</span>${m.tag==='most'?' <span class="tag green">Most opened</span>':m.tag==='least'?' <span class="tag red">Low opens</span>':''}</td><td>${m.minutes} min</td><td class="small">${m.note}</td></tr>`).join('');
-          body.innerHTML = `
-            <div class="card" style="margin-bottom:22px"><div class="card-head"><h3>Key findings</h3><span class="small">${findings.length} to look at</span></div>
-              ${findings.length ? findings.map(f => `<div class="item" style="align-items:flex-start"><div class="item-left" style="align-items:flex-start"><div class="mini">${f.icon}</div><div><div class="small" style="font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-size:11px">${f.kind}</div><div class="title">${f.title}</div><div class="small">${f.detail}</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="soft" style="padding:5px 11px;font-size:12px" type="button" onclick="${f.run}">${f.action}</button><button class="ghost" style="padding:5px 11px;font-size:12px" type="button" onclick="askAi(${JSON.stringify(f.ask).replace(/"/g,'&quot;')})">Ask AI about this</button></div></div></div><button class="ghost" style="padding:4px 10px;font-size:12px" type="button" onclick="dismissInsight('${f.id}')">Dismiss</button></div>`).join('') : '<p class="small" style="margin:6px 0 0">You\'re all caught up. New findings appear here as students answer and read.</p>'}
-            </div>
-            <div class="card" style="margin-bottom:22px"><div class="card-head"><div><h3>Questions to re-teach</h3><p class="small" style="margin:2px 0 0">Most-missed multiple-choice questions from your assessments${topTopic && topTopic[1] > 1 ? ' · <strong>'+topTopic[0]+'</strong> has '+topTopic[1]+' of the '+d.questions.length+' most-missed' : ''}. Amber = the wrong answer chosen most.</p></div></div>
-              ${qs || '<p class="small">No multiple-choice assessment has enough responses yet.</p>'}
-              <p class="small" style="margin:6px 0 0">Shown when at least ${INSIGHT_MIN_RESPONSES} students answered. Written assignments are not included.</p></div>
-            <div class="card"><div class="card-head"><div><h3>How students use your materials</h3><p class="small" style="margin:2px 0 0">Time is active time only (idle time ignored).</p></div></div>
-              <div class="table-wrap"><table class="table" style="min-width:560px"><thead><tr><th>Material</th><th>Opened by</th><th>Median time</th><th>Where students stop or replay</th></tr></thead><tbody>${mats}</tbody></table></div>
-              <div class="notice" style="margin-top:14px">Time spent shows <strong>engagement</strong>, not difficulty. A long time can mean a topic is hard or just interesting. Check it against the question results above before drawing a conclusion.</div></div>`;
-        }
+        const left = examLeft(_examCourse), chip = { ready:['green','Ready'], revise:['amber','Needs revision'], todo:['red','Not taught yet'] };
+        body.innerHTML = `
+          <div class="card" style="margin-bottom:22px;border:1.5px solid var(--brand);background:linear-gradient(135deg,var(--brand-soft) 0%,#fff 65%)">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap"><div><div class="small" style="font-weight:800">${_examCourse} · ${d.students} students</div><h3 style="margin:2px 0 6px;font-size:20px">Exam in ${d.examIn} days <span class="small" style="font-weight:600">(${fmtDate(dayFromNow(d.examIn))})</span></h3></div><span class="tag ${left.length?'amber':'green'}" style="font-size:13px;padding:6px 12px">${left.length ? left.length+' thing'+(left.length>1?'s':'')+' to do' : 'All done'}</span></div>
+            <p style="margin:0;font-size:15px;color:var(--text)">${d.verdict}</p>
+          </div>
+          <div class="small" style="font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin:0 0 10px">Do these before the exam</div>
+          ${d.actions.map((a,i) => { const done = _examDone.has(a.id), open = _examOpen.has(a.id);
+            return `<div class="card" style="margin-bottom:12px;${done?'opacity:.6':''}"><div style="display:flex;gap:14px;align-items:flex-start">
+              <button type="button" onclick="toggleExamDone('${a.id}')" aria-label="${done?'Mark as not done':'Mark as done'}" style="all:unset;cursor:pointer;width:26px;height:26px;border-radius:50%;border:2px solid ${done?'var(--green)':'#cbd5e1'};background:${done?'var(--green)':'#fff'};color:#fff;display:grid;place-items:center;font-size:13px;font-weight:900;flex:0 0 auto;margin-top:2px">${done?'✓':''}</button>
+              <div style="flex:1;min-width:0"><div class="title" style="font-size:16px;${done?'text-decoration:line-through':''}">${a.icon} ${a.title}</div><div class="small" style="color:var(--text);margin:4px 0 10px">${a.why}</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${a.buttons.map(b=>`<button class="${b[2]?'btn':'ghost'}" style="padding:7px 13px;font-size:13px" type="button" onclick="${b[1]}">${b[0]}</button>`).join('')}<button class="ghost" style="padding:7px 13px;font-size:13px" type="button" onclick="askAi(${JSON.stringify(a.ask).replace(/"/g,'&quot;')})">Ask AI</button><button type="button" onclick="toggleExamOpen('${a.id}')" style="all:unset;cursor:pointer;color:var(--brand);font-size:13px;font-weight:800;margin-left:4px">${open?'Hide the data':'See the data'}</button></div>
+                ${open ? `<div style="margin-top:12px;padding:12px 14px;background:#f8fafc;border:1px solid var(--line);border-radius:12px">${a.evidence()}</div>` : ''}</div></div></div>`; }).join('')}
+          <div class="card" style="margin-top:22px"><div class="card-head"><div><h3>Topic by topic</h3><p class="small" style="margin:2px 0 0">Based on quiz results, past-question practice and your syllabus tracker.</p></div></div>
+            ${d.topics.map(t => `<div class="item"><div><div class="title">${t[0]}</div><div class="small">${t[2]}</div></div><span class="tag ${chip[t[1]][0]}">${chip[t[1]][1]}</span></div>`).join('')}</div>
+          <p class="small" style="margin-top:14px">Based on your multiple-choice assessments, past-question practice and syllabus progress. Written assignments are not included.</p>`;
       }
-      renderDashInsights();
+      renderDashExam();
     }
-    // Dashboard teaser: top findings only; the detail lives on the Insights page.
-    function renderDashInsights(){
-      const m = one('#dashInsightsMount'); if (!m) return;
-      const f = insightFindings('CSC 401');
-      if (!f.length) { m.innerHTML = ''; return; }
-      m.innerHTML = `<div class="card" style="margin-bottom:22px"><div class="card-head"><div><h3>Insights · CSC 401</h3><p class="small" style="margin:2px 0 0">${f.length} new finding${f.length>1?'s':''} from your students this semester</p></div><a style="cursor:pointer;color:var(--brand)" onclick="_insightCourse='CSC 401';showPage('insights')">View all insights</a></div>
-        ${f.slice(0,2).map(x => `<div class="item"><div class="item-left"><div class="mini">${x.icon}</div><div><div class="title">${x.title}</div><div class="small">${x.detail}</div></div></div><button class="ghost" type="button" onclick="_insightCourse='CSC 401';showPage('insights')">See</button></div>`).join('')}</div>`;
+    // Dashboard teaser: what to do before the exam, one line each. Detail lives on the Exam prep page.
+    function renderDashExam(){
+      const m = one('#dashExamMount'); if (!m) return;
+      const d = EXAM_PREP['CSC 401'], left = examLeft('CSC 401');
+      if (!left.length) { m.innerHTML = ''; return; }
+      m.innerHTML = `<div class="card" style="margin-bottom:22px"><div class="card-head"><div><h3>Exam prep · CSC 401</h3><p class="small" style="margin:2px 0 0">Exam in ${d.examIn} days · ${left.length} thing${left.length>1?'s':''} to do</p></div><a style="cursor:pointer;color:var(--brand)" onclick="_examCourse='CSC 401';showPage('examprep')">Open exam prep</a></div>
+        ${left.slice(0,2).map(a => `<div class="item"><div class="item-left"><div class="mini">${a.icon}</div><div><div class="title">${a.title}</div><div class="small">${a.why.split('. ')[0].replace(/\.$/,'')}</div></div></div><button class="ghost" type="button" onclick="_examCourse='CSC 401';showPage('examprep')">See</button></div>`).join('')}</div>`;
     }
-    // Sidebar: AI Intelligence has a submenu (Insights, Ask AI)
+    // Sidebar: AI Intelligence has a submenu (Exam prep, Ask AI)
     function toggleAiNav(){
       const sub = one('#aiSubnav'), btn = one('#navAi'); if (!sub) return;
       const open = sub.classList.toggle('hidden') === false;
       btn.setAttribute('aria-expanded', open);
-      if (open) showPage('insights');
+      if (open) showPage('examprep');
     }
     // A newly added course gets its own setup checklist on the dashboard
     function addCourseSetup(code, name, done){
@@ -3876,7 +3875,7 @@ What would you like to look at?`;
       all('[data-tab]').forEach(tab=>tab.addEventListener('click',()=>{all('[data-tab]').forEach(x=>x.classList.remove('active'));all('.tab-content').forEach(x=>x.classList.remove('active'));tab.classList.add('active');document.getElementById(tab.dataset.tab+'Tab')?.classList.add('active')}));
       all('[data-settings]').forEach(tab=>tab.addEventListener('click',()=>{all('[data-settings]').forEach(x=>x.classList.remove('active'));all('.settings-panel').forEach(x=>x.classList.remove('active'));tab.classList.add('active');document.getElementById(tab.dataset.settings+'Settings')?.classList.add('active')}));
       initModalA11y();
-      renderCourseSetup(); resetMaterialAlerts(); renderSemesterEnding(); renderInsights();
+      renderCourseSetup(); resetMaterialAlerts(); renderSemesterEnding(); renderExamPrep();
       initChatHistoryMenu();
     }
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bindEvents);else bindEvents();
